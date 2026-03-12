@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GlobalDWS Case Study | Ali Noorani</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f6f6f6',
+                            100: '#e7e7e7',
+                            900: '#111111',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Scroll animations */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .image-placeholder {
+            background-image: repeating-linear-gradient(45deg, #f3f4f6 25%, transparent 25%, transparent 75%, #f3f4f6 75%, #f3f4f6), repeating-linear-gradient(45deg, #f3f4f6 25%, #ffffff 25%, #ffffff 75%, #f3f4f6 75%, #f3f4f6);
+            background-position: 0 0, 10px 10px;
+            background-size: 20px 20px;
+        }
+    </style>
+</head>
+
+<body class="bg-white text-gray-800 antialiased selection:bg-gray-900 selection:text-white">
+
+    <!-- Navigation -->
+    <nav
+        class="fixed w-full z-50 top-0 transition-all duration-300 bg-white/80 backdrop-blur-md border-b border-gray-100">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-xl font-bold tracking-tight text-gray-900">Ali Noorani<span
+                    class="text-gray-400 font-normal">.work</span></a>
+            <a href="#"
+                class="text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors flex items-center gap-2">
+                <i data-lucide="arrow-left" class="w-4 h-4"></i> Back to Portfolio
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="pt-40 pb-20 px-6">
+        <div class="max-w-4xl mx-auto fade-up">
+            <h1 class="text-4xl md:text-6xl font-extrabold text-gray-900 tracking-tight leading-tight mb-8">
+                GlobalDWS Website Redesign & Digital Modernization
+            </h1>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 py-8 border-y border-gray-200 mb-12">
+                <div>
+                    <h3 class="text-xs uppercase tracking-wider text-gray-400 font-semibold mb-2">Role</h3>
+                    <p class="font-medium text-gray-900">Creative Design Lead</p>
+                </div>
+                <div>
+                    <h3 class="text-xs uppercase tracking-wider text-gray-400 font-semibold mb-2">Timeline</h3>
+                    <p class="font-medium text-gray-900">June 2025 – Present</p>
+                </div>
+                <div>
+                    <h3 class="text-xs uppercase tracking-wider text-gray-400 font-semibold mb-2">Platform</h3>
+                    <p class="font-medium text-gray-900">Web / Mobile</p>
+                </div>
+                <div>
+                    <h3 class="text-xs uppercase tracking-wider text-gray-400 font-semibold mb-2">Live Site</h3>
+                    <a href="https://ramiwehbe7.wixstudio.com/globaldws" target="_blank"
+                        class="font-medium text-blue-600 hover:text-blue-800 hover:underline inline-flex items-center gap-1">
+                        View Live <i data-lucide="external-link" class="w-3 h-3"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="flex flex-wrap gap-2 mb-16">
+                <span class="px-3 py-1 bg-gray-100 text-gray-600 text-sm rounded-full font-medium">Figma</span>
+                <span class="px-3 py-1 bg-gray-100 text-gray-600 text-sm rounded-full font-medium">HTML5/CSS3</span>
+                <span class="px-3 py-1 bg-gray-100 text-gray-600 text-sm rounded-full font-medium">Wix Studio</span>
+                <span class="px-3 py-1 bg-gray-100 text-gray-600 text-sm rounded-full font-medium">Miro</span>
+                <span class="px-3 py-1 bg-gray-100 text-gray-600 text-sm rounded-full font-medium">Jira</span>
+            </div>
+
+            <!-- Hero Image Placeholder -->
+            <div
+                class="w-full aspect-[16/9] bg-gray-100 rounded-2xl border border-gray-200 overflow-hidden relative group">
+                <div class="absolute inset-0 flex flex-col items-center justify-center text-gray-400">
+                    <i data-lucide="monitor" class="w-12 h-12 mb-4 opacity-50"></i>
+                    <p class="text-sm font-medium">Replace with Hero Mockup (iMac/MacBook showing homepage)</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-6 pb-24 space-y-32">
+
+        <!-- 1. Overview & Impact -->
+        <section class="fade-up scroll-mt-24">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6">1. Project Overview</h2>
+                    <p class="text-gray-600 mb-4 leading-relaxed">
+                        GlobalDWS is a forward-thinking technology company that required a digital presence to match its
+                        innovative offerings. The legacy website suffered from a fragmented user experience, high bounce
+                        rates, and a lack of a cohesive brand narrative, which hindered user engagement and lead
+                        generation.
+                    </p>
+                    <p class="text-gray-600 leading-relaxed">
+                        As the Creative Design Lead, I spearheaded the end-to-end redesign of the GlobalDWS digital
+                        platform. My goal was to build a mobile-first, responsive, and accessible website backed by a
+                        scalable design system that could grow with the company.
+                    </p>
+                </div>
+                <div class="bg-gray-50 rounded-2xl p-8 border border-gray-100">
+                    <h3 class="text-sm font-bold uppercase tracking-wider text-gray-900 mb-6">The Impact at a Glance
+                    </h3>
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4">
+                            <div class="bg-green-100 p-2 rounded-lg text-green-600 mt-1">
+                                <i data-lucide="trending-up" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-3xl font-bold text-gray-900">80%</h4>
+                                <p class="text-sm text-gray-600 font-medium">Increase in average session duration</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="bg-blue-100 p-2 rounded-lg text-blue-600 mt-1">
+                                <i data-lucide="mouse-pointer-click" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-3xl font-bold text-gray-900">8%</h4>
+                                <p class="text-sm text-gray-600 font-medium">Reduction in bounce rate</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="bg-purple-100 p-2 rounded-lg text-purple-600 mt-1">
+                                <i data-lucide="layers" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold text-gray-900 pt-1">1st Centralized</h4>
+                                <p class="text-sm text-gray-600 font-medium">Design System established, reducing debt
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. The Problem -->
+        <section class="fade-up scroll-mt-24">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">2. The Problem</h2>
+            <p class="text-gray-600 text-lg mb-8 leading-relaxed max-w-3xl">
+                The original digital experience was burdened by design debt and inconsistent user journeys. Complex
+                technical offerings were not clearly communicated to prospective clients, leading to user drop-off.
+            </p>
+
+            <div class="grid sm:grid-cols-2 gap-6">
+                <div class="p-6 border border-gray-200 rounded-xl hover:shadow-md transition-shadow">
+                    <div class="w-10 h-10 bg-red-50 rounded-full flex items-center justify-center text-red-500 mb-4">
+                        <i data-lucide="users" class="w-5 h-5"></i>
+                    </div>
+                    <h4 class="font-bold text-gray-900 mb-2">Stakeholder Misalignment</h4>
+                    <p class="text-sm text-gray-600">Initial resistance to a complete digital overhaul. Business teams
+                        and marketing had varying visions for the product.</p>
+                </div>
+                <div class="p-6 border border-gray-200 rounded-xl hover:shadow-md transition-shadow">
+                    <div
+                        class="w-10 h-10 bg-orange-50 rounded-full flex items-center justify-center text-orange-500 mb-4">
+                        <i data-lucide="activity" class="w-5 h-5"></i>
+                    </div>
+                    <h4 class="font-bold text-gray-900 mb-2">Poor Engagement Metrics</h4>
+                    <p class="text-sm text-gray-600">Users were leaving the site quickly without exploring the core
+                        services or understanding the value proposition.</p>
+                </div>
+                <div class="p-6 border border-gray-200 rounded-xl hover:shadow-md transition-shadow">
+                    <div
+                        class="w-10 h-10 bg-yellow-50 rounded-full flex items-center justify-center text-yellow-600 mb-4">
+                        <i data-lucide="layout-template" class="w-5 h-5"></i>
+                    </div>
+                    <h4 class="font-bold text-gray-900 mb-2">Inconsistent UI</h4>
+                    <p class="text-sm text-gray-600">The lack of a unified design system meant the brand looked
+                        disjointed across different pages and marketing assets.</p>
+                </div>
+                <div class="p-6 border border-gray-200 rounded-xl hover:shadow-md transition-shadow">
+                    <div class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-gray-600 mb-4">
+                        <i data-lucide="code-2" class="w-5 h-5"></i>
+                    </div>
+                    <h4 class="font-bold text-gray-900 mb-2">Development Gap</h4>
+                    <p class="text-sm text-gray-600">A clear disconnect between design concepts and the external
+                        development team's execution and technical constraints.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. My Role & Team -->
+        <section class="fade-up scroll-mt-24 border-y border-gray-200 py-16 my-16">
+            <div class="max-w-3xl">
+                <h2 class="text-2xl font-bold text-gray-900 mb-6">3. My Role & The Team</h2>
+                <p class="text-gray-600 mb-6 leading-relaxed">
+                    I managed the full production lifecycle in a distributed Agile (Scrum) model. I acted as the core
+                    mediator between:
+                </p>
+                <ul class="space-y-4 mb-8">
+                    <li class="flex items-center gap-3">
+                        <i data-lucide="building" class="w-5 h-5 text-gray-400"></i>
+                        <span class="text-gray-800"><strong class="font-semibold">Internal Stakeholders:</strong>
+                            Business and marketing teams.</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i data-lucide="laptop" class="w-5 h-5 text-gray-400"></i>
+                        <span class="text-gray-800"><strong class="font-semibold">External Teams:</strong> Freelance
+                            creatives and developers.</span>
+                    </li>
+                </ul>
+                <p class="text-gray-600 leading-relaxed italic border-l-4 border-gray-300 pl-4">
+                    "My responsibilities ranged from facilitating user research and creating UX documentation to
+                    hands-on UI design, HTML/CSS component building, and overseeing the final Wix Studio
+                    implementation."
+                </p>
+            </div>
+        </section>
+
+        <!-- 4. The Process -->
+        <section class="fade-up scroll-mt-24 space-y-16">
+            <h2 class="text-3xl font-bold text-gray-900 mb-10">4. The Design Process</h2>
+
+            <!-- Phase 1 -->
+            <div class="relative pl-8 md:pl-0">
+                <div class="md:grid md:grid-cols-12 gap-8 items-start">
+                    <div class="md:col-span-4 mb-4 md:mb-0">
+                        <div class="text-sm font-bold text-blue-600 tracking-wider uppercase mb-2">Phase 1</div>
+                        <h3 class="text-xl font-bold text-gray-900">Discovery & Alignment</h3>
+                    </div>
+                    <div class="md:col-span-8 space-y-4">
+                        <p class="text-gray-600 leading-relaxed">
+                            To overcome initial resistance to change, I relied on <strong>data-driven
+                                storytelling</strong>. I facilitated user research to understand the pain points of our
+                            target audience and presented comprehensive <strong>User Research Findings Reports</strong>
+                            to the executive team.
+                        </p>
+                        <div class="bg-gray-50 p-4 rounded-lg border border-gray-100 flex gap-4 items-start">
+                            <i data-lucide="check-circle-2" class="w-6 h-6 text-green-500 shrink-0"></i>
+                            <p class="text-sm text-gray-700"><strong>Outcome:</strong> By showcasing concrete data on
+                                user drop-offs and competitor benchmarking, I secured full stakeholder buy-in for the
+                                digital modernization initiative.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Phase 2 -->
+            <div class="relative pl-8 md:pl-0">
+                <div class="md:grid md:grid-cols-12 gap-8 items-start">
+                    <div class="md:col-span-4 mb-4 md:mb-0">
+                        <div class="text-sm font-bold text-blue-600 tracking-wider uppercase mb-2">Phase 2</div>
+                        <h3 class="text-xl font-bold text-gray-900">IA & Wireframing</h3>
+                    </div>
+                    <div class="md:col-span-8 space-y-6">
+                        <p class="text-gray-600 leading-relaxed">
+                            I restructured the site's Information Architecture (IA) to simplify the navigation. Complex
+                            B2B offerings were broken down into intuitive, digestible user flows.
+                        </p>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div
+                                class="aspect-[4/3] rounded-lg image-placeholder border border-gray-200 flex flex-col items-center justify-center p-4 text-center">
+                                <i data-lucide="git-merge" class="w-8 h-8 text-gray-400 mb-2"></i>
+                                <span class="text-xs text-gray-500 font-medium">Insert Sitemap Before/After</span>
+                            </div>
+                            <div
+                                class="aspect-[4/3] rounded-lg image-placeholder border border-gray-200 flex flex-col items-center justify-center p-4 text-center">
+                                <i data-lucide="pen-tool" class="w-8 h-8 text-gray-400 mb-2"></i>
+                                <span class="text-xs text-gray-500 font-medium">Insert Low-fi Wireframes</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Phase 3 -->
+            <div class="relative pl-8 md:pl-0">
+                <div class="md:grid md:grid-cols-12 gap-8 items-start">
+                    <div class="md:col-span-4 mb-4 md:mb-0">
+                        <div class="text-sm font-bold text-blue-600 tracking-wider uppercase mb-2">Phase 3</div>
+                        <h3 class="text-xl font-bold text-gray-900">Design System</h3>
+                    </div>
+                    <div class="md:col-span-8 space-y-6">
+                        <p class="text-gray-600 leading-relaxed">
+                            To ensure scalability and consistency, I developed a comprehensive Design System from
+                            scratch. This included typography hierarchy, a modernized color palette, responsive grid
+                            systems, and accessible UI components (buttons, forms, cards).
+                        </p>
+                        <div
+                            class="w-full aspect-[21/9] rounded-xl image-placeholder border border-gray-200 flex flex-col items-center justify-center p-4">
+                            <i data-lucide="palette" class="w-10 h-10 text-gray-400 mb-3"></i>
+                            <span class="text-sm text-gray-500 font-medium">Insert Figma UI Kit / Design System
+                                Snapshot</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Phase 4 -->
+            <div class="relative pl-8 md:pl-0">
+                <div class="md:grid md:grid-cols-12 gap-8 items-start">
+                    <div class="md:col-span-4 mb-4 md:mb-0">
+                        <div class="text-sm font-bold text-blue-600 tracking-wider uppercase mb-2">Phase 4</div>
+                        <h3 class="text-xl font-bold text-gray-900">Prototyping</h3>
+                    </div>
+                    <div class="md:col-span-8 space-y-6">
+                        <p class="text-gray-600 leading-relaxed">
+                            Adopting a strict <strong>mobile-first approach</strong>, I designed the high-fidelity
+                            interfaces. I prioritized clarity, using ample whitespace and clear calls-to-action (CTAs)
+                            to guide users through the site naturally.
+                        </p>
+                        <div
+                            class="w-full aspect-video rounded-xl image-placeholder border border-gray-200 flex flex-col items-center justify-center p-4">
+                            <i data-lucide="smartphone" class="w-10 h-10 text-gray-400 mb-3"></i>
+                            <span class="text-sm text-gray-500 font-medium">Insert Side-by-Side Mobile & Desktop
+                                Mockup</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Phase 5 -->
+            <div class="relative pl-8 md:pl-0">
+                <div class="md:grid md:grid-cols-12 gap-8 items-start">
+                    <div class="md:col-span-4 mb-4 md:mb-0">
+                        <div class="text-sm font-bold text-blue-600 tracking-wider uppercase mb-2">Phase 5</div>
+                        <h3 class="text-xl font-bold text-gray-900">Design to Dev</h3>
+                    </div>
+                    <div class="md:col-span-8">
+                        <p class="text-gray-600 leading-relaxed">
+                            To ensure the design was implemented flawlessly, I didn't just hand off Figma files. I built
+                            responsive landing pages utilizing HTML5 and CSS3 components to demonstrate exactly how the
+                            interactive elements should behave. I coordinated closely with the developers managing the
+                            Wix Studio environment, assigning tasks via Jira and managing approvals.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. The Solution -->
+        <section class="fade-up scroll-mt-24">
+            <h2 class="text-2xl font-bold text-gray-900 mb-8">5. The Solution</h2>
+            <div class="bg-gray-900 text-white rounded-3xl p-8 md:p-12">
+                <p class="text-xl text-gray-300 mb-10 leading-relaxed font-light">
+                    The new GlobalDWS website is a modern, cohesive, and highly engaging platform designed to convert.
+                </p>
+
+                <div class="grid sm:grid-cols-2 gap-8 mb-12">
+                    <div>
+                        <h4 class="font-bold text-lg mb-2 flex items-center gap-2"><i data-lucide="maximize"
+                                class="w-5 h-5 text-blue-400"></i> Responsive Architecture</h4>
+                        <p class="text-gray-400 text-sm">Flawless experience across desktop, tablet, and mobile devices.
+                        </p>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-lg mb-2 flex items-center gap-2"><i data-lucide="compass"
+                                class="w-5 h-5 text-blue-400"></i> Streamlined Navigation</h4>
+                        <p class="text-gray-400 text-sm">Intuitive access to core services, drastically improving
+                            findability.</p>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-lg mb-2 flex items-center gap-2"><i data-lucide="file-text"
+                                class="w-5 h-5 text-blue-400"></i> Engaging Content</h4>
+                        <p class="text-gray-400 text-sm">Translated complex technical capabilities into accessible value
+                            propositions.</p>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-lg mb-2 flex items-center gap-2"><i data-lucide="eye"
+                                class="w-5 h-5 text-blue-400"></i> Accessibility Compliance</h4>
+                        <p class="text-gray-400 text-sm">Ensured contrast ratios and structural elements aligned with
+                            WCAG best practices.</p>
+                    </div>
+                </div>
+
+                <div
+                    class="w-full aspect-[16/9] bg-gray-800 rounded-xl border border-gray-700 flex flex-col items-center justify-center p-4">
+                    <i data-lucide="laptop" class="w-12 h-12 text-gray-500 mb-4"></i>
+                    <span class="text-sm text-gray-400 font-medium">Insert Final High-Quality Mockup (Multiple
+                        Devices)</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. Results & Reflections -->
+        <section class="fade-up scroll-mt-24">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">6. Results & Reflections</h2>
+            <p class="text-gray-600 mb-8 leading-relaxed">
+                The launch of the new site provided immediate, measurable business value. By prioritizing user needs and
+                establishing a clear design language, we transformed the platform into a powerful asset for the company.
+            </p>
+
+            <div class="bg-blue-50 border border-blue-100 rounded-2xl p-8 mb-8">
+                <h3 class="text-lg font-bold text-blue-900 mb-4">The Takeaway</h3>
+                <p class="text-blue-800 leading-relaxed">
+                    The biggest lesson from this project was the power of <strong>mediation and data</strong>. When
+                    redesigning legacy systems, the design itself is only half the battle; aligning cross-functional
+                    teams and overcoming organizational resistance using clear, research-backed storytelling is what
+                    ultimately ensures a project's success.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-50 border-t border-gray-200 py-12">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">Let's build something great.</h2>
+            <div class="flex justify-center gap-6 mb-8">
+                <a href="mailto:noorani.ali@gmail.com"
+                    class="text-gray-500 hover:text-gray-900 transition-colors flex items-center gap-2">
+                    <i data-lucide="mail" class="w-5 h-5"></i> Email Me
+                </a>
+                <a href="https://linkedin.com/in/alinoorani1" target="_blank"
+                    class="text-gray-500 hover:text-gray-900 transition-colors flex items-center gap-2">
+                    <i data-lucide="linkedin" class="w-5 h-5"></i> LinkedIn
+                </a>
+            </div>
+            <p class="text-sm text-gray-400">&copy; 2026 Ali Noorani. Designed with purpose.</p>
+        </div>
+    </footer>
+
+    <!-- Initialize Icons & Scroll Animations -->
+    <script>
+        lucide.createIcons();
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.fade-up').forEach((el) => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+
+</html>
