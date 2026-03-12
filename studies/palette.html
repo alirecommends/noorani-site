@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accessible Color Palette Case Study | Ali Noorani</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter & Lora (for Serif headings) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Lora', 'serif'],
+                    },
+                    colors: {
+                        brand: {
+                            blue: '#0b5cff',
+                            palette: '#db2777', /* Vibrant Pink Accent */
+                            paletteLight: '#fdf2f8', /* Light Pink Background */
+                            bg: '#f8fafc',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Lora', serif;
+        }
+
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body class="text-slate-800 antialiased selection:bg-brand-palette selection:text-white">
+
+    <!-- Navigation -->
+    <nav
+        class="fixed w-full z-50 top-0 transition-all duration-300 bg-white/90 backdrop-blur-md border-b border-slate-100">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <a href="../index.html" class="text-xl font-bold font-sans tracking-tight text-slate-900">Ali
+                    Noorani<span class="text-slate-400 font-normal">.work</span></a>
+                <span
+                    class="hidden sm:flex ml-4 px-2.5 py-1 bg-slate-50 text-slate-500 text-[11px] font-semibold uppercase tracking-wider rounded border border-slate-200 items-center gap-1.5 cursor-default">
+                    <i data-lucide="lock" class="w-3 h-3"></i> Private
+                </span>
+            </div>
+            <div class="hidden md:flex gap-6 items-center">
+                <a href="../index.html"
+                    class="text-sm font-medium font-sans text-slate-500 hover:text-slate-900 transition-colors">Home</a>
+                <a href="../index.html#about"
+                    class="text-sm font-medium font-sans text-slate-500 hover:text-slate-900 transition-colors">About</a>
+                <a href="../portfolio.html"
+                    class="text-sm font-medium font-sans text-slate-900 transition-colors">Portfolio</a>
+                <a href="../index.html#contact"
+                    class="text-sm font-medium font-sans text-slate-500 hover:text-slate-900 transition-colors">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="pt-32 pb-16 px-6 max-w-5xl mx-auto fade-up">
+        <div class="bg-brand-paletteLight rounded-3xl p-8 md:p-16 border border-pink-100">
+            <div class="space-y-6 max-w-3xl mx-auto text-center">
+                <div class="flex items-center justify-center gap-3 mb-2">
+                    <span
+                        class="px-3 py-1 bg-white text-brand-palette text-xs font-bold uppercase tracking-wider rounded-full border border-pink-200">Accessibility
+                        & UI</span>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-bold text-slate-900 leading-tight">
+                    Creating an accessible 10-color palette for color-blind users
+                </h1>
+                <p class="text-slate-600 leading-relaxed text-sm md:text-base">
+                    Designing for inclusivity at Rakuten by ensuring complex marketing view dashboards are accessible to
+                    merchants with weak eyesight or color blindness.
+                </p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Objectives Section -->
+    <section class="py-12 px-6 max-w-4xl mx-auto fade-up">
+        <h2 class="text-3xl font-bold text-slate-900 mb-8 text-center">Project Objectives</h2>
+        <div class="grid sm:grid-cols-2 gap-6">
+            <div class="p-6 border border-slate-200 rounded-xl bg-white shadow-sm flex gap-4">
+                <div
+                    class="w-10 h-10 bg-pink-50 rounded-full flex items-center justify-center text-brand-palette shrink-0">
+                    <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
+                </div>
+                <div>
+                    <h3 class="font-bold text-slate-900 mb-2">The Scope</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">Create a cohesive palette of 10 distinct colors
+                        specifically for the marketing view dashboard at Rakuten.</p>
+                </div>
+            </div>
+            <div class="p-6 border border-slate-200 rounded-xl bg-white shadow-sm flex gap-4">
+                <div
+                    class="w-10 h-10 bg-pink-50 rounded-full flex items-center justify-center text-brand-palette shrink-0">
+                    <i data-lucide="users" class="w-5 h-5"></i>
+                </div>
+                <div>
+                    <h3 class="font-bold text-slate-900 mb-2">Target Users</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">To be used by a wide range of merchants from all
+                        demographic groups, specifically showing different age groups for quick visual interpretation.
+                    </p>
+                </div>
+            </div>
+            <div class="p-6 border border-slate-200 rounded-xl bg-white shadow-sm flex gap-4 sm:col-span-2">
+                <div
+                    class="w-10 h-10 bg-pink-50 rounded-full flex items-center justify-center text-brand-palette shrink-0">
+                    <i data-lucide="eye" class="w-5 h-5"></i>
+                </div>
+                <div>
+                    <h3 class="font-bold text-slate-900 mb-2">Primary Emphasis</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">Make the color palette fundamentally accessible
+                        for people suffering from weak eyesight or various forms of color blindness.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Method -->
+    <section class="py-16 px-6 bg-slate-50 my-16 fade-up">
+        <div class="max-w-5xl mx-auto space-y-16">
+            <div class="text-center max-w-2xl mx-auto">
+                <h2 class="text-3xl font-bold text-slate-900 mb-6">The Method</h2>
+                <p class="text-slate-600 leading-relaxed text-sm">
+                    The initial palette was eyeballed through trial and error and repeatedly checked for color-blindness
+                    accessibility using the Color Blind plugin in Figma. But the random method proved inefficient and
+                    time-consuming.
+                </p>
+            </div>
+
+            <!-- Step 1: HSL & HSB -->
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-4">
+                    <div
+                        class="w-10 h-10 bg-white border border-slate-200 rounded-full flex items-center justify-center text-slate-400 font-bold mb-4 shadow-sm">
+                        1</div>
+                    <h3 class="text-2xl font-bold text-slate-900">Adjusting via HSL & HSB</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Pairs were adjusted methodologically based on HSL (Hue, Saturation and Luminance) and HSB color
+                        systems (Hue-Saturation-Brightness) to build distinction between color pairs that looked similar
+                        in some color-blind tests.
+                    </p>
+                </div>
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200">
+                    <img src="https://ik.imagekit.io/ekznzyzm7/IMG_20221115_143107%201.jpg"
+                        alt="Color range for 10 age group"
+                        onerror="this.src='https://via.placeholder.com/600x400/fdf2f8/db2777?text=Color+Range'"
+                        class="w-full rounded-lg">
+                </div>
+            </div>
+
+            <!-- Step 2: RGB Fine Tuning -->
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="order-2 md:order-1 bg-white p-4 rounded-xl shadow-sm border border-slate-200">
+                    <img src="https://ik.imagekit.io/ekznzyzm7/Frame%20427319613.png?updatedAt=1712910708255"
+                        alt="HSB Adjustments"
+                        onerror="this.src='https://via.placeholder.com/600x400/fdf2f8/db2777?text=HSB+Adjustments'"
+                        class="w-full rounded-lg">
+                </div>
+                <div class="order-1 md:order-2 space-y-4">
+                    <div
+                        class="w-10 h-10 bg-white border border-slate-200 rounded-full flex items-center justify-center text-slate-400 font-bold mb-4 shadow-sm">
+                        2</div>
+                    <h3 class="text-2xl font-bold text-slate-900">Fine-Tuning the Channels</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        HSB proved very helpful in contrast building but was no longer enough to make fine adjustments.
+                        Red-blind tests still had trouble, so the Green and Blue channels were adjusted using the RGB
+                        system to make a definitive difference.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Iterations Gallery -->
+            <div class="pt-8">
+                <h3 class="text-xl font-bold text-slate-900 text-center mb-8">Finalizing RGB Adjustments</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <img src="https://ik.imagekit.io/ekznzyzm7/Frame%20427319614.png?updatedAt=1712910790171"
+                        alt="Iteration 1" class="w-full rounded-lg shadow-sm border border-slate-200 bg-white">
+                    <img src="https://ik.imagekit.io/ekznzyzm7/Frame%20427319615.png?updatedAt=1712910780787"
+                        alt="Iteration 2" class="w-full rounded-lg shadow-sm border border-slate-200 bg-white">
+                    <img src="https://ik.imagekit.io/ekznzyzm7/Frame%20427319619.png?updatedAt=1712910752557"
+                        alt="Iteration 3" class="w-full rounded-lg shadow-sm border border-slate-200 bg-white">
+                    <img src="https://ik.imagekit.io/ekznzyzm7/Frame%20427319621.png?updatedAt=1712910753812"
+                        alt="Iteration 4" class="w-full rounded-lg shadow-sm border border-slate-200 bg-white">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements & Caution -->
+    <section class="py-12 px-6 max-w-5xl mx-auto fade-up">
+        <div class="grid md:grid-cols-2 gap-8">
+            <!-- Achievements -->
+            <div class="bg-white border border-slate-200 p-8 rounded-2xl shadow-sm">
+                <h3 class="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-2">
+                    <i data-lucide="award" class="w-6 h-6 text-green-500"></i> Achievements
+                </h3>
+                <ul class="space-y-4 text-sm text-slate-600">
+                    <li class="flex items-start gap-3">
+                        <i data-lucide="check" class="w-4 h-4 text-green-500 mt-0.5 shrink-0"></i>
+                        <span>Accessibility results are not perfect but very satisfactory given the constraints of a
+                            10-color system.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i data-lucide="check" class="w-4 h-4 text-green-500 mt-0.5 shrink-0"></i>
+                        <span>Good contrast is achieved in the final dashboard charts.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i data-lucide="check" class="w-4 h-4 text-green-500 mt-0.5 shrink-0"></i>
+                        <span>Colors are clearly distinguishable in most demographic viewing scenarios.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i data-lucide="check" class="w-4 h-4 text-green-500 mt-0.5 shrink-0"></i>
+                        <span>Rearranging items to achieve the best next-to-next contrast and hue proved highly
+                            useful.</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Caution -->
+            <div class="bg-amber-50 border border-amber-200 p-8 rounded-2xl shadow-sm">
+                <h3 class="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-2">
+                    <i data-lucide="alert-triangle" class="w-6 h-6 text-amber-500"></i> A Word of Caution
+                </h3>
+                <p class="text-sm text-slate-700 leading-relaxed mb-4">
+                    Even existing standard palettes used in subway maps cannot provide 100% accessibility for all
+                    color-blind people when it comes to palettes of 10 or more colors.
+                </p>
+                <p class="text-sm text-slate-700 leading-relaxed">
+                    The <strong>red-blind is the weakness</strong> of this palette with two close pairs. The issue can
+                    be effectively minimized by setting one of the red-blind-weak pairs to the smallest fraction on the
+                    generated charts.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Takeaways & Conclusion -->
+    <section class="py-16 px-6 max-w-5xl mx-auto fade-up">
+        <div class="bg-slate-900 text-white rounded-3xl p-10 md:p-16 relative overflow-hidden">
+            <!-- Decorative circle -->
+            <div
+                class="absolute top-0 right-0 -mr-16 -mt-16 w-64 h-64 rounded-full bg-brand-palette opacity-20 blur-3xl">
+            </div>
+
+            <div class="relative z-10">
+                <h2 class="text-3xl font-bold mb-6">Conclusion & Takeaways</h2>
+                <p class="text-slate-300 leading-relaxed mb-8 italic text-lg border-l-4 border-brand-palette pl-4">
+                    "Creating an accessible 10-element color palette seemed challenging at first -- and it was. Digging
+                    deep into a problem that most people do not seem interested to take on was very rewarding."
+                </p>
+
+                <div class="grid md:grid-cols-2 gap-8 text-sm text-slate-300">
+                    <div class="space-y-4">
+                        <p>
+                            <strong class="text-white">Overcoming Randomness:</strong> Understanding how color blindness
+                            works seemed daunting at first and it took a long time to come up with a system to tweak the
+                            palette. It seemed random and disappointing before I started working mathematically in HSL,
+                            HSB and RGB systems. Persevering and trying all options finally rewarded me with an
+                            acceptable solution.
+                        </p>
+                    </div>
+                    <div class="space-y-4">
+                        <p>
+                            <strong class="text-white">Workflow Setup:</strong> Setting a comfortable layout to study
+                            and display the iterations in a way that is manageable was difficult initially due to the
+                            lack of prior precedent in this specific project type.
+                        </p>
+                        <p>
+                            <strong class="text-white">Continuous Improvement:</strong> There are many accessible
+                            palettes of up to 5 colors on the web, but 10 colors cause duplicate hues. This is
+                            definitely a work in progress that should be further challenged by everyone; experts and
+                            newcomers alike.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Next Project (CED) -->
+    <section class="py-16 px-6 max-w-4xl mx-auto fade-up">
+        <div class="border-t border-slate-200 pt-16 grid md:grid-cols-2 gap-12 items-center">
+            <div>
+                <span class="text-sm font-sans font-bold text-slate-400 uppercase tracking-widest block mb-4">Next
+                    Project</span>
+                <h2 class="text-4xl font-bold text-slate-900 uppercase tracking-wider mb-2">CED</h2>
+                <h3 class="text-xl font-sans text-slate-600 mb-4">Canadian English Dictionary</h3>
+                <p class="text-slate-500 text-sm leading-relaxed mb-6">
+                    Led the design of a new home for the Canadian English Dictionary website, focusing on digital
+                    publication accessibility.
+                </p>
+                <a href="ced.html"
+                    class="inline-flex items-center gap-2 text-sm font-sans font-semibold text-brand-blue hover:underline">
+                    View Project <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </a>
+            </div>
+            <div>
+                <a href="ced.html" class="block hover:opacity-90 transition-opacity">
+                    <!-- Using the CED cover image from your live site -->
+                    <img src="/_astro/ced_I9m6gTBjb_1fpr0p.webp" alt="CED Cover"
+                        onerror="this.src='https://via.placeholder.com/600x400/f4f7f9/0b5cff?text=CED'"
+                        class="w-full rounded-lg shadow-md border border-slate-200">
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pagination -->
+    <div
+        class="max-w-4xl mx-auto px-6 fade-up pb-12 pt-4 border-t border-slate-200 flex justify-between items-center mt-12">
+        <a href="andook.html"
+            class="text-slate-500 hover:text-slate-900 font-medium flex items-center gap-2 transition-colors text-sm">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i> Previous: Andook
+        </a>
+        <a href="ced.html"
+            class="text-slate-500 hover:text-slate-900 font-medium flex items-center gap-2 transition-colors text-sm">
+            Next: CED <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 py-10">
+        <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="text-sm font-sans text-slate-500">&copy; 2026 Ali Noorani. All rights reserved.</p>
+            <div class="flex gap-4 items-center">
+                <span class="text-sm font-sans text-slate-500 cursor-pointer hover:text-slate-900">Toggle theme</span>
+                <a href="https://linkedin.com/in/alinoorani1" target="_blank"
+                    class="text-slate-400 hover:text-brand-palette transition-colors">
+                    <i data-lucide="linkedin" class="w-5 h-5"></i>
+                </a>
+                <a href="#" class="text-slate-400 hover:text-slate-900 transition-colors">
+                    <i data-lucide="globe" class="w-5 h-5"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Initialize Icons & Scroll Animations -->
+    <script>
+        lucide.createIcons();
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.fade-up').forEach((el) => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+
+</html>
