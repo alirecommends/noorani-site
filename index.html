@@ -65,8 +65,17 @@
     <nav
         class="fixed w-full z-50 top-0 transition-all duration-300 bg-white/80 backdrop-blur-md border-b border-gray-100">
         <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#home" class="text-xl font-bold tracking-tight text-gray-900">Ali Noorani<span
-                    class="text-gray-400 font-normal">.work</span></a>
+
+            <div class="flex items-center">
+                <a href="#home" class="text-xl font-bold tracking-tight text-gray-900">Ali Noorani<span
+                        class="text-gray-400 font-normal">.work</span></a>
+                <!-- Private Badge for Cloudflare Protected Portfolio -->
+                <span
+                    class="hidden sm:flex ml-4 px-2.5 py-1 bg-gray-50 text-gray-500 text-[11px] font-semibold uppercase tracking-wider rounded border border-gray-200 items-center gap-1.5 cursor-default"
+                    title="Confidential Portfolio">
+                    <i data-lucide="lock" class="w-3 h-3"></i> Private
+                </span>
+            </div>
 
             <!-- Desktop Nav -->
             <div class="hidden md:flex items-center gap-8">
