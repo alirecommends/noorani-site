@@ -15,6 +15,9 @@
         rel="stylesheet">
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Three.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
     <script>
         tailwind.config = {
             theme: {
@@ -39,6 +42,7 @@
         body {
             font-family: 'Inter', sans-serif;
             background-color: #f8fafc;
+            overflow-x: hidden;
         }
 
         h1,
@@ -59,13 +63,14 @@
             transform: translateY(0);
         }
 
+        /* Ambient hero glow effect */
         .hero-glow {
             position: absolute;
             top: -10%;
             right: -5%;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(11, 92, 255, 0.04) 0%, rgba(255, 255, 255, 0) 70%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(11, 92, 255, 0.05) 0%, rgba(255, 255, 255, 0) 70%);
             z-index: -1;
             pointer-events: none;
         }
@@ -74,14 +79,9 @@
             box-shadow: 0 10px 25px -5px rgba(11, 92, 255, 0.3);
         }
 
-        /* GEO Interactive Area Styling */
-        .code-display {
-            background: #0f172a;
-            border-radius: 1.5rem;
-            padding: 2rem;
-            font-family: monospace;
-            font-size: 0.875rem;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+        /* Ensures the 3D canvas ignores pointer events so you can still select text underneath if needed */
+        #hero-3d-container canvas {
+            pointer-events: none;
         }
     </style>
 </head>
@@ -102,7 +102,8 @@
                 </span>
             </div>
 
-            <div class="hidden md:flex gap-8 items-center font-sans">
+            <!-- Desktop Nav -->
+            <div class="hidden md:flex items-center gap-8 font-sans">
                 <a href="about.html"
                     class="text-sm font-medium text-slate-500 hover:text-brand-blue transition-colors">About</a>
                 <a href="portfolio.html"
@@ -114,11 +115,13 @@
                     in touch</a>
             </div>
 
+            <!-- Mobile Menu Button -->
             <button class="md:hidden text-slate-600 hover:text-slate-900 focus:outline-none" id="mobile-menu-btn">
                 <i data-lucide="menu" class="w-6 h-6"></i>
             </button>
         </div>
 
+        <!-- Mobile Nav -->
         <div class="md:hidden hidden bg-white border-b border-slate-200 px-6 py-4 space-y-4 shadow-xl absolute w-full z-[3000]"
             id="mobile-menu">
             <a href="about.html" class="block text-sm font-medium text-slate-600">About</a>
@@ -128,38 +131,48 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <header class="pt-48 pb-24 px-6 min-h-[90vh] flex items-center relative overflow-hidden">
+    <!-- Hero Section (2 Columns with 3D Prism) -->
+    <header class="pt-40 md:pt-48 pb-20 md:pb-24 px-6 min-h-[90vh] flex items-center relative overflow-hidden">
         <div class="hero-glow"></div>
-        <div class="max-w-4xl mx-auto fade-up">
-            <p class="text-brand-blue font-bold tracking-widest uppercase text-xs mb-4 font-sans">Senior UX/UI Designer
-            </p>
-            <h1 class="text-5xl md:text-7xl font-bold text-slate-900 tracking-tight leading-[1.1] mb-8">
-                I build intuitive, scalable solutions for complex digital ecosystems.
-            </h1>
-            <p class="text-xl text-slate-600 mb-10 max-w-2xl leading-relaxed font-sans">
-                Combining a background in journalism with 6+ years of UX design to translate complex technical
-                constraints into human-centered, accessible user journeys.
-            </p>
-            <div class="flex flex-wrap gap-4 font-sans">
-                <a href="portfolio.html"
-                    class="px-8 py-4 bg-brand-blue text-white font-bold rounded-full hover:bg-brand-blueHover transition-all cta-shadow flex items-center gap-2 transform hover:-translate-y-0.5">
-                    View Portfolio <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                </a>
-                <a href="contact.html"
-                    class="px-8 py-4 bg-white text-slate-900 border border-slate-200 font-bold rounded-full hover:bg-slate-50 transition-all flex items-center gap-2">
-                    <i data-lucide="mail" class="w-4 h-4"></i> Let's Talk
-                </a>
+        <div class="max-w-6xl mx-auto w-full grid md:grid-cols-12 gap-12 items-center relative z-10">
+
+            <!-- Left Text Column -->
+            <div class="md:col-span-7 fade-up">
+                <p class="text-brand-blue font-bold tracking-widest uppercase text-xs mb-4 font-sans">Senior UX/UI
+                    Designer</p>
+                <h1 class="text-5xl md:text-[5rem] font-bold text-slate-900 tracking-tight leading-[1.1] mb-8">
+                    I build intuitive, scalable solutions for complex digital ecosystems.
+                </h1>
+                <p class="text-xl text-slate-600 mb-10 max-w-xl leading-relaxed font-sans">
+                    Combining a background in journalism with 6+ years of UX design to translate complex technical
+                    constraints into human-centered, accessible user journeys.
+                </p>
+                <div class="flex flex-wrap gap-4 font-sans">
+                    <a href="portfolio.html"
+                        class="px-8 py-4 bg-brand-blue text-white font-bold rounded-full hover:bg-brand-blueHover transition-all cta-shadow flex items-center gap-2 transform hover:-translate-y-0.5">
+                        View Portfolio <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                    <a href="contact.html"
+                        class="px-8 py-4 bg-white text-slate-900 border border-slate-200 font-bold rounded-full hover:bg-slate-50 transition-all flex items-center gap-2">
+                        <i data-lucide="mail" class="w-4 h-4"></i> Let's Talk
+                    </a>
+                </div>
             </div>
+
+            <!-- Right 3D Column -->
+            <div class="md:col-span-5 h-[400px] md:h-[600px] w-full relative fade-up" id="hero-3d-container">
+                <!-- The 3D Refractive Prism will be injected here via JS -->
+            </div>
+
         </div>
     </header>
 
-    <!-- Work Preview Grid -->
+    <!-- Work Preview -->
     <section class="py-32 px-6 bg-white border-y border-slate-100">
         <div class="max-w-6xl mx-auto space-y-24">
             <div class="fade-up">
-                <h2 class="text-4xl font-bold text-slate-900 mb-4 tracking-tight">Case Studies</h2>
-                <p class="text-lg text-slate-600 font-sans">Measurable impact for global fintech and enterprise
+                <h2 class="text-4xl font-bold text-slate-900 mb-4 tracking-tight">Selected Projects</h2>
+                <p class="text-lg text-slate-600 font-sans">High-impact solutions for global fintech and enterprise
                     platforms.</p>
             </div>
 
@@ -216,79 +229,6 @@
                     class="inline-flex items-center gap-2 px-10 py-5 bg-white border border-slate-200 text-slate-900 font-bold rounded-full hover:bg-slate-50 hover:border-brand-blue transition-all shadow-sm font-sans">
                     Browse All Work <i data-lucide="grid" class="w-5 h-5"></i>
                 </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- NEW: Dedicated GEO Section -->
-    <section class="py-32 px-6 bg-slate-900 text-white overflow-hidden relative">
-        <div class="absolute top-0 right-0 w-96 h-96 bg-brand-blue/10 rounded-full blur-[100px]"></div>
-        <div class="max-w-6xl mx-auto">
-            <div class="grid md:grid-cols-2 gap-20 items-center">
-                <div class="fade-up space-y-8">
-                    <div
-                        class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-blue/20 border border-brand-blue/30 text-brand-blue text-[10px] font-bold uppercase tracking-widest">
-                        <i data-lucide="cpu" class="w-3 h-3"></i> The Agentic Era
-                    </div>
-                    <h2 class="text-4xl md:text-5xl font-bold tracking-tight leading-tight">Generative Engine
-                        Optimization (GEO)</h2>
-                    <p class="text-slate-400 text-lg leading-relaxed font-sans">
-                        In a world of "Answer Engines," visual design is only half the battle. I help technical brands
-                        structure their expertise as the primary "Source of Truth" for AI models like Gemini and GPT-4.
-                    </p>
-
-                    <div class="space-y-4 font-sans">
-                        <button onclick="homeSwitchView('human')" id="h-btn-human"
-                            class="w-full text-left p-5 rounded-2xl transition-all border border-brand-blue bg-brand-blue/10 ring-2 ring-brand-blue/20">
-                            <div class="flex items-center gap-3 mb-1 font-bold text-white text-sm">
-                                <i data-lucide="user" class="w-4 h-4 text-brand-blue"></i> Human-Centric View
-                            </div>
-                            <p class="text-xs text-slate-400">Branding, UI hierarchy, and emotional trust.</p>
-                        </button>
-
-                        <button onclick="homeSwitchView('bot')" id="h-btn-bot"
-                            class="w-full text-left p-5 rounded-2xl transition-all border border-slate-800 bg-slate-800/50 hover:border-slate-700">
-                            <div class="flex items-center gap-3 mb-1 font-bold text-white text-sm">
-                                <i data-lucide="bot" class="w-4 h-4 text-slate-500"></i> Machine-Agent View (GEO)
-                            </div>
-                            <p class="text-xs text-slate-400">Structured logic, semantic density, and entity authority.
-                            </p>
-                        </button>
-                    </div>
-
-                    <a href="studies/geo.html"
-                        class="inline-flex items-center gap-2 font-bold text-brand-blue hover:text-white transition-colors font-sans pt-4 group">
-                        Explore GEO Methodology <i data-lucide="arrow-right"
-                            class="w-4 h-4 transform group-hover:translate-x-1 transition-transform"></i>
-                    </a>
-                </div>
-
-                <div class="fade-up code-display relative min-h-[350px] flex flex-col justify-center">
-                    <div id="h-view-human">
-                        <div class="text-brand-blue mb-4 font-mono text-xs opacity-60">// Visual content layer</div>
-                        <h3 class="text-2xl font-bold text-white mb-2 italic">"Canada's leader in critical
-                            infrastructure."</h3>
-                        <p class="text-slate-400 mb-6 font-sans text-sm italic leading-relaxed">Serving nuclear, mining,
-                            and oil & gas sectors since 1971 with unparalleled precision engineering.</p>
-                        <div
-                            class="p-8 border border-white/5 rounded-2xl bg-white/5 text-center text-xs text-slate-500 uppercase tracking-widest">
-                            [ High-Res Engineering Asset ] </div>
-                    </div>
-                    <div id="h-view-bot" class="hidden">
-                        <div class="text-purple-400 mb-4 font-mono text-xs opacity-60">// Machine-readable semantic
-                            layer</div>
-                        <div class="space-y-2 text-sm text-purple-200 font-mono">
-                            <div>"@type": "IndustrialOrganization",</div>
-                            <div>"knowsAbout": [</div>
-                            <div class="pl-4">"Severe Service Valves",</div>
-                            <div class="pl-4">"ISO 15848-1 Certification",</div>
-                            <div class="pl-4">"ASME B16.34 Standards"</div>
-                            <div>],</div>
-                            <div class="text-green-400 mt-6 font-bold tracking-widest uppercase text-xs">P_TRUTHFULNESS:
-                                0.9992</div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
@@ -407,28 +347,156 @@
     <script>
         lucide.createIcons();
 
-        function homeSwitchView(type) {
-            const hBlock = document.getElementById('h-view-human');
-            const bBlock = document.getElementById('h-view-bot');
-            const hBtn = document.getElementById('h-btn-human');
-            const bBtn = document.getElementById('h-btn-bot');
+        // 3D Premium Object Logic (Extruded Asterisk)
+        function initHeroObject() {
+            const container = document.getElementById('hero-3d-container');
+            if (!container) return;
 
-            if (type === 'human') {
-                hBlock.classList.remove('hidden'); bBlock.classList.add('hidden');
-                hBtn.className = "w-full text-left p-5 rounded-2xl transition-all border border-brand-blue bg-brand-blue/10 ring-2 ring-brand-blue/20";
-                bBtn.className = "w-full text-left p-5 rounded-2xl transition-all border border-slate-800 bg-slate-800/50 hover:border-slate-700";
-            } else {
-                bBlock.classList.remove('hidden'); hBlock.classList.add('hidden');
-                bBtn.className = "w-full text-left p-5 rounded-2xl transition-all border border-brand-blue bg-brand-blue/10 ring-2 ring-brand-blue/20";
-                hBtn.className = "w-full text-left p-5 rounded-2xl transition-all border border-slate-800 bg-slate-800/50 hover:border-slate-700";
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 100);
+            camera.position.z = 20; // Zoomed out to perfectly fit the asterisk
+
+            const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setSize(container.clientWidth, container.clientHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            container.appendChild(renderer.domElement);
+
+            // Elegant Lighting
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
+            scene.add(ambientLight);
+
+            const dirLight1 = new THREE.DirectionalLight(0x0b5cff, 3.0); // Brand Blue
+            dirLight1.position.set(10, 10, 5);
+            scene.add(dirLight1);
+
+            const dirLight2 = new THREE.DirectionalLight(0x8b5cf6, 2.0); // Purple
+            dirLight2.position.set(-10, -5, 5);
+            scene.add(dirLight2);
+
+            const pointLight = new THREE.PointLight(0x00f0ff, 2, 20); // Cyan core light
+            pointLight.position.set(0, 0, 0);
+            scene.add(pointLight);
+
+            // Core object group
+            const objectGroup = new THREE.Group();
+            scene.add(objectGroup);
+
+            // Extruded Asterisk (*) Shape Generator
+            function createAsteriskShape(arms, outerRadius, armWidth) {
+                const shape = new THREE.Shape();
+                // Calculate the inner valley radius where two arms meet
+                const innerRadius = (armWidth / 2) / Math.sin(Math.PI / arms);
+
+                for (let i = 0; i < arms; i++) {
+                    const A = i * (Math.PI * 2) / arms;
+                    const nextA = A + Math.PI / arms;
+
+                    // Right tip of the arm
+                    const rx = outerRadius * Math.cos(A) + (armWidth / 2) * Math.sin(A);
+                    const ry = outerRadius * Math.sin(A) - (armWidth / 2) * Math.cos(A);
+                    // Left tip of the arm
+                    const lx = outerRadius * Math.cos(A) - (armWidth / 2) * Math.sin(A);
+                    const ly = outerRadius * Math.sin(A) + (armWidth / 2) * Math.cos(A);
+                    // Inner Valley
+                    const vx = innerRadius * Math.cos(nextA);
+                    const vy = innerRadius * Math.sin(nextA);
+
+                    if (i === 0) shape.moveTo(rx, ry);
+                    else shape.lineTo(rx, ry);
+                    shape.lineTo(lx, ly);
+                    shape.lineTo(vx, vy);
+                }
+                return shape;
             }
+
+            const asteriskShape = createAsteriskShape(6, 4.5, 1.2);
+            const extrudeSettings = {
+                depth: 1.2,
+                bevelEnabled: true,
+                bevelSegments: 4,
+                steps: 1,
+                bevelSize: 0.1,
+                bevelThickness: 0.1
+            };
+            const geometry = new THREE.ExtrudeGeometry(asteriskShape, extrudeSettings);
+            geometry.center(); // Center around origin to rotate cleanly
+
+            // Premium Glass Material
+            const glassMat = new THREE.MeshPhysicalMaterial({
+                color: 0xffffff,
+                metalness: 0.1,
+                roughness: 0.05,
+                transmission: 1.0, // Fully transparent/refractive
+                thickness: 2.5,    // Refraction volume
+                ior: 1.5,          // Index of refraction
+                transparent: true,
+                opacity: 1.0,
+                clearcoat: 1.0,
+                clearcoatRoughness: 0.1
+            });
+
+            const mainObject = new THREE.Mesh(geometry, glassMat);
+            objectGroup.add(mainObject);
+
+            // Inner structural wireframe to catch light
+            const edges = new THREE.EdgesGeometry(geometry);
+            const lineMat = new THREE.LineBasicMaterial({ color: 0x0b5cff, transparent: true, opacity: 0.3, linewidth: 2 });
+            const wireframe = new THREE.LineSegments(edges, lineMat);
+            wireframe.scale.set(0.99, 0.99, 0.99); // Slightly smaller to sit inside the glass
+            objectGroup.add(wireframe);
+
+            // Inner glowing core (Abstract data node)
+            const coreGeo = new THREE.IcosahedronGeometry(1.2, 0);
+            const coreMat = new THREE.MeshBasicMaterial({ color: 0x00f0ff, wireframe: true, transparent: true, opacity: 0.5 });
+            const core = new THREE.Mesh(coreGeo, coreMat);
+            objectGroup.add(core);
+
+            // Set initial "sitting" orientation for an elegant perspective
+            objectGroup.rotation.x = Math.PI / 8;
+            objectGroup.rotation.z = Math.PI / 12;
+
+            const clock = new THREE.Clock();
+
+            // Animation Loop
+            function animate() {
+                requestAnimationFrame(animate);
+                const delta = clock.getDelta();
+
+                // "Sitting and rotating only" - clean, deliberate Y-axis rotation
+                objectGroup.rotation.y += delta * 0.15;
+
+                // Counter-rotate inner core for a subtle sense of depth and intelligence
+                core.rotation.y -= delta * 0.4;
+                core.rotation.x += delta * 0.2;
+
+                renderer.render(scene, camera);
+            }
+
+            animate();
+
+            // Handle Resize
+            window.addEventListener('resize', () => {
+                if (!container) return;
+                camera.aspect = container.clientWidth / container.clientHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(container.clientWidth, container.clientHeight);
+            });
         }
 
+        // Mobile Nav Logic
         const mobileBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         mobileBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+        });
 
+        // Run functions when DOM is ready
         document.addEventListener('DOMContentLoaded', () => {
+            // Trigger the clean 3D Asterisk Object
+            initHeroObject();
+
+            // Trigger scroll animations
             const observerOptions = { threshold: 0.1 };
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
