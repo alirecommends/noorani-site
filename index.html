@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ali Noorani | Senior UX/UI Designer</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f6f6f6',
+                            100: '#e7e7e7',
+                            900: '#111111',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Scroll animations */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .image-placeholder {
+            background-color: #f3f4f6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #9ca3af;
+        }
+    </style>
+</head>
+
+<body class="bg-white text-gray-800 antialiased selection:bg-gray-900 selection:text-white">
+
+    <!-- Navigation -->
+    <nav
+        class="fixed w-full z-50 top-0 transition-all duration-300 bg-white/80 backdrop-blur-md border-b border-gray-100">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#home" class="text-xl font-bold tracking-tight text-gray-900">Ali Noorani<span
+                    class="text-gray-400 font-normal">.work</span></a>
+
+            <!-- Desktop Nav -->
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#about"
+                    class="text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors">About</a>
+                <a href="#work" class="text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors">Work</a>
+                <a href="#experience"
+                    class="text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors">Experience</a>
+                <a href="#contact"
+                    class="px-4 py-2 bg-gray-900 text-white text-sm font-medium rounded-full hover:bg-gray-800 transition-colors">Get
+                    in touch</a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden text-gray-600 hover:text-gray-900 focus:outline-none" id="mobile-menu-btn">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Nav (Hidden by default) -->
+        <div class="md:hidden hidden bg-white border-b border-gray-100 px-6 py-4 space-y-4 shadow-lg absolute w-full"
+            id="mobile-menu">
+            <a href="#about" class="block text-sm font-medium text-gray-600 hover:text-gray-900">About</a>
+            <a href="#work" class="block text-sm font-medium text-gray-600 hover:text-gray-900">Work</a>
+            <a href="#experience" class="block text-sm font-medium text-gray-600 hover:text-gray-900">Experience</a>
+            <a href="#contact" class="block text-sm font-medium text-gray-600 hover:text-gray-900">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-40 pb-20 px-6 min-h-[90vh] flex items-center">
+        <div class="max-w-4xl mx-auto fade-up">
+            <p class="text-blue-600 font-bold tracking-wide uppercase text-sm mb-4">Senior UX/UI Designer</p>
+            <h1 class="text-5xl md:text-7xl font-extrabold text-gray-900 tracking-tight leading-tight mb-8">
+                I build intuitive, scalable solutions for complex digital ecosystems.
+            </h1>
+            <p class="text-xl text-gray-600 mb-10 max-w-2xl leading-relaxed">
+                Combining a background in journalism with 6+ years of UX design to translate complex technical
+                constraints into human-centered, accessible user journeys.
+            </p>
+            <div class="flex flex-wrap gap-4">
+                <a href="#work"
+                    class="px-6 py-3 bg-gray-900 text-white font-medium rounded-full hover:bg-gray-800 transition-colors flex items-center gap-2">
+                    View My Work <i data-lucide="arrow-down" class="w-4 h-4"></i>
+                </a>
+                <a href="mailto:noorani.ali@gmail.com"
+                    class="px-6 py-3 bg-white text-gray-900 border border-gray-200 font-medium rounded-full hover:bg-gray-50 transition-colors flex items-center gap-2">
+                    <i data-lucide="mail" class="w-4 h-4"></i> Contact Me
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About & Skills Section -->
+    <section id="about" class="py-24 bg-gray-50 px-6">
+        <div class="max-w-6xl mx-auto fade-up grid md:grid-cols-12 gap-16 items-start">
+            <div class="md:col-span-5">
+                <!-- Replace src with your ImageKit URL -->
+                <img src="https://ik.imagekit.io/your_imagekit_id/profile-photo.jpg" alt="Ali Noorani"
+                    onerror="this.src='https://via.placeholder.com/600x800?text=Profile+Photo'"
+                    class="w-full aspect-[3/4] object-cover rounded-2xl shadow-lg grayscale hover:grayscale-0 transition-all duration-500">
+            </div>
+            <div class="md:col-span-7 space-y-8">
+                <h2 class="text-3xl font-bold text-gray-900">About Me</h2>
+                <div class="space-y-4 text-gray-600 leading-relaxed text-lg">
+                    <p>
+                        I'm Ali, a Product and UI/UX Designer specializing in Fintech, Enterprise Banking, and Digital
+                        Modernization. I have a proven track record of redesigning legacy systems and making complex
+                        technology accessible.
+                    </p>
+                    <p>
+                        My unique background as a Journalist for Agence France-Presse (AFP) gave me a deep understanding
+                        of storytelling, fact-checking, and interviewing—skills that form a solid foundation for my
+                        empathetic user research and data-driven design strategies today.
+                    </p>
+                </div>
+
+                <div class="pt-8 border-t border-gray-200">
+                    <h3 class="text-sm font-bold uppercase tracking-wider text-gray-900 mb-6">Core Competencies</h3>
+
+                    <div class="mb-6">
+                        <h4 class="text-gray-700 font-semibold mb-3">UX Design & Process</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="px-3 py-1 bg-white border border-gray-200 text-gray-600 text-sm rounded-full">Mobile-First
+                                Design</span>
+                            <span
+                                class="px-3 py-1 bg-white border border-gray-200 text-gray-600 text-sm rounded-full">Information
+                                Architecture</span>
+                            <span
+                                class="px-3 py-1 bg-white border border-gray-200 text-gray-600 text-sm rounded-full">Design
+                                Systems</span>
+                            <span
+                                class="px-3 py-1 bg-white border border-gray-200 text-gray-600 text-sm rounded-full">Agile
+                                (Scrum)</span>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <h4 class="text-gray-700 font-semibold mb-3">Research & Accessibility</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="px-3 py-1 bg-white border border-gray-200 text-gray-600 text-sm rounded-full">Usability
+                                Testing</span>
+                            <span
+                                class="px-3 py-1 bg-white border border-gray-200 text-gray-600 text-sm rounded-full">WCAG/AODA
+                                Compliance</span>
+                            <span
+                                class="px-3 py-1 bg-white border border-gray-200 text-gray-600 text-sm rounded-full">Behavioral
+                                Science</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 class="text-gray-700 font-semibold mb-3">Tools & Tech</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="px-3 py-1 bg-white border border-gray-200 text-gray-600 text-sm rounded-full flex items-center gap-1"><i
+                                    data-lucide="figma" class="w-3 h-3"></i> Figma</span>
+                            <span
+                                class="px-3 py-1 bg-white border border-gray-200 text-gray-600 text-sm rounded-full">Axure</span>
+                            <span
+                                class="px-3 py-1 bg-white border border-gray-200 text-gray-600 text-sm rounded-full">Adobe
+                                CC</span>
+                            <span
+                                class="px-3 py-1 bg-white border border-gray-200 text-gray-600 text-sm rounded-full flex items-center gap-1"><i
+                                    data-lucide="code-2" class="w-3 h-3"></i> HTML/CSS/JS</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Work / Case Studies -->
+    <section id="work" class="py-24 px-6">
+        <div class="max-w-6xl mx-auto space-y-16">
+            <div class="fade-up">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Selected Work</h2>
+                <p class="text-xl text-gray-600">A showcase of complex problems solved through design.</p>
+            </div>
+
+            <!-- Project 1: GlobalDWS -->
+            <div class="grid md:grid-cols-2 gap-12 items-center fade-up group">
+                <div class="order-2 md:order-1 space-y-6">
+                    <span class="text-xs font-bold text-blue-600 tracking-wider uppercase">Website Redesign &
+                        Modernization</span>
+                    <h3 class="text-3xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors">GlobalDWS
+                    </h3>
+                    <p class="text-gray-600 leading-relaxed text-lg">
+                        Spearheaded the end-to-end redesign of a complex B2B digital platform. Developed a responsive
+                        design system, translating technical offerings into an engaging user journey that increased
+                        session duration by 80%.
+                    </p>
+                    <div class="flex flex-wrap gap-2 pt-2">
+                        <span class="text-xs font-medium bg-gray-100 text-gray-600 px-2 py-1 rounded">Figma</span>
+                        <span class="text-xs font-medium bg-gray-100 text-gray-600 px-2 py-1 rounded">UX Research</span>
+                        <span class="text-xs font-medium bg-gray-100 text-gray-600 px-2 py-1 rounded">Design
+                            System</span>
+                    </div>
+                    <!-- Link to case study modal or separate page if you ever create one, currently links down to contact -->
+                    <a href="#contact"
+                        class="inline-flex items-center gap-2 font-semibold text-gray-900 hover:text-blue-600 transition-colors mt-4">
+                        Read Case Study <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                </div>
+                <div class="order-1 md:order-2 overflow-hidden rounded-2xl shadow-sm border border-gray-100">
+                    <!-- Replace src with your ImageKit URL -->
+                    <img src="https://ik.imagekit.io/your_imagekit_id/globaldws-mockup.png" alt="GlobalDWS Mockup"
+                        onerror="this.src='https://via.placeholder.com/800x600?text=GlobalDWS+Mockup'"
+                        class="w-full object-cover group-hover:scale-105 transition-transform duration-700">
+                </div>
+            </div>
+
+            <hr class="border-gray-100">
+
+            <!-- Project 2: Rakuten -->
+            <div class="grid md:grid-cols-2 gap-12 items-center fade-up group">
+                <div class="overflow-hidden rounded-2xl shadow-sm border border-gray-100">
+                    <!-- Replace src with your ImageKit URL -->
+                    <img src="https://ik.imagekit.io/your_imagekit_id/rakuten-mockup.png" alt="Rakuten Mockup"
+                        onerror="this.src='https://via.placeholder.com/800x600?text=Rakuten+Fintech+App'"
+                        class="w-full object-cover group-hover:scale-105 transition-transform duration-700">
+                </div>
+                <div class="space-y-6 pl-0 md:pl-8">
+                    <span class="text-xs font-bold text-red-600 tracking-wider uppercase">Fintech Ecosystem</span>
+                    <h3 class="text-3xl font-bold text-gray-900 group-hover:text-red-600 transition-colors">Rakuten
+                        Payment</h3>
+                    <p class="text-gray-600 leading-relaxed text-lg">
+                        Designed secure, high-traffic financial transaction flows for 44M users. Co-designed a
+                        responsive QR-code SDK enabling cashless payment scaling across the $18.7B Rakuten Group while
+                        passing strict WCAG 2.0 audits.
+                    </p>
+                    <div class="flex flex-wrap gap-2 pt-2">
+                        <span
+                            class="text-xs font-medium bg-gray-100 text-gray-600 px-2 py-1 rounded">Mobile-First</span>
+                        <span class="text-xs font-medium bg-gray-100 text-gray-600 px-2 py-1 rounded">Agile
+                            Delivery</span>
+                        <span class="text-xs font-medium bg-gray-100 text-gray-600 px-2 py-1 rounded">Accessibility
+                            (WCAG)</span>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="border-gray-100">
+
+            <!-- Project 3: CED -->
+            <div class="grid md:grid-cols-2 gap-12 items-center fade-up group">
+                <div class="order-2 md:order-1 space-y-6">
+                    <span class="text-xs font-bold text-green-600 tracking-wider uppercase">Digital Publication</span>
+                    <h3 class="text-3xl font-bold text-gray-900 group-hover:text-green-600 transition-colors">Canadian
+                        English Dictionary</h3>
+                    <p class="text-gray-600 leading-relaxed text-lg">
+                        Led a team of three designers to create specialized, WCAG-accessible layouts for diverse user
+                        personas, addressing unique usability pain points and successfully updating Canada's national
+                        dictionary platform.
+                    </p>
+                    <div class="flex flex-wrap gap-2 pt-2">
+                        <span class="text-xs font-medium bg-gray-100 text-gray-600 px-2 py-1 rounded">Team
+                            Leadership</span>
+                        <span class="text-xs font-medium bg-gray-100 text-gray-600 px-2 py-1 rounded">AODA/WCAG</span>
+                        <span class="text-xs font-medium bg-gray-100 text-gray-600 px-2 py-1 rounded">Prototyping</span>
+                    </div>
+                </div>
+                <div class="order-1 md:order-2 overflow-hidden rounded-2xl shadow-sm border border-gray-100">
+                    <!-- Replace src with your ImageKit URL -->
+                    <img src="https://ik.imagekit.io/your_imagekit_id/ced-mockup.png"
+                        alt="Canadian English Dictionary Mockup"
+                        onerror="this.src='https://via.placeholder.com/800x600?text=CED+Web+App'"
+                        class="w-full object-cover group-hover:scale-105 transition-transform duration-700">
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Experience Timeline Section -->
+    <section id="experience" class="py-24 bg-gray-50 px-6">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold text-gray-900 mb-12 fade-up">Professional Experience</h2>
+
+            <div class="space-y-12">
+                <!-- Role 1 -->
+                <div class="relative pl-8 md:pl-0 fade-up">
+                    <div class="md:grid md:grid-cols-12 gap-8 items-start">
+                        <div class="md:col-span-3 mb-2 md:mb-0 text-gray-500 font-medium text-sm pt-1">
+                            06/2025 - Present
+                        </div>
+                        <div class="md:col-span-9 relative">
+                            <div
+                                class="hidden md:block absolute w-3 h-3 bg-gray-900 rounded-full -left-[43px] top-1.5 ring-4 ring-gray-50">
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-900">Creative Design Lead</h3>
+                            <p class="text-blue-600 font-medium mb-3">GlobalDWS Corporation • Toronto, ON</p>
+                            <p class="text-gray-600 leading-relaxed">
+                                Leading end-to-end UX/UI design for complex digital products, utilizing UX design best
+                                practices to build and maintain a cohesive, mobile-first design system. Mediating
+                                between business teams and external developers to secure stakeholder buy-in via
+                                data-driven user research.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Role 2 -->
+                <div class="relative pl-8 md:pl-0 fade-up">
+                    <div class="md:grid md:grid-cols-12 gap-8 items-start">
+                        <div class="md:col-span-3 mb-2 md:mb-0 text-gray-500 font-medium text-sm pt-1">
+                            05/2024 – 06/2025
+                        </div>
+                        <div class="md:col-span-9 relative">
+                            <div
+                                class="hidden md:block absolute w-3 h-3 bg-gray-300 rounded-full -left-[43px] top-1.5 ring-4 ring-gray-50">
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-900">UX/CX Specialist</h3>
+                            <p class="text-blue-600 font-medium mb-3">OSL (Bell Canada) • Toronto, ON</p>
+                            <p class="text-gray-600 leading-relaxed">
+                                Facilitated extensive qualitative User Research and Usability Testing with 5,000+
+                                customers. Produced detailed research outputs (Topic Maps, Scripts, Synthesis Reports)
+                                to translate technical constraints into clear value propositions.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Role 3 -->
+                <div class="relative pl-8 md:pl-0 fade-up">
+                    <div class="md:grid md:grid-cols-12 gap-8 items-start">
+                        <div class="md:col-span-3 mb-2 md:mb-0 text-gray-500 font-medium text-sm pt-1">
+                            01/2022 - 08/2023
+                        </div>
+                        <div class="md:col-span-9 relative">
+                            <div
+                                class="hidden md:block absolute w-3 h-3 bg-gray-300 rounded-full -left-[43px] top-1.5 ring-4 ring-gray-50">
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-900">UX/UI Designer</h3>
+                            <p class="text-blue-600 font-medium mb-3">Rakuten Payment (Fintech Div.) • Tokyo, Japan</p>
+                            <p class="text-gray-600 leading-relaxed">
+                                Core Product Designer serving 44M users. Designed secure, high-traffic mobile-first
+                                transaction flows and co-designed a responsive QR-code SDK in a strict Agile (Scrum)
+                                environment. Passed critical WCAG 2.0 accessibility audits.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Role 4 -->
+                <div class="relative pl-8 md:pl-0 fade-up">
+                    <div class="md:grid md:grid-cols-12 gap-8 items-start">
+                        <div class="md:col-span-3 mb-2 md:mb-0 text-gray-500 font-medium text-sm pt-1">
+                            02/2015 – 01/2018
+                        </div>
+                        <div class="md:col-span-9 relative">
+                            <div
+                                class="hidden md:block absolute w-3 h-3 bg-gray-300 rounded-full -left-[43px] top-1.5 ring-4 ring-gray-50">
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-900">Journalist</h3>
+                            <p class="text-blue-600 font-medium mb-3">Agence France-Presse (AFP) • Tehran, Iran</p>
+                            <p class="text-gray-600 leading-relaxed">
+                                Mastered technical writing, storytelling, fact-checking, and interviewing. Built a solid
+                                foundation in empathy and research synthesis directly applicable to modern UX discovery
+                                and user interviewing processes.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Connecting Line (Desktop) -->
+                <div class="hidden md:block absolute w-px bg-gray-200 left-[26%] top-[30px] bottom-[30px] -z-10"></div>
+            </div>
+
+            <!-- Education Highlight -->
+            <div
+                class="mt-16 bg-white p-8 rounded-2xl border border-gray-100 shadow-sm fade-up flex flex-col md:flex-row gap-6 items-center justify-between">
+                <div>
+                    <h3 class="font-bold text-gray-900 flex items-center gap-2"><i data-lucide="graduation-cap"
+                            class="w-5 h-5 text-gray-400"></i> Master of Digital Media (MDM)</h3>
+                    <p class="text-sm text-gray-600 mt-1">Toronto Metropolitan University • Focus in Human-Computer
+                        Interaction (HCI)</p>
+                </div>
+                <span
+                    class="px-4 py-2 bg-gray-50 text-gray-800 text-sm font-semibold rounded-lg border border-gray-200">GPA:
+                    3.91</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer / Contact -->
+    <footer id="contact" class="bg-gray-900 text-white py-24 px-6 border-t border-gray-800">
+        <div class="max-w-4xl mx-auto text-center fade-up">
+            <h2 class="text-4xl md:text-5xl font-extrabold mb-8 tracking-tight">Ready to build something accessible and
+                scalable?</h2>
+            <p class="text-gray-400 mb-12 max-w-2xl mx-auto text-lg">
+                I am currently open to new opportunities, specifically senior roles where I can leverage my expertise in
+                design systems, agile methodologies, and mobile-first responsive design.
+            </p>
+
+            <div class="flex flex-col sm:flex-row justify-center gap-6 mb-16">
+                <a href="mailto:noorani.ali@gmail.com"
+                    class="px-8 py-4 bg-white text-gray-900 font-bold rounded-full hover:bg-gray-100 transition-colors flex items-center justify-center gap-2 shadow-lg">
+                    <i data-lucide="mail" class="w-5 h-5"></i> noorani.ali@gmail.com
+                </a>
+                <a href="https://linkedin.com/in/alinoorani1" target="_blank"
+                    class="px-8 py-4 bg-gray-800 text-white font-bold rounded-full hover:bg-gray-700 transition-colors flex items-center justify-center gap-2 border border-gray-700">
+                    <i data-lucide="linkedin" class="w-5 h-5"></i> LinkedIn Profile
+                </a>
+            </div>
+
+            <div
+                class="pt-12 border-t border-gray-800 text-sm text-gray-500 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p>&copy; 2026 Ali Noorani. All rights reserved.</p>
+                <div class="flex gap-4">
+                    <span>(437) 376-2444</span>
+                    <span>•</span>
+                    <span>Toronto, Ontario</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Initialize Icons, Mobile Nav & Scroll Animations -->
+    <script>
+        // Icons
+        lucide.createIcons();
+
+        // Mobile Menu Toggle
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when a link is clicked
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Intersection Observer for scroll animations
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.fade-up').forEach((el) => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+
+</html>
