@@ -4,373 +4,499 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio Gallery | Ali Noorani</title>
-
+    <title>Ali Noorani | Senior UX/UI Designer</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Google Fonts: Inter & Lora -->
+    <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
-
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
-
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
-                        serif: ['Lora', 'serif'],
                     },
                     colors: {
                         brand: {
-                            blue: '#0b5cff',
-                            bg: '#f8fafc',
+                            50: '#f6f6f6',
+                            100: '#e7e7e7',
+                            900: '#111111',
                         }
                     }
                 }
             }
         }
     </script>
-
     <style>
-        :root {
-            --card-height: 65vh;
-            --card-aspect-ratio: 0.60;
-            --card-width: calc(var(--card-height) * var(--card-aspect-ratio));
-            --animation-duration: 1s;
-            --animation-timing-function: cubic-bezier(0.47, 0, 0.23, 1.38);
-            --spotlight-shadow: 0px 594px 166px 0px rgba(0, 0, 0, 0.00), 0px 380px 152px 0px rgba(0, 0, 0, 0.02), 0px 214px 128px 0px rgba(0, 0, 0, 0.08), 0px 95px 95px 0px rgba(0, 0, 0, 0.13), 0px 24px 52px 0px rgba(0, 0, 0, 0.15);
-            --stack-shadow: 183px 565px 166px 0px rgba(0, 0, 0, 0.00), 117px 361px 152px 0px rgba(0, 0, 0, 0.01), 66px 203px 128px 0px rgba(0, 0, 0, 0.03), 29px 90px 95px 0px rgba(0, 0, 0, 0.08), 7px 23px 52px 0px rgba(0, 0, 0, 0.10);
-        }
-
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f8fafc;
-            overflow: hidden;
-            height: 100vh;
-            width: 100vw;
-            display: flex;
-            flex-direction: column;
         }
 
-        .scene-container {
-            position: relative;
-            width: 100%;
-            flex-grow: 1;
+        /* Scroll animations */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .image-placeholder {
+            background-color: #f3f4f6;
             display: flex;
             align-items: center;
             justify-content: center;
-        }
-
-        .cards-wrapper {
-            position: relative;
-            width: 100%;
-            height: 100%;
-        }
-
-        .card {
-            position: absolute;
-            width: var(--card-width);
-            height: var(--card-height);
-            border-radius: 24px;
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            top: 50%;
-            transform-origin: center center;
-            transition: transform var(--animation-duration) var(--animation-timing-function),
-                opacity calc(var(--animation-duration) / 2) ease-in-out,
-                box-shadow var(--animation-duration) ease-in-out;
-            will-change: transform, opacity, box-shadow;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            padding: 0;
-            box-sizing: border-box;
-            overflow: hidden;
-            cursor: grab;
-        }
-
-        .card:active {
-            cursor: grabbing;
-        }
-
-        .end-of-deck-actions {
-            position: absolute;
-            top: 50%;
-            z-index: 100;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            transition: opacity 0.5s ease 0.3s;
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        .end-of-deck-actions.visible {
-            opacity: 1;
-            pointer-events: auto;
+            color: #9ca3af;
         }
     </style>
 </head>
 
-<body class="text-slate-800 antialiased selection:bg-brand-blue selection:text-white">
+<body class="bg-white text-gray-800 antialiased selection:bg-gray-900 selection:text-white">
 
-    <!-- Navigation - Increased Z-Index to z-[2000] -->
+    <!-- Navigation -->
     <nav
-        class="fixed w-full z-[2000] top-0 transition-all duration-300 bg-slate-50/90 backdrop-blur-md border-b border-slate-200">
+        class="fixed w-full z-50 top-0 transition-all duration-300 bg-white/80 backdrop-blur-md border-b border-gray-100">
         <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+
             <div class="flex items-center">
-                <a href="index.html" class="text-xl font-bold font-sans tracking-tight text-slate-900">Ali Noorani<span
-                        class="text-slate-400 font-normal">.work</span></a>
+                <a href="#home" class="text-xl font-bold tracking-tight text-gray-900">Ali Noorani<span
+                        class="text-gray-400 font-normal">.work</span></a>
+                <!-- Private Badge for Cloudflare Protected Portfolio -->
                 <span
-                    class="hidden sm:flex ml-4 px-2.5 py-1 bg-white text-slate-500 text-[11px] font-semibold uppercase tracking-wider rounded border border-slate-200 items-center gap-1.5 cursor-default">
+                    class="hidden sm:flex ml-4 px-2.5 py-1 bg-gray-50 text-gray-500 text-[11px] font-semibold uppercase tracking-wider rounded border border-gray-200 items-center gap-1.5 cursor-default"
+                    title="Confidential Portfolio">
                     <i data-lucide="lock" class="w-3 h-3"></i> Private
                 </span>
             </div>
 
-            <div class="hidden md:flex gap-8 items-center text-sm font-medium font-sans">
-                <a href="index.html" class="text-slate-500 hover:text-slate-900 transition-colors">Home</a>
-                <a href="about.html" class="text-slate-500 hover:text-slate-900 transition-colors">About</a>
-                <span class="text-brand-blue border-b-2 border-brand-blue py-1">Portfolio</span>
-                <a href="contact.html"
-                    class="px-5 py-2 bg-slate-900 text-white rounded-full hover:bg-slate-800 transition-colors">Get in
-                    touch</a>
+            <!-- Desktop Nav -->
+            <div class="hidden md:flex items-center gap-8">
+                <a href="/about"
+                    class="text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors">About</a>
+                <a href="/portfolio.html"
+                    class="text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors">Work</a>
+                <a href="#experience"
+                    class="text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors">Experience</a>
+                <a href="/contact"
+                    class="px-4 py-2 bg-gray-900 text-white text-sm font-medium rounded-full hover:bg-gray-800 transition-colors">Get
+                    in touch</a>
             </div>
 
-            <!-- Mobile Menu Btn -->
-            <button class="md:hidden text-slate-600" id="mobile-menu-btn">
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden text-gray-600 hover:text-gray-900 focus:outline-none" id="mobile-menu-btn">
                 <i data-lucide="menu" class="w-6 h-6"></i>
             </button>
         </div>
 
-        <div class="md:hidden hidden bg-white border-b border-slate-200 px-6 py-4 space-y-4 absolute w-full z-[2000]"
+        <!-- Mobile Nav (Hidden by default) -->
+        <div class="md:hidden hidden bg-white border-b border-gray-100 px-6 py-4 space-y-4 shadow-lg absolute w-full"
             id="mobile-menu">
-            <a href="index.html" class="block text-slate-600">Home</a>
-            <a href="about.html" class="block text-slate-600">About</a>
-            <a href="portfolio.html" class="block text-brand-blue">Portfolio</a>
-            <a href="contact.html" class="block text-slate-600">Contact</a>
+            <a href="#about" class="block text-sm font-medium text-gray-600 hover:text-gray-900">About</a>
+            <a href="#work" class="block text-sm font-medium text-gray-600 hover:text-gray-900">Work</a>
+            <a href="#experience" class="block text-sm font-medium text-gray-600 hover:text-gray-900">Experience</a>
+            <a href="#contact" class="block text-sm font-medium text-gray-600 hover:text-gray-900">Contact</a>
         </div>
     </nav>
 
-    <!-- Filter Tabs Container -->
-    <div class="pt-28 pb-4 text-center relative z-[1000]" id="filter-container"></div>
+    <!-- Hero Section -->
+    <section id="home" class="pt-40 pb-20 px-6 min-h-[90vh] flex items-center">
+        <div class="max-w-4xl mx-auto fade-up">
+            <p class="text-blue-600 font-bold tracking-wide uppercase text-sm mb-4">Senior UX/UI Designer</p>
+            <h1 class="text-5xl md:text-7xl font-extrabold text-gray-900 tracking-tight leading-tight mb-8">
+                I build intuitive, scalable solutions for complex digital ecosystems.
+            </h1>
+            <p class="text-xl text-gray-600 mb-10 max-w-2xl leading-relaxed">
+                Combining a background in journalism with 6+ years of UX design to translate complex technical
+                constraints into human-centered, accessible user journeys.
+            </p>
+            <div class="flex flex-wrap gap-4">
+                <a href="#work"
+                    class="px-6 py-3 bg-gray-900 text-white font-medium rounded-full hover:bg-gray-800 transition-colors flex items-center gap-2">
+                    View My Work <i data-lucide="arrow-down" class="w-4 h-4"></i>
+                </a>
+                <a href="mailto:noorani.ali@gmail.com"
+                    class="px-6 py-3 bg-white text-gray-900 border border-gray-200 font-medium rounded-full hover:bg-gray-50 transition-colors flex items-center gap-2">
+                    <i data-lucide="mail" class="w-4 h-4"></i> Contact Me
+                </a>
+            </div>
+        </div>
+    </section>
 
-    <!-- Interactive Card Scene -->
-    <main class="scene-container">
-        <div class="cards-wrapper">
-            <div class="end-of-deck-actions">
-                <div id="filtered-actions" class="flex flex-col gap-4">
-                    <button id="switch-category-btn"
-                        class="bg-slate-900 text-white px-6 py-3 rounded-full font-medium hover:bg-slate-800 transition-colors shadow-lg"></button>
-                    <button id="view-all-btn"
-                        class="text-slate-500 font-medium hover:text-slate-900 transition-colors">View All
-                        Projects</button>
+    <!-- About & Skills Section -->
+    <section id="about" class="py-24 bg-gray-50 px-6">
+        <div class="max-w-6xl mx-auto fade-up grid md:grid-cols-12 gap-16 items-start">
+            <div class="md:col-span-5">
+                <!-- Replace src with your ImageKit URL -->
+                <img src="https://ik.imagekit.io/your_imagekit_id/profile-photo.jpg" alt="Ali Noorani"
+                    onerror="this.src='https://via.placeholder.com/600x800?text=Profile+Photo'"
+                    class="w-full aspect-[3/4] object-cover rounded-2xl shadow-lg grayscale hover:grayscale-0 transition-all duration-500">
+            </div>
+            <div class="md:col-span-7 space-y-8">
+                <h2 class="text-3xl font-bold text-gray-900">About Me</h2>
+                <div class="space-y-4 text-gray-600 leading-relaxed text-lg">
+                    <p>
+                        I'm Ali, a Product and UI/UX Designer specializing in Fintech, Enterprise Banking, and Digital
+                        Modernization. I have a proven track record of redesigning legacy systems and making complex
+                        technology accessible.
+                    </p>
+                    <p>
+                        My unique background as a Journalist for Agence France-Presse (AFP) gave me a deep understanding
+                        of storytelling, fact-checking, and interviewing—skills that form a solid foundation for my
+                        empathetic user research and data-driven design strategies today.
+                    </p>
                 </div>
-                <div id="all-actions" class="hidden flex-col gap-4">
-                    <button id="go-to-first-btn"
-                        class="bg-slate-900 text-white px-6 py-3 rounded-full font-medium hover:bg-slate-800 transition-colors shadow-lg">Back
-                        to Start</button>
+
+                <div class="pt-8 border-t border-gray-200">
+                    <h3 class="text-sm font-bold uppercase tracking-wider text-gray-900 mb-6">Core Competencies</h3>
+
+                    <div class="mb-6">
+                        <h4 class="text-gray-700 font-semibold mb-3">UX Design & Process</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="px-3 py-1 bg-white border border-gray-200 text-gray-600 text-sm rounded-full">Mobile-First
+                                Design</span>
+                            <span
+                                class="px-3 py-1 bg-white border border-gray-200 text-gray-600 text-sm rounded-full">Information
+                                Architecture</span>
+                            <span
+                                class="px-3 py-1 bg-white border border-gray-200 text-gray-600 text-sm rounded-full">Design
+                                Systems</span>
+                            <span
+                                class="px-3 py-1 bg-white border border-gray-200 text-gray-600 text-sm rounded-full">Agile
+                                (Scrum)</span>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <h4 class="text-gray-700 font-semibold mb-3">Research & Accessibility</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="px-3 py-1 bg-white border border-gray-200 text-gray-600 text-sm rounded-full">Usability
+                                Testing</span>
+                            <span
+                                class="px-3 py-1 bg-white border border-gray-200 text-gray-600 text-sm rounded-full">WCAG/AODA
+                                Compliance</span>
+                            <span
+                                class="px-3 py-1 bg-white border border-gray-200 text-gray-600 text-sm rounded-full">Behavioral
+                                Science</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 class="text-gray-700 font-semibold mb-3">Tools & Tech</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="px-3 py-1 bg-white border border-gray-200 text-gray-600 text-sm rounded-full flex items-center gap-1"><i
+                                    data-lucide="figma" class="w-3 h-3"></i> Figma</span>
+                            <span
+                                class="px-3 py-1 bg-white border border-gray-200 text-gray-600 text-sm rounded-full">Axure</span>
+                            <span
+                                class="px-3 py-1 bg-white border border-gray-200 text-gray-600 text-sm rounded-full">Adobe
+                                CC</span>
+                            <span
+                                class="px-3 py-1 bg-white border border-gray-200 text-gray-600 text-sm rounded-full flex items-center gap-1"><i
+                                    data-lucide="code-2" class="w-3 h-3"></i> HTML/CSS/JS</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </main>
+    </section>
 
-    <!-- Footer -->
-    <footer
-        class="w-full px-10 py-6 flex justify-between items-center shrink-0 border-t border-slate-200 bg-white z-[1000]">
-        <p class="text-sm font-sans text-slate-500">&copy; 2026 Ali Noorani.</p>
-        <div class="flex items-center gap-4">
-            <a href="https://linkedin.com/in/alinoorani1" target="_blank"
-                class="text-slate-400 hover:text-brand-blue transition-colors">
-                <i data-lucide="linkedin" class="w-5 h-5"></i>
-            </a>
-            <a href="mailto:noorani.ali@gmail.com" class="text-slate-400 hover:text-brand-blue transition-colors">
-                <i data-lucide="mail" class="w-5 h-5"></i>
-            </a>
+    <!-- Work / Case Studies -->
+    <section id="work" class="py-24 px-6">
+        <div class="max-w-6xl mx-auto space-y-16">
+            <div class="fade-up">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Selected Work</h2>
+                <p class="text-xl text-gray-600">A showcase of complex problems solved through design.</p>
+            </div>
+
+            <!-- Project 1: GlobalDWS -->
+            <div class="grid md:grid-cols-2 gap-12 items-center fade-up group">
+                <div class="order-2 md:order-1 space-y-6">
+                    <span class="text-xs font-bold text-blue-600 tracking-wider uppercase">Website Redesign &
+                        Modernization</span>
+                    <h3 class="text-3xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors">GlobalDWS
+                    </h3>
+                    <p class="text-gray-600 leading-relaxed text-lg">
+                        Spearheaded the end-to-end redesign of a complex B2B digital platform. Developed a responsive
+                        design system, translating technical offerings into an engaging user journey that increased
+                        session duration by 80%.
+                    </p>
+                    <div class="flex flex-wrap gap-2 pt-2">
+                        <span class="text-xs font-medium bg-gray-100 text-gray-600 px-2 py-1 rounded">Figma</span>
+                        <span class="text-xs font-medium bg-gray-100 text-gray-600 px-2 py-1 rounded">UX Research</span>
+                        <span class="text-xs font-medium bg-gray-100 text-gray-600 px-2 py-1 rounded">Design
+                            System</span>
+                    </div>
+                    <!-- Link to case study modal or separate page if you ever create one, currently links down to contact -->
+                    <a href="#contact"
+                        class="inline-flex items-center gap-2 font-semibold text-gray-900 hover:text-blue-600 transition-colors mt-4">
+                        Read Case Study <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                </div>
+                <div class="order-1 md:order-2 overflow-hidden rounded-2xl shadow-sm border border-gray-100">
+                    <!-- Replace src with your ImageKit URL -->
+                    <img src="https://ik.imagekit.io/your_imagekit_id/globaldws-mockup.png" alt="GlobalDWS Mockup"
+                        onerror="this.src='https://via.placeholder.com/800x600?text=GlobalDWS+Mockup'"
+                        class="w-full object-cover group-hover:scale-105 transition-transform duration-700">
+                </div>
+            </div>
+
+            <hr class="border-gray-100">
+
+            <!-- Project 2: Rakuten -->
+            <div class="grid md:grid-cols-2 gap-12 items-center fade-up group">
+                <div class="overflow-hidden rounded-2xl shadow-sm border border-gray-100">
+                    <!-- Replace src with your ImageKit URL -->
+                    <img src="https://ik.imagekit.io/your_imagekit_id/rakuten-mockup.png" alt="Rakuten Mockup"
+                        onerror="this.src='https://via.placeholder.com/800x600?text=Rakuten+Fintech+App'"
+                        class="w-full object-cover group-hover:scale-105 transition-transform duration-700">
+                </div>
+                <div class="space-y-6 pl-0 md:pl-8">
+                    <span class="text-xs font-bold text-red-600 tracking-wider uppercase">Fintech Ecosystem</span>
+                    <h3 class="text-3xl font-bold text-gray-900 group-hover:text-red-600 transition-colors">Rakuten
+                        Payment</h3>
+                    <p class="text-gray-600 leading-relaxed text-lg">
+                        Designed secure, high-traffic financial transaction flows for 44M users. Co-designed a
+                        responsive QR-code SDK enabling cashless payment scaling across the $18.7B Rakuten Group while
+                        passing strict WCAG 2.0 audits.
+                    </p>
+                    <div class="flex flex-wrap gap-2 pt-2">
+                        <span
+                            class="text-xs font-medium bg-gray-100 text-gray-600 px-2 py-1 rounded">Mobile-First</span>
+                        <span class="text-xs font-medium bg-gray-100 text-gray-600 px-2 py-1 rounded">Agile
+                            Delivery</span>
+                        <span class="text-xs font-medium bg-gray-100 text-gray-600 px-2 py-1 rounded">Accessibility
+                            (WCAG)</span>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="border-gray-100">
+
+            <!-- Project 3: CED -->
+            <div class="grid md:grid-cols-2 gap-12 items-center fade-up group">
+                <div class="order-2 md:order-1 space-y-6">
+                    <span class="text-xs font-bold text-green-600 tracking-wider uppercase">Digital Publication</span>
+                    <h3 class="text-3xl font-bold text-gray-900 group-hover:text-green-600 transition-colors">Canadian
+                        English Dictionary</h3>
+                    <p class="text-gray-600 leading-relaxed text-lg">
+                        Led a team of three designers to create specialized, WCAG-accessible layouts for diverse user
+                        personas, addressing unique usability pain points and successfully updating Canada's national
+                        dictionary platform.
+                    </p>
+                    <div class="flex flex-wrap gap-2 pt-2">
+                        <span class="text-xs font-medium bg-gray-100 text-gray-600 px-2 py-1 rounded">Team
+                            Leadership</span>
+                        <span class="text-xs font-medium bg-gray-100 text-gray-600 px-2 py-1 rounded">AODA/WCAG</span>
+                        <span class="text-xs font-medium bg-gray-100 text-gray-600 px-2 py-1 rounded">Prototyping</span>
+                    </div>
+                </div>
+                <div class="order-1 md:order-2 overflow-hidden rounded-2xl shadow-sm border border-gray-100">
+                    <!-- Replace src with your ImageKit URL -->
+                    <img src="https://ik.imagekit.io/your_imagekit_id/ced-mockup.png"
+                        alt="Canadian English Dictionary Mockup"
+                        onerror="this.src='https://via.placeholder.com/800x600?text=CED+Web+App'"
+                        class="w-full object-cover group-hover:scale-105 transition-transform duration-700">
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Experience Timeline Section -->
+    <section id="experience" class="py-24 bg-gray-50 px-6">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold text-gray-900 mb-12 fade-up">Professional Experience</h2>
+
+            <div class="space-y-12">
+                <!-- Role 1 -->
+                <div class="relative pl-8 md:pl-0 fade-up">
+                    <div class="md:grid md:grid-cols-12 gap-8 items-start">
+                        <div class="md:col-span-3 mb-2 md:mb-0 text-gray-500 font-medium text-sm pt-1">
+                            06/2025 - Present
+                        </div>
+                        <div class="md:col-span-9 relative">
+                            <div
+                                class="hidden md:block absolute w-3 h-3 bg-gray-900 rounded-full -left-[43px] top-1.5 ring-4 ring-gray-50">
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-900">Creative Design Lead</h3>
+                            <p class="text-blue-600 font-medium mb-3">GlobalDWS Corporation • Toronto, ON</p>
+                            <p class="text-gray-600 leading-relaxed">
+                                Leading end-to-end UX/UI design for complex digital products, utilizing UX design best
+                                practices to build and maintain a cohesive, mobile-first design system. Mediating
+                                between business teams and external developers to secure stakeholder buy-in via
+                                data-driven user research.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Role 2 -->
+                <div class="relative pl-8 md:pl-0 fade-up">
+                    <div class="md:grid md:grid-cols-12 gap-8 items-start">
+                        <div class="md:col-span-3 mb-2 md:mb-0 text-gray-500 font-medium text-sm pt-1">
+                            05/2024 – 06/2025
+                        </div>
+                        <div class="md:col-span-9 relative">
+                            <div
+                                class="hidden md:block absolute w-3 h-3 bg-gray-300 rounded-full -left-[43px] top-1.5 ring-4 ring-gray-50">
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-900">UX/CX Specialist</h3>
+                            <p class="text-blue-600 font-medium mb-3">OSL (Bell Canada) • Toronto, ON</p>
+                            <p class="text-gray-600 leading-relaxed">
+                                Facilitated extensive qualitative User Research and Usability Testing with 5,000+
+                                customers. Produced detailed research outputs (Topic Maps, Scripts, Synthesis Reports)
+                                to translate technical constraints into clear value propositions.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Role 3 -->
+                <div class="relative pl-8 md:pl-0 fade-up">
+                    <div class="md:grid md:grid-cols-12 gap-8 items-start">
+                        <div class="md:col-span-3 mb-2 md:mb-0 text-gray-500 font-medium text-sm pt-1">
+                            01/2022 - 08/2023
+                        </div>
+                        <div class="md:col-span-9 relative">
+                            <div
+                                class="hidden md:block absolute w-3 h-3 bg-gray-300 rounded-full -left-[43px] top-1.5 ring-4 ring-gray-50">
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-900">UX/UI Designer</h3>
+                            <p class="text-blue-600 font-medium mb-3">Rakuten Payment (Fintech Div.) • Tokyo, Japan</p>
+                            <p class="text-gray-600 leading-relaxed">
+                                Core Product Designer serving 44M users. Designed secure, high-traffic mobile-first
+                                transaction flows and co-designed a responsive QR-code SDK in a strict Agile (Scrum)
+                                environment. Passed critical WCAG 2.0 accessibility audits.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Role 4 -->
+                <div class="relative pl-8 md:pl-0 fade-up">
+                    <div class="md:grid md:grid-cols-12 gap-8 items-start">
+                        <div class="md:col-span-3 mb-2 md:mb-0 text-gray-500 font-medium text-sm pt-1">
+                            02/2015 – 01/2018
+                        </div>
+                        <div class="md:col-span-9 relative">
+                            <div
+                                class="hidden md:block absolute w-3 h-3 bg-gray-300 rounded-full -left-[43px] top-1.5 ring-4 ring-gray-50">
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-900">Journalist</h3>
+                            <p class="text-blue-600 font-medium mb-3">Agence France-Presse (AFP) • Tehran, Iran</p>
+                            <p class="text-gray-600 leading-relaxed">
+                                Mastered technical writing, storytelling, fact-checking, and interviewing. Built a solid
+                                foundation in empathy and research synthesis directly applicable to modern UX discovery
+                                and user interviewing processes.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Connecting Line (Desktop) -->
+                <div class="hidden md:block absolute w-px bg-gray-200 left-[26%] top-[30px] bottom-[30px] -z-10"></div>
+            </div>
+
+            <!-- Education Highlight -->
+            <div
+                class="mt-16 bg-white p-8 rounded-2xl border border-gray-100 shadow-sm fade-up flex flex-col md:flex-row gap-6 items-center justify-between">
+                <div>
+                    <h3 class="font-bold text-gray-900 flex items-center gap-2"><i data-lucide="graduation-cap"
+                            class="w-5 h-5 text-gray-400"></i> Master of Digital Media (MDM)</h3>
+                    <p class="text-sm text-gray-600 mt-1">Toronto Metropolitan University • Focus in Human-Computer
+                        Interaction (HCI)</p>
+                </div>
+                <span
+                    class="px-4 py-2 bg-gray-50 text-gray-800 text-sm font-semibold rounded-lg border border-gray-200">GPA:
+                    3.91</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer / Contact -->
+    <footer id="contact" class="bg-gray-900 text-white py-24 px-6 border-t border-gray-800">
+        <div class="max-w-4xl mx-auto text-center fade-up">
+            <h2 class="text-4xl md:text-5xl font-extrabold mb-8 tracking-tight">Ready to build something accessible and
+                scalable?</h2>
+            <p class="text-gray-400 mb-12 max-w-2xl mx-auto text-lg">
+                I am currently open to new opportunities, specifically senior roles where I can leverage my expertise in
+                design systems, agile methodologies, and mobile-first responsive design.
+            </p>
+
+            <div class="flex flex-col sm:flex-row justify-center gap-6 mb-16">
+                <a href="mailto:noorani.ali@gmail.com"
+                    class="px-8 py-4 bg-white text-gray-900 font-bold rounded-full hover:bg-gray-100 transition-colors flex items-center justify-center gap-2 shadow-lg">
+                    <i data-lucide="mail" class="w-5 h-5"></i> noorani.ali@gmail.com
+                </a>
+                <a href="https://linkedin.com/in/alinoorani1" target="_blank"
+                    class="px-8 py-4 bg-gray-800 text-white font-bold rounded-full hover:bg-gray-700 transition-colors flex items-center justify-center gap-2 border border-gray-700">
+                    <i data-lucide="linkedin" class="w-5 h-5"></i> LinkedIn Profile
+                </a>
+            </div>
+
+            <div
+                class="pt-12 border-t border-gray-800 text-sm text-gray-500 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p>&copy; 2026 Ali Noorani. All rights reserved.</p>
+                <div class="flex gap-4">
+                    <span>(437) 376-2444</span>
+                    <span>•</span>
+                    <span>Toronto, Ontario</span>
+                </div>
+            </div>
         </div>
     </footer>
 
+    <!-- Initialize Icons, Mobile Nav & Scroll Animations -->
     <script>
+        // Icons
         lucide.createIcons();
 
-        // Mobile Menu
+        // Mobile Menu Toggle
         const mobileBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
-        mobileBtn?.addEventListener('click', () => mobileMenu?.classList.toggle('hidden'));
 
-        class CardScroller {
-            constructor(containerSelector, filterContainerSelector, initialCardData) {
-                this.container = document.querySelector(containerSelector);
-                this.filterContainer = document.querySelector(filterContainerSelector);
-                this.endOfDeckContainer = document.querySelector('.end-of-deck-actions');
-                this.filteredActions = document.getElementById('filtered-actions');
-                this.allActions = document.getElementById('all-actions');
-                this.switchCategoryBtn = document.getElementById('switch-category-btn');
-                this.viewAllBtn = document.getElementById('view-all-btn');
-                this.goToFirstBtn = document.getElementById('go-to-first-btn');
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
 
-                this.allCardData = initialCardData;
-                this.cardData = [...this.allCardData];
-                this.cards = [];
-                this.currentIndex = 0;
-                this.isAnimating = false;
-                this.positions = [];
-                this.exitLeftPosition = {};
-                this.currentFilter = 'All';
+        // Close mobile menu when a link is clicked
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
 
-                this.init();
-            }
-
-            init() {
-                this.createFilters();
-                this.renderCards();
-                this.addEventListeners();
-            }
-
-            createFilters() {
-                // Filtered to remove "Personal" category
-                const filters = ['All', 'Professional'];
-                filters.forEach(filter => {
-                    const tab = document.createElement('div');
-                    tab.className = 'inline-block mx-2 px-6 py-2 text-sm font-medium text-slate-500 cursor-pointer rounded-full transition-all border border-transparent hover:bg-slate-100';
-                    tab.textContent = filter;
-                    tab.dataset.filter = filter;
-                    if (filter === this.currentFilter) tab.classList.add('text-slate-900', 'bg-white', 'border-slate-200', 'shadow-sm');
-                    tab.addEventListener('click', () => this.applyFilter(filter));
-                    this.filterContainer.appendChild(tab);
-                });
-            }
-
-            applyFilter(filter) {
-                if (filter === this.currentFilter || this.isAnimating) return;
-                this.currentFilter = filter;
-                this.endOfDeckContainer.classList.remove('visible');
-                this.filterContainer.querySelectorAll('div').forEach(tab => {
-                    const active = tab.dataset.filter === filter;
-                    tab.classList.toggle('text-slate-900', active);
-                    tab.classList.toggle('bg-white', active);
-                    tab.classList.toggle('border-slate-200', active);
-                    tab.classList.toggle('shadow-sm', active);
-                });
-                this.cardData = (filter === 'All') ? [...this.allCardData] : this.allCardData.filter(card => card.tag === filter);
-                this.renderCards();
-            }
-
-            renderCards() {
-                this.container.querySelectorAll('.card').forEach(c => c.remove());
-                this.cards = [];
-                this.currentIndex = 0;
-                this.createCards();
-                requestAnimationFrame(() => this.calculateAndSetPositions());
-            }
-
-            createCards() {
-                const fragment = document.createDocumentFragment();
-                this.cardData.forEach((data, index) => {
-                    const cardEl = document.createElement('div');
-                    cardEl.className = 'card shadow-xl';
-                    cardEl.style.background = data.gradient;
-                    cardEl.style.transform = `translateX(110vw) translateY(-50%)`;
-                    cardEl.innerHTML = `
-                        <img src="${data.imageUrl}" class="w-full h-[45%] object-cover border-b border-white/20">
-                        <div class="p-8 h-[55%] flex flex-col justify-between">
-                            <div>
-                                <h2 class="font-serif text-3xl font-bold text-slate-900 mb-3 leading-tight">${data.title}</h2>
-                                <p class="text-slate-700 text-sm leading-relaxed">${data.content}</p>
-                            </div>
-                            <div class="flex justify-between items-center">
-                                <span class="text-[11px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-full bg-white/50 text-slate-700">${data.tag}</span>
-                                ${data.link ? `<a href="${data.link}" class="text-sm font-semibold text-brand-blue hover:underline flex items-center gap-1">Explore <i data-lucide="arrow-right" class="w-4 h-4"></i></a>` : ''}
-                            </div>
-                        </div>`;
-                    this.cards.push(cardEl);
-                    fragment.appendChild(cardEl);
-                });
-                this.container.prepend(fragment);
-                lucide.createIcons();
-            }
-
-            calculateAndSetPositions() {
-                const vh = window.innerHeight / 100;
-                const cardWidthPx = this.cards.length > 0 ? this.cards[0].offsetWidth : 0;
-                const spotlightX = 19 * vh;
-                this.positions = [{ x: spotlightX, rotate: 0, opacity: 1, scale: 1, shadow: 'var(--spotlight-shadow)', zIndex: this.cardData.length + 1 }];
-                let curX = spotlightX + cardWidthPx + 4 * vh;
-                for (let i = 1; i < this.cardData.length; i++) {
-                    this.positions.push({ x: curX, rotate: 0, opacity: 1, scale: 1, shadow: 'var(--stack-shadow)', zIndex: this.cardData.length - i });
-                    curX += 15 * vh;
-                }
-                this.exitLeftPosition = { x: -cardWidthPx * 1.5, rotate: -20, opacity: 0, scale: 1, shadow: 'none', zIndex: 0 };
-                this.updateCardStyles(true);
-            }
-
-            goTo(idx) {
-                if (this.isAnimating || idx < 0 || idx >= this.cards.length) return;
-                this.isAnimating = true;
-                this.currentIndex = idx;
-                this.updateCardStyles();
-                this.checkEndOfDeck();
-                setTimeout(() => { this.isAnimating = false; }, 1000);
-            }
-
-            updateCardStyles(isInit = false) {
-                this.cards.forEach((card, i) => {
-                    const rel = i - this.currentIndex;
-                    let pos = rel < 0 ? this.exitLeftPosition : (this.positions[rel] || { ...this.positions[this.positions.length - 1], x: window.innerWidth + 500, opacity: 0 });
-                    card.style.transitionDelay = isInit ? `${rel * 100}ms` : '0ms';
-                    card.style.transform = `translate(${pos.x}px, -50%) rotate(${pos.rotate}deg) scale(${pos.scale})`;
-                    card.style.opacity = pos.opacity;
-                    card.style.boxShadow = pos.shadow;
-                    card.style.zIndex = pos.zIndex;
-                });
-            }
-
-            checkEndOfDeck() {
-                const isLast = this.currentIndex === this.cardData.length - 1;
-                if (isLast && this.cardData.length > 0) {
-                    // Since personal is hidden, we hide the switch button as there is only one specific category left
-                    this.filteredActions.style.display = 'none';
-                    this.allActions.style.display = 'flex';
-
-                    this.endOfDeckContainer.style.transform = `translate(${this.positions[1]?.x || this.positions[0].x}px, -50%)`;
-                    this.endOfDeckContainer.classList.add('visible');
-                } else this.endOfDeckContainer.classList.remove('visible');
-            }
-
-            addEventListeners() {
-                let st; document.body.addEventListener('wheel', (e) => { e.preventDefault(); if (this.isAnimating) return; clearTimeout(st); st = setTimeout(() => this.goTo(this.currentIndex + (e.deltaY > 0 ? 1 : -1)), 50); }, { passive: false });
-                let tx = 0; document.body.addEventListener('touchstart', (e) => tx = e.changedTouches[0].screenX, { passive: true });
-                document.body.addEventListener('touchend', (e) => {
-                    if (this.isAnimating) return;
-                    const dist = e.changedTouches[0].screenX - tx;
-                    if (Math.abs(dist) > 50) this.goTo(this.currentIndex + (dist < 0 ? 1 : -1));
-                }, { passive: true });
-                window.addEventListener('resize', () => this.calculateAndSetPositions());
-                this.switchCategoryBtn.addEventListener('click', () => this.applyFilter('Professional'));
-                this.viewAllBtn.addEventListener('click', () => this.applyFilter('All'));
-                this.goToFirstBtn.addEventListener('click', () => this.goTo(0));
-            }
-        }
-
-        // Project Data - Filtered to only Professional projects
-        const cardData = [
-            { title: "GlobalDWS", content: "End-to-end redesign for a complex B2B digital platform increasing session duration by 80%.", tag: "Professional", gradient: "linear-gradient(135deg, #f1f5f9, #e2e8f0)", imageUrl: "https://ik.imagekit.io/YOUR_ID/global-cover.png", link: "studies/globaldws.html" },
-            { title: "Canadian English Dictionary", content: "Designing the first comprehensive digital resource for Canadian English in over 20 years.", tag: "Professional", gradient: "linear-gradient(135deg, #eafbff, #dce7ff)", imageUrl: "https://ik.imagekit.io/YOUR_ID/ced-cover.png", link: "studies/ced.html" },
-            { title: "Rakuten Pay", content: "Information Architecture research and card sorting for a 44M user Fintech ecosystem.", tag: "Professional", gradient: "linear-gradient(135deg, #ffebeb, #ffcaca)", imageUrl: "https://ik.imagekit.io/YOUR_ID/rakuten-cover.png", link: "studies/rakuten.html" },
-            { title: "Rakuten Viber", content: "Integrating R-Cash P2P payments seamlessly into the Viber messaging platform.", tag: "Professional", gradient: "linear-gradient(135deg, #f4f1ff, #e2d8ff)", imageUrl: "https://ik.imagekit.io/YOUR_ID/viber-cover.webp", link: "studies/viber.html" },
-            { title: "Andook", content: "Simplifying personal finance categories through user research for an American startup.", tag: "Professional", gradient: "linear-gradient(135deg, #d7f9f8, #bdeee4)", imageUrl: "https://ik.imagekit.io/YOUR_ID/andook-cover.png", link: "studies/andook.html" },
-            { title: "Accessible Palette", content: "Methodological color system design for users with color-blindness and weak eyesight.", tag: "Professional", gradient: "linear-gradient(135deg, #fdf2f8, #fbcfe8)", imageUrl: "https://ik.imagekit.io/YOUR_ID/palette-cover.png", link: "studies/palette.html" },
-            { title: "Ideh Hub", content: "Timeless brand identity and stationery design for a boutique startup consultancy.", tag: "Professional", gradient: "linear-gradient(135deg, #fef3c7, #fde68a)", imageUrl: "https://ik.imagekit.io/YOUR_ID/ideh-cover.png", link: "studies/idehhub.html" },
-            { title: "Studyizy", content: "Startup dashboard helping international students manage the admission journey.", tag: "Professional", gradient: "linear-gradient(135deg, #ecfeff, #cffafe)", imageUrl: "https://via.placeholder.com/400x300?text=Studyizy" }
-        ];
-
+        // Intersection Observer for scroll animations
         document.addEventListener('DOMContentLoaded', () => {
-            new CardScroller('.cards-wrapper', '#filter-container', cardData);
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.fade-up').forEach((el) => {
+                observer.observe(el);
+            });
         });
     </script>
 </body>
