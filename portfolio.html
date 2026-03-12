@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Gallery | Ali Noorani</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: Inter & Lora (for Serif headings) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Lora', 'serif'],
+                    },
+                    colors: {
+                        brand: {
+                            blue: '#0b5cff',
+                            bg: '#f8fafc',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* CSS variables for the Card Scroller mechanics */
+        :root {
+            --card-height: 65vh;
+            --card-aspect-ratio: 0.60;
+            --card-width: calc(var(--card-height) * var(--card-aspect-ratio));
+            --animation-duration: 1s;
+            --animation-timing-function: cubic-bezier(0.47, 0, 0.23, 1.38);
+            --spotlight-shadow: 0px 594px 166px 0px rgba(0, 0, 0, 0.00), 0px 380px 152px 0px rgba(0, 0, 0, 0.02), 0px 214px 128px 0px rgba(0, 0, 0, 0.08), 0px 95px 95px 0px rgba(0, 0, 0, 0.13), 0px 24px 52px 0px rgba(0, 0, 0, 0.15);
+            --stack-shadow: 183px 565px 166px 0px rgba(0, 0, 0, 0.00), 117px 361px 152px 0px rgba(0, 0, 0, 0.01), 66px 203px 128px 0px rgba(0, 0, 0, 0.03), 29px 90px 95px 0px rgba(0, 0, 0, 0.08), 7px 23px 52px 0px rgba(0, 0, 0, 0.10);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            overflow: hidden;
+            /* Critical for the scroll effect */
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Main container for the scene */
+        .scene-container {
+            position: relative;
+            width: 100%;
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Wrapper to contain the absolute-positioned cards */
+        .cards-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Individual card base styling */
+        .card {
+            position: absolute;
+            width: var(--card-width);
+            height: var(--card-height);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            top: 50%;
+            transform-origin: center center;
+            transition: transform var(--animation-duration) var(--animation-timing-function),
+                opacity calc(var(--animation-duration) / 2) ease-in-out,
+                box-shadow var(--animation-duration) ease-in-out;
+            will-change: transform, opacity, box-shadow;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            padding: 0;
+            box-sizing: border-box;
+            overflow: hidden;
+            cursor: grab;
+        }
+
+        .card:active {
+            cursor: grabbing;
+        }
+
+        /* End of Deck Actions Styling */
+        .end-of-deck-actions {
+            position: absolute;
+            top: 50%;
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            transition: opacity 0.5s ease 0.3s;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .end-of-deck-actions.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+    </style>
+</head>
+
+<body class="text-slate-800 antialiased selection:bg-brand-blue selection:text-white">
+
+    <!-- Navigation (Same as CED Case Study, paths updated for root) -->
+    <nav
+        class="fixed w-full z-50 top-0 transition-all duration-300 bg-slate-50/90 backdrop-blur-md border-b border-slate-200">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <a href="index.html" class="text-xl font-bold font-sans tracking-tight text-slate-900">Ali Noorani<span
+                        class="text-slate-400 font-normal">.work</span></a>
+                <span
+                    class="hidden sm:flex ml-4 px-2.5 py-1 bg-white text-slate-500 text-[11px] font-semibold uppercase tracking-wider rounded border border-slate-200 items-center gap-1.5 cursor-default">
+                    <i data-lucide="lock" class="w-3 h-3"></i> Private
+                </span>
+            </div>
+            <div class="hidden md:flex gap-6 items-center">
+                <a href="index.html"
+                    class="text-sm font-medium font-sans text-slate-500 hover:text-slate-900 transition-colors">Home</a>
+                <a href="index.html#about"
+                    class="text-sm font-medium font-sans text-slate-500 hover:text-slate-900 transition-colors">About</a>
+                <a href="portfolio.html"
+                    class="text-sm font-medium font-sans text-brand-blue transition-colors">Portfolio</a>
+                <a href="index.html#contact"
+                    class="text-sm font-medium font-sans text-slate-500 hover:text-slate-900 transition-colors">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Filter Tabs Container -->
+    <div class="pt-28 pb-4 text-center relative z-[1000]" id="filter-container">
+        <!-- JS will populate tabs here -->
+    </div>
+
+    <!-- Interactive Card Scene -->
+    <main class="scene-container">
+        <div class="cards-wrapper">
+            <!-- End of deck buttons -->
+            <div class="end-of-deck-actions">
+                <div id="filtered-actions" class="flex flex-col gap-4">
+                    <button id="switch-category-btn"
+                        class="bg-slate-900 text-white px-6 py-3 rounded-full font-medium hover:bg-slate-800 transition-colors shadow-lg"></button>
+                    <button id="view-all-btn"
+                        class="text-slate-500 font-medium hover:text-slate-900 transition-colors">View All
+                        Projects</button>
+                </div>
+                <div id="all-actions" class="hidden flex-col gap-4">
+                    <button id="go-to-first-btn"
+                        class="bg-slate-900 text-white px-6 py-3 rounded-full font-medium hover:bg-slate-800 transition-colors shadow-lg">Back
+                        to First Project</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer
+        class="w-full px-10 py-6 flex justify-between items-center shrink-0 border-t border-slate-200 bg-white z-[1000]">
+        <div class="flex items-center gap-6">
+            <p class="text-sm font-sans text-slate-500">&copy; 2026 Ali Noorani.</p>
+        </div>
+        <div class="flex items-center">
+            <div class="flex items-center border-b border-slate-300 pb-1">
+                <i data-lucide="mail" class="w-4 h-4 text-slate-400 mr-2"></i>
+                <input type="email" id="newsletter" placeholder="Drop me an email..."
+                    class="bg-transparent border-none outline-none text-sm text-slate-700 w-48 placeholder-slate-400">
+                <a href="mailto:noorani.ali@gmail.com" class="text-slate-400 hover:text-brand-blue transition-colors">
+                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </a>
+            </div>
+        </div>
+        <div class="flex items-center gap-4">
+            <a href="https://linkedin.com/in/alinoorani1" target="_blank"
+                class="text-slate-400 hover:text-brand-blue transition-colors">
+                <i data-lucide="linkedin" class="w-5 h-5"></i>
+            </a>
+            <a href="#" class="text-slate-400 hover:text-slate-900 transition-colors">
+                <i data-lucide="globe" class="w-5 h-5"></i>
+            </a>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        class CardScroller {
+            constructor(containerSelector, filterContainerSelector, initialCardData) {
+                this.container = document.querySelector(containerSelector);
+                this.filterContainer = document.querySelector(filterContainerSelector);
+                this.endOfDeckContainer = document.querySelector('.end-of-deck-actions');
+                this.filteredActions = document.getElementById('filtered-actions');
+                this.allActions = document.getElementById('all-actions');
+                this.switchCategoryBtn = document.getElementById('switch-category-btn');
+                this.viewAllBtn = document.getElementById('view-all-btn');
+                this.goToFirstBtn = document.getElementById('go-to-first-btn');
+
+                if (!this.container || !this.filterContainer || !this.endOfDeckContainer) {
+                    console.error("Required container not found.");
+                    return;
+                }
+
+                this.allCardData = initialCardData;
+                this.cardData = [...this.allCardData];
+
+                this.cards = [];
+                this.currentIndex = 0;
+                this.isAnimating = false;
+                this.positions = [];
+                this.exitLeftPosition = {};
+                this.currentFilter = 'All';
+
+                this.init();
+            }
+
+            init() {
+                this.createFilters();
+                this.renderCards();
+                this.addEventListeners();
+            }
+
+            createFilters() {
+                const filters = ['All', 'Professional', 'Personal'];
+                const fragment = document.createDocumentFragment();
+                filters.forEach(filter => {
+                    const tab = document.createElement('div');
+
+                    // Base Tailwind styling for tabs
+                    tab.className = 'inline-block mx-2 px-6 py-2 text-sm font-medium text-slate-500 cursor-pointer rounded-full transition-all border border-transparent hover:text-slate-900 hover:bg-slate-100';
+                    tab.textContent = filter;
+                    tab.dataset.filter = filter;
+
+                    // Active state styling
+                    if (filter === this.currentFilter) {
+                        tab.classList.add('text-slate-900', 'bg-white', 'border-slate-200', 'shadow-sm');
+                        tab.classList.remove('hover:bg-slate-100');
+                    }
+
+                    tab.addEventListener('click', () => this.applyFilter(filter));
+                    fragment.appendChild(tab);
+                });
+                this.filterContainer.innerHTML = '';
+                this.filterContainer.appendChild(fragment);
+            }
+
+            applyFilter(filter) {
+                if (filter === this.currentFilter || this.isAnimating) return;
+
+                this.currentFilter = filter;
+                this.endOfDeckContainer.classList.remove('visible');
+
+                // Update active tab styles
+                this.filterContainer.querySelectorAll('div').forEach(tab => {
+                    if (tab.dataset.filter === filter) {
+                        tab.classList.add('text-slate-900', 'bg-white', 'border-slate-200', 'shadow-sm');
+                        tab.classList.remove('hover:bg-slate-100');
+                    } else {
+                        tab.classList.remove('text-slate-900', 'bg-white', 'border-slate-200', 'shadow-sm');
+                        tab.classList.add('hover:bg-slate-100');
+                    }
+                });
+
+                this.cardData = (filter === 'All')
+                    ? [...this.allCardData]
+                    : this.allCardData.filter(card => card.tag === filter);
+
+                this.renderCards();
+            }
+
+            renderCards() {
+                this.container.querySelectorAll('.card').forEach(c => c.remove());
+                this.cards = [];
+                this.currentIndex = 0;
+
+                if (this.cardData.length === 0) {
+                    this.container.innerHTML = `<p class="text-slate-400 font-medium absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">No projects found for this category.</p>`;
+                    return;
+                }
+
+                this.createCards();
+                requestAnimationFrame(() => this.calculateAndSetPositions());
+            }
+
+            createCards() {
+                const fragment = document.createDocumentFragment();
+                this.cardData.forEach((data, index) => {
+                    const cardEl = document.createElement('div');
+                    cardEl.className = 'card shadow-xl';
+                    cardEl.dataset.index = index;
+
+                    cardEl.style.opacity = '0';
+                    cardEl.style.transform = `translateX(110vw) translateY(-50%)`;
+                    cardEl.style.background = data.gradient;
+
+                    let imageHtml = '';
+                    if (data.imageUrl) {
+                        const placeholderUrl = `https://placehold.co/400x300/f0f0f0/ccc?text=Preview`;
+                        imageHtml = `<img src="${data.imageUrl}" alt="${data.title} project preview" class="w-full h-[45%] object-cover border-b border-white/40" onerror="this.onerror=null;this.src='${placeholderUrl}';">`;
+                    }
+
+                    // Card inner HTML integrating Tailwind + the Lora serif font
+                    cardEl.innerHTML = `
+                        ${imageHtml}
+                        <div class="p-8 h-[55%] flex flex-col justify-between">
+                            <div>
+                                <h2 class="font-serif text-3xl font-bold text-slate-900 mb-3 leading-tight">${data.title}</h2>
+                                <p class="text-slate-700 text-sm leading-relaxed">${data.content}</p>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-[11px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-full bg-white/50 text-slate-700 border border-white/60">
+                                    ${data.tag}
+                                </span>
+                                ${data.link ? `<a href="${data.link}" class="text-sm font-semibold text-brand-blue hover:underline flex items-center gap-1">Explore <i data-lucide="arrow-right" class="w-4 h-4"></i></a>` : ''}
+                            </div>
+                        </div>`;
+                    this.cards.push(cardEl);
+                    fragment.appendChild(cardEl);
+                });
+                this.container.prepend(fragment);
+
+                // Re-initialize any new icons injected into the DOM
+                lucide.createIcons();
+            }
+
+            calculateAndSetPositions() {
+                const vh = window.innerHeight / 100;
+                const cardWidthPx = this.cards.length > 0 ? this.cards[0].offsetWidth : 0;
+                if (cardWidthPx === 0) return;
+
+                const spotlightX = 19 * vh;
+                const stackMargin = 4 * vh;
+                const stackStartX = spotlightX + cardWidthPx + stackMargin;
+
+                this.positions = [];
+                this.positions.push({
+                    x: spotlightX, rotate: 0, opacity: 1, scale: 1,
+                    shadow: 'var(--spotlight-shadow)', zIndex: this.cardData.length + 1
+                });
+
+                let currentX = stackStartX;
+                for (let i = 1; i < this.cardData.length; i++) {
+                    const randomJitter = (Math.random() - 0.5) * (2 * vh);
+                    const stackOffset = 15 * vh;
+                    this.positions.push({
+                        x: currentX, rotate: 0, opacity: 1, scale: 1,
+                        shadow: 'var(--stack-shadow)', zIndex: this.cardData.length - i
+                    });
+                    currentX += stackOffset + randomJitter;
+                }
+
+                this.exitLeftPosition = {
+                    x: -cardWidthPx * 1.5, rotate: -20, opacity: 0, scale: 1, shadow: 'none', zIndex: 0
+                };
+
+                this.updateCardStyles(true);
+            }
+
+            goTo(newIndex) {
+                if (this.isAnimating || newIndex < 0 || newIndex >= this.cards.length) return;
+                this.isAnimating = true;
+                this.currentIndex = newIndex;
+                this.updateCardStyles();
+                this.checkEndOfDeck();
+                setTimeout(() => { this.isAnimating = false; }, 1000);
+            }
+
+            updateCardStyles(isInitialLoad = false) {
+                this.cards.forEach((card, i) => {
+                    const relativeIndex = i - this.currentIndex;
+                    let pos, transitionDelay = 0;
+
+                    if (relativeIndex < 0) {
+                        pos = this.exitLeftPosition;
+                    } else if (relativeIndex === 0) {
+                        pos = this.positions[0];
+                        transitionDelay = 0;
+                    } else {
+                        pos = this.positions[relativeIndex] || { ...this.positions[this.positions.length - 1], x: window.innerWidth + 500, opacity: 0 };
+                    }
+
+                    if (isInitialLoad) transitionDelay = relativeIndex * 100;
+
+                    card.style.transitionDelay = `${transitionDelay}ms`;
+                    card.style.transform = `translate(${pos.x}px, -50%) rotate(${pos.rotate}deg) scale(${pos.scale})`;
+                    card.style.opacity = pos.opacity;
+                    card.style.boxShadow = pos.shadow;
+                    card.style.zIndex = pos.zIndex;
+                });
+
+                setTimeout(() => {
+                    this.cards.forEach(card => card.style.transitionDelay = '0ms');
+                }, 1000 + (this.cards.length * 100));
+            }
+
+            checkEndOfDeck() {
+                const isLastCard = this.currentIndex === this.cardData.length - 1;
+                const isFiltered = this.currentFilter !== 'All';
+
+                let showActions = false;
+                let positionX = 0;
+
+                if (isLastCard && this.cardData.length > 0) {
+                    this.filteredActions.style.display = isFiltered ? 'flex' : 'none';
+                    this.allActions.style.display = isFiltered ? 'none' : 'flex';
+
+                    if (isFiltered) {
+                        const otherCategory = this.currentFilter === 'Professional' ? 'Personal' : 'Professional';
+                        this.switchCategoryBtn.textContent = `View ${otherCategory} Projects`;
+                    }
+
+                    const nextCardPosition = this.positions[1] || this.positions[0];
+
+                    positionX = nextCardPosition.x;
+                    showActions = true;
+                }
+
+                if (showActions) {
+                    this.endOfDeckContainer.style.transform = `translate(${positionX}px, -50%)`;
+                    this.endOfDeckContainer.classList.add('visible');
+                } else {
+                    this.endOfDeckContainer.classList.remove('visible');
+                }
+            }
+
+            addEventListeners() {
+                // --- Mouse Wheel Scroll ---
+                let scrollTimeout;
+                document.body.addEventListener('wheel', (e) => {
+                    e.preventDefault();
+                    if (this.isAnimating) return;
+                    clearTimeout(scrollTimeout);
+                    scrollTimeout = setTimeout(() => {
+                        if (e.deltaY > 0) this.goTo(this.currentIndex + 1);
+                        else if (e.deltaY < 0) this.goTo(this.currentIndex - 1);
+                    }, 50);
+                }, { passive: false });
+
+                // --- Touch Swipe Scroll ---
+                let touchStartX = 0;
+                const swipeThreshold = 50; // Minimum distance in pixels for a swipe
+
+                document.body.addEventListener('touchstart', (e) => {
+                    if (e.target.tagName === 'BUTTON' || e.target.closest('a')) return;
+                    touchStartX = e.changedTouches[0].screenX;
+                }, { passive: true });
+
+                document.body.addEventListener('touchend', (e) => {
+                    if (this.isAnimating || e.target.tagName === 'BUTTON' || e.target.closest('a')) return;
+                    const touchEndX = e.changedTouches[0].screenX;
+                    const swipeDistance = touchEndX - touchStartX;
+
+                    if (swipeDistance < -swipeThreshold) {
+                        this.goTo(this.currentIndex + 1); // Swiped left
+                    } else if (swipeDistance > swipeThreshold) {
+                        this.goTo(this.currentIndex - 1); // Swiped right
+                    }
+                }, { passive: true });
+
+
+                // --- Other Event Listeners ---
+                window.addEventListener('resize', () => this.calculateAndSetPositions());
+
+                this.switchCategoryBtn.addEventListener('click', () => {
+                    const otherCategory = this.currentFilter === 'Professional' ? 'Personal' : 'Professional';
+                    this.applyFilter(otherCategory);
+                });
+
+                this.viewAllBtn.addEventListener('click', () => this.applyFilter('All'));
+                this.goToFirstBtn.addEventListener('click', () => this.goTo(0));
+            }
+        }
+
+        // --- App Initialization with Data ---
+        // I added the 'link' property to CED so it successfully connects to the case study we built!
+        const cardData = [
+            { title: "Canadian English Dictionary", content: "A digital dictionary for Canadian English. Exploring the design and implementation of the first comprehensive digital resource.", tag: "Professional", gradient: "linear-gradient(135deg, #eafbff, #dce7ff)", imageUrl: "https://assets-global.website-files.com/6552495918f71e5b49767672/6552495918f71e5b497676f2_Canadian%20English%20Dictionary.png", link: "case-studies/ced.html" },
+            { title: "Rakuten", content: "Enhancing the user experience for a global e-commerce and high-traffic mobile payment app architecture.", tag: "Professional", gradient: "linear-gradient(135deg, #ffebeb, #ffcaca)", imageUrl: "https://assets-global.website-files.com/6552495918f71e5b49767672/6552495918f71e5b497676f8_Rakuten.png", link: "case-studies/rakuten.html" },
+            { title: "Rakuten Viber", content: "Designing for a cross-platform voice over IP and instant messaging platform ensuring connectivity.", tag: "Professional", gradient: "linear-gradient(135deg, #f0eaff, #e2d8ff)", imageUrl: "https://assets-global.website-files.com/6552495918f71e5b49767672/6552495918f71e5b497676f9_Rakuten%20Viber.png" },
+            { title: "Andook", content: "A platform for sharing and discovering books, connecting readers through intuitive asset categorizations.", tag: "Professional", gradient: "linear-gradient(135deg, #d7f9f8, #bdeee4)", imageUrl: "https://assets-global.website-files.com/6552495918f71e5b49767672/6552495918f71e5b497676f1_Andook.png" },
+            { title: "Antique Rugs", content: "Creating a digital showcase for a collection of unique, handcrafted rugs ensuring elegant display.", tag: "Personal", gradient: "linear-gradient(135deg, #fff0d4, #ffe4b5)", imageUrl: "https://assets-global.website-files.com/6552495918f71e5b49767672/6552495918f71e5b497676f0_Antique%20Rugs.png" },
+            { title: "LiveUp", content: "A lifestyle app designed to help users discover local events and activities in their neighborhoods.", tag: "Personal", gradient: "linear-gradient(135deg, #d4ffd6, #b8f2b1)", imageUrl: "https://assets-global.website-files.com/6552495918f71e5b49767672/6552495918f71e5b497676f6_LiveUp.png" },
+            { title: "Palette for Color-Blind Users", content: "Developing a tool to help designers create accessible color palettes prioritizing WCAG contrast compliance.", tag: "Professional", gradient: "linear-gradient(135deg, #ffd4f4, #ffbde3)", imageUrl: "https://assets-global.website-files.com/6552495918f71e5b49767672/6552495918f71e5b497676f7_Palette.png" },
+            { title: "Zara", content: "A conceptual redesign of the user experience for the global fashion retailer prioritizing mobile-first shopping.", tag: "Personal", gradient: "linear-gradient(135deg, #e0e0e0, #c7c7c7)", imageUrl: "https://assets-global.website-files.com/6552495918f71e5b49767672/6552495918f71e5b497676fa_Zara.png" },
+            { title: "Ideh Hub", content: "A collaborative platform for innovators and entrepreneurs to connect and execute digital ideas.", tag: "Professional", gradient: "linear-gradient(135deg, #d1faff, #b8f1ff)", imageUrl: "https://assets-global.website-files.com/6552495918f71e5b49767672/6552495918f71e5b497676f5_Ideh%20Hub.png" },
+            { title: "Studyizy", content: "A startup dashboard helping international students navigate the complex journey from admission to visa.", tag: "Professional", gradient: "linear-gradient(135deg, #d4f9f3, #bde6ff)", imageUrl: "https://assets-global.website-files.com/6552495918f71e5b49767672/6552495918f71e5b497676fb_Web%201920%20%E2%80%93%201.png" },
+        ];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            new CardScroller('.cards-wrapper', '#filter-container', cardData);
+        });
+    </script>
+</body>
+
+</html>

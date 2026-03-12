@@ -7,10 +7,11 @@
     <title>CED Case Study | Ali Noorani</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Inter -->
+    <!-- Google Fonts: Inter & Lora (for Serif headings) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
         rel="stylesheet">
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -20,12 +21,12 @@
                 extend: {
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
+                        serif: ['Lora', 'serif'],
                     },
                     colors: {
                         brand: {
-                            50: '#f6f6f6',
-                            100: '#e7e7e7',
-                            900: '#111111',
+                            blue: '#0b5cff', /* Matches the vibrant blue block in your screenshot */
+                            bg: '#f4f7f9',   /* The cool light background tint */
                         }
                     }
                 }
@@ -35,6 +36,16 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Lora', serif;
         }
 
         .fade-up {
@@ -50,340 +61,424 @@
     </style>
 </head>
 
-<body class="bg-white text-gray-800 antialiased selection:bg-gray-900 selection:text-white">
+<body class="text-slate-800 antialiased selection:bg-brand-blue selection:text-white">
 
     <!-- Navigation -->
     <nav
-        class="fixed w-full z-50 top-0 transition-all duration-300 bg-white/80 backdrop-blur-md border-b border-gray-100">
+        class="fixed w-full z-50 top-0 transition-all duration-300 bg-slate-50/90 backdrop-blur-md border-b border-slate-200">
         <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
             <div class="flex items-center">
-                <a href="../index.html" class="text-xl font-bold tracking-tight text-gray-900">Ali Noorani<span
-                        class="text-gray-400 font-normal">.work</span></a>
+                <a href="../index.html" class="text-xl font-bold font-sans tracking-tight text-slate-900">Ali
+                    Noorani<span class="text-slate-400 font-normal">.work</span></a>
                 <span
-                    class="hidden sm:flex ml-4 px-2.5 py-1 bg-gray-50 text-gray-500 text-[11px] font-semibold uppercase tracking-wider rounded border border-gray-200 items-center gap-1.5 cursor-default">
+                    class="hidden sm:flex ml-4 px-2.5 py-1 bg-white text-slate-500 text-[11px] font-semibold uppercase tracking-wider rounded border border-slate-200 items-center gap-1.5 cursor-default">
                     <i data-lucide="lock" class="w-3 h-3"></i> Private
                 </span>
             </div>
-            <a href="../index.html"
-                class="text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors flex items-center gap-2">
-                <i data-lucide="arrow-left" class="w-4 h-4"></i> Back to Portfolio
-            </a>
+            <div class="hidden md:flex gap-6 items-center">
+                <a href="../index.html"
+                    class="text-sm font-medium font-sans text-slate-500 hover:text-slate-900 transition-colors">Home</a>
+                <a href="../index.html#about"
+                    class="text-sm font-medium font-sans text-slate-500 hover:text-slate-900 transition-colors">About</a>
+                <a href="../index.html#work"
+                    class="text-sm font-medium font-sans text-slate-900 transition-colors">Portfolio</a>
+                <a href="../index.html#contact"
+                    class="text-sm font-medium font-sans text-slate-500 hover:text-slate-900 transition-colors">Contact</a>
+            </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <header class="pt-40 pb-20 px-6">
-        <div class="max-w-4xl mx-auto fade-up">
-            <div class="flex items-center gap-3 mb-6">
-                <span
-                    class="px-3 py-1 bg-green-50 text-green-700 text-xs font-bold uppercase tracking-wider rounded-full border border-green-200">Digital
-                    Publication</span>
+    <header class="pt-32 pb-16 px-6 max-w-5xl mx-auto fade-up">
+        <div class="grid md:grid-cols-12 gap-12 items-center">
+            <!-- Image Left -->
+            <div class="md:col-span-5">
+                <img src="https://ik.imagekit.io/YOUR_IMAGEKIT_ID/ced-laptop-mockup.png" alt="CED Laptop Mockup"
+                    onerror="this.src='https://via.placeholder.com/600x450?text=Laptop+Mockup'"
+                    class="w-full drop-shadow-xl">
             </div>
-            <h1 class="text-4xl md:text-6xl font-extrabold text-gray-900 tracking-tight leading-tight mb-8">
-                A New Home for the Canadian English Dictionary
-            </h1>
-            <p class="text-xl text-gray-600 mb-10 leading-relaxed max-w-3xl">
-                Bridging a gap in Canada's linguistic resources by designing the first comprehensive, accessible digital
-                dictionary tailored to Canadian English in over 20 years.
-            </p>
-
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 py-8 border-y border-gray-200 mb-12">
-                <div>
-                    <h3 class="text-xs uppercase tracking-wider text-gray-400 font-semibold mb-2">Role</h3>
-                    <p class="font-medium text-gray-900">Lead UI/UX Designer</p>
+            <!-- Text Right -->
+            <div class="md:col-span-7 space-y-6">
+                <h1 class="text-4xl md:text-5xl font-bold text-slate-900 leading-tight">
+                    A new home for Canadian English Dictionary
+                </h1>
+                <p class="text-slate-600 leading-relaxed">
+                    An industry partnership between Canadian English Dictionary and Toronto Metropolitan University.
+                </p>
+                <p class="text-slate-600 leading-relaxed">
+                    This case study explores the design and implementation of the first comprehensive digital dictionary
+                    tailored to Canadian English in over 20 years.
+                </p>
+                <p class="text-slate-600 leading-relaxed">
+                    As the lead designer, I embarked on this project to bridge a gap in Canada's linguistic resources by
+                    celebrating the unique characteristics of Canadian English.
+                </p>
+                <p class="text-slate-600 leading-relaxed">
+                    In close collaboration with stakeholders and under supervision of professors, we aimed to create an
+                    inclusive digital platform that reflects the diverse ways Canadian English is spoken and written
+                    across the country.
+                </p>
+                <div class="pt-4">
+                    <a href="#"
+                        class="inline-flex items-center gap-2 text-sm font-sans font-semibold text-brand-blue hover:underline">
+                        <i data-lucide="download" class="w-4 h-4"></i> Download my full dissertation (PDF, 84 pages)
+                    </a>
                 </div>
-                <div>
-                    <h3 class="text-xs uppercase tracking-wider text-gray-400 font-semibold mb-2">Duration</h3>
-                    <p class="font-medium text-gray-900">5 Months</p>
-                </div>
-                <div>
-                    <h3 class="text-xs uppercase tracking-wider text-gray-400 font-semibold mb-2">Team</h3>
-                    <p class="font-medium text-gray-900">4 Members</p>
-                </div>
-                <div>
-                    <h3 class="text-xs uppercase tracking-wider text-gray-400 font-semibold mb-2">Partnership</h3>
-                    <p class="font-medium text-gray-900">Toronto Metropolitan Univ.</p>
-                </div>
-            </div>
-
-            <!-- Hero Image -->
-            <div class="w-full bg-gray-50 rounded-2xl border border-gray-200 overflow-hidden relative shadow-sm">
-                <img src="https://ik.imagekit.io/YOUR_IMAGEKIT_ID/ced-hero-laptop.png" alt="CED Laptop Mockup"
-                    onerror="this.src='https://via.placeholder.com/1200x675?text=CED+Laptop+Mockup'"
-                    class="w-full h-auto object-cover">
             </div>
         </div>
     </header>
 
-    <main class="max-w-4xl mx-auto px-6 pb-24 space-y-32">
+    <!-- Project Overview & Objectives (Blue Block) -->
+    <section class="bg-brand-blue text-white py-16 px-6 fade-up">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12">Project Overview</h2>
 
-        <!-- 1. Objectives -->
-        <section class="fade-up scroll-mt-24">
-            <h2 class="text-3xl font-bold text-gray-900 mb-10">Project Objectives</h2>
-            <div class="grid sm:grid-cols-3 gap-8">
-                <div class="space-y-4">
-                    <div class="w-12 h-12 bg-red-50 rounded-xl flex items-center justify-center text-red-600">
-                        <i data-lucide="map-pin" class="w-6 h-6"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900">Highlighting Canadianisms</h3>
-                    <p class="text-sm text-gray-600 leading-relaxed">
-                        Preserve and celebrate Canada's linguistic heritage by emphasizing regional language variations
-                        and markers of national identity.
+            <!-- Three Icons Row -->
+            <div class="flex flex-wrap justify-center gap-12 md:gap-24 mb-16 text-center">
+                <div class="flex flex-col items-center">
+                    <i data-lucide="user" class="w-8 h-8 mb-3 opacity-90"></i>
+                    <span class="text-sm font-sans uppercase tracking-widest opacity-80 mb-1">Role</span>
+                    <span class="font-medium">Lead UI/UX Designer</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <i data-lucide="clock" class="w-8 h-8 mb-3 opacity-90"></i>
+                    <span class="text-sm font-sans uppercase tracking-widest opacity-80 mb-1">Duration</span>
+                    <span class="font-medium">5 months</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <i data-lucide="users" class="w-8 h-8 mb-3 opacity-90"></i>
+                    <span class="text-sm font-sans uppercase tracking-widest opacity-80 mb-1">Team</span>
+                    <span class="font-medium">Four (including me)</span>
+                </div>
+            </div>
+
+            <!-- Objectives List inside blue block -->
+            <div class="space-y-6">
+                <h3 class="text-2xl font-bold mb-6 border-b border-white/20 pb-4 inline-block">Objectives</h3>
+
+                <p class="leading-relaxed text-blue-50">
+                    <strong class="text-white font-sans text-lg block mb-1">Highlighting Canadianisms</strong>
+                    We aimed to preserve and celebrate Canada's unique linguistic heritage by emphasizing Canadianisms
+                    and regional language variations. These markers of national identity distinguish Canadian English
+                    and reflect its rich cultural and historical context.
+                </p>
+
+                <p class="leading-relaxed text-blue-50">
+                    <strong class="text-white font-sans text-lg block mb-1">Supporting Canada's Diverse
+                        Demographics</strong>
+                    Recognizing Canada's growing and increasingly diverse population, we sought to create a resource
+                    that would aid language proficiency, especially for racialized immigrants. Our goal was to make the
+                    dictionary an essential tool for overcoming language barriers and facilitating better integration.
+                </p>
+
+                <p class="leading-relaxed text-blue-50">
+                    <strong class="text-white font-sans text-lg block mb-1">Applying the Science of Learning</strong>
+                    To enhance user engagement and retention of new vocabulary, we incorporated Science of Learning
+                    principles. We focused on active learning, meaningful interaction, and social engagement to create a
+                    dynamic and effective educational tool.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Cards -->
+    <section class="py-20 px-6 max-w-5xl mx-auto fade-up">
+        <h2 class="text-3xl font-bold text-center text-slate-900 mb-12">Research</h2>
+
+        <div class="grid md:grid-cols-3 gap-6 items-stretch">
+
+            <!-- Card 1: Interviews -->
+            <div class="bg-white border border-blue-100 p-6 rounded-lg shadow-sm flex flex-col justify-between">
+                <div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-4">Interviews</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                        To start the journey into perceptions of Canadianisms, we conducted a video survey at Yonge and
+                        Dundas Square in Toronto.
+                    </p>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                        Respondents were asked about their familiarity with specific Canadian terms and whether a
+                        dictionary focusing on these terms would be useful. This simple approach provided authentic
+                        feedback, highlighting the need for a comprehensive resource for Canadianisms.
                     </p>
                 </div>
-                <div class="space-y-4">
-                    <div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600">
-                        <i data-lucide="users" class="w-6 h-6"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900">Supporting Diversity</h3>
-                    <p class="text-sm text-gray-600 leading-relaxed">
-                        Create an inclusive resource to aid language proficiency for a growing, diverse demographic,
-                        specifically assisting integration and overcoming language barriers.
+                <img src="https://ik.imagekit.io/YOUR_IMAGEKIT_ID/ced-street-interviews.jpg" alt="Street Interviews"
+                    onerror="this.src='https://via.placeholder.com/400x300?text=Street+Interview'"
+                    class="w-full mt-auto">
+            </div>
+
+            <!-- Card 2: Competitive Analysis -->
+            <div class="bg-white border border-blue-100 p-6 rounded-lg shadow-sm flex flex-col justify-between">
+                <div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-4">Competitive analysis</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                        We conducted an in-depth analysis of existing online and print dictionaries to identify
+                        standards and market gaps.
+                    </p>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                        This analysis highlighted key strengths to keep and common weaknesses to avoid, such as
+                        inconsistent entries, disruptive layouts, and poor usability.
                     </p>
                 </div>
-                <div class="space-y-4">
-                    <div class="w-12 h-12 bg-purple-50 rounded-xl flex items-center justify-center text-purple-600">
-                        <i data-lucide="brain-circuit" class="w-6 h-6"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900">Science of Learning</h3>
-                    <p class="text-sm text-gray-600 leading-relaxed">
-                        Enhance engagement and retention of vocabulary through active learning, meaningful interaction,
-                        and dynamic educational tools.
+                <img src="https://ik.imagekit.io/YOUR_IMAGEKIT_ID/ced-competitive-analysis.png"
+                    alt="Competitive Analysis Chart"
+                    onerror="this.src='https://via.placeholder.com/400x300?text=Analysis+Chart'"
+                    class="w-full mt-auto bg-slate-100 p-2">
+            </div>
+
+            <!-- Card 3: Survey -->
+            <div class="bg-white border border-blue-100 p-6 rounded-lg shadow-sm flex flex-col justify-between">
+                <div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-4">Survey</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                        After initial interviews and competitive analysis, we conducted a survey to understand the
+                        preferences and needs of potential users.
+                    </p>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                        From around 40 responses we gathered demographic info and insights into dictionary usage habits.
+                        By collecting diverse user feedback, we identified key features that users value and areas where
+                        current dictionaries fall short.
                     </p>
                 </div>
-            </div>
-        </section>
-
-        <!-- 2. Research -->
-        <section class="fade-up scroll-mt-24">
-            <h2 class="text-3xl font-bold text-gray-900 mb-8">Research & Discovery</h2>
-
-            <div class="space-y-12">
-                <!-- Interviews & Analysis -->
-                <div class="grid md:grid-cols-2 gap-8 items-center">
-                    <div>
-                        <h4 class="text-xl font-bold text-gray-900 mb-4">Street Interviews & Competitive Analysis</h4>
-                        <p class="text-gray-600 leading-relaxed mb-4">
-                            We began with a video survey at Yonge and Dundas Square in Toronto, gathering authentic
-                            feedback on perceptions of Canadianisms. We coupled this with an in-depth analysis of
-                            existing dictionaries.
-                        </p>
-                        <ul class="space-y-3 text-sm text-gray-600">
-                            <li class="flex items-start gap-2"><i data-lucide="alert-circle"
-                                    class="w-4 h-4 text-orange-500 mt-0.5"></i> <strong>Pain Points Found:</strong>
-                                Inconsistent entries, disruptive layouts, and poor overall usability in competitors.
-                            </li>
-                            <li class="flex items-start gap-2"><i data-lucide="lightbulb"
-                                    class="w-4 h-4 text-yellow-500 mt-0.5"></i> <strong>Key Insight:</strong> A
-                                participant from Newfoundland highlighted the critical need to design for localized,
-                                regional language differences.</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <img src="https://ik.imagekit.io/YOUR_IMAGEKIT_ID/ced-research.png"
-                            alt="Interview and Competitive Analysis"
-                            onerror="this.src='https://via.placeholder.com/800x600?text=Research+%26+Interviews'"
-                            class="w-full rounded-xl border border-gray-200 shadow-sm object-cover">
-                    </div>
-                </div>
-
-                <!-- Survey Outcomes -->
-                <div class="bg-gray-50 rounded-2xl p-8 border border-gray-200">
-                    <h4 class="text-xl font-bold text-gray-900 mb-6">Survey Outcomes: A Tale of Two Users</h4>
-                    <p class="text-gray-600 mb-8">From ~40 extensive survey responses assessing feature preferences, a
-                        stark divide emerged regarding the entry page experience:</p>
-
-                    <div class="grid sm:grid-cols-2 gap-6">
-                        <div
-                            class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 border-l-4 border-l-blue-500">
-                            <h5 class="font-bold text-gray-900 mb-2">The Majority: Interactive</h5>
-                            <p class="text-sm text-gray-600">Desired a modern, feature-packed online experience. They
-                                wanted interactive tools to aid learning.</p>
-                        </div>
-                        <div
-                            class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 border-l-4 border-l-gray-400">
-                            <h5 class="font-bold text-gray-900 mb-2">The Minority: Traditional</h5>
-                            <p class="text-sm text-gray-600">Preferred a simple, barebones layout without "bells and
-                                whistles"—similar to classic print dictionaries.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 3. The Solution (Dual Layout) -->
-        <section class="fade-up scroll-mt-24 border-y border-gray-200 py-16 my-16">
-            <h2 class="text-3xl font-bold text-gray-900 mb-6">The Solution: Dual-Layout Strategy</h2>
-            <p class="text-lg text-gray-600 mb-12 max-w-3xl leading-relaxed">
-                To respect both user segments, I set out to provide not just what they wanted, but the <strong>autonomy
-                    to control their own experience</strong>. This approach drastically improved accessibility and
-                inclusion.
-            </p>
-
-            <div class="space-y-16">
-                <!-- Layout 1 -->
-                <div class="grid md:grid-cols-12 gap-8 items-center">
-                    <div class="md:col-span-5 order-2 md:order-1 space-y-4">
-                        <span
-                            class="px-3 py-1 bg-blue-50 text-blue-700 text-xs font-bold uppercase tracking-wider rounded border border-blue-200">Mode
-                            01</span>
-                        <h3 class="text-2xl font-bold text-gray-900">Interactive Experience</h3>
-                        <p class="text-gray-600 leading-relaxed">
-                            Designed for users seeking a modern, feature-rich interface.
-                        </p>
-                        <ul class="space-y-2 text-sm text-gray-600">
-                            <li>• <strong>Easy Scanning:</strong> Browse multiple meanings quickly.</li>
-                            <li>• <strong>Engagement:</strong> Comments, Like, Save, and Share functions.</li>
-                            <li>• <strong>Focus:</strong> Collapsible Meaning cards to isolate target connotations.</li>
-                        </ul>
-                    </div>
-                    <div class="md:col-span-7 order-1 md:order-2">
-                        <img src="https://ik.imagekit.io/YOUR_IMAGEKIT_ID/ced-interactive-mode.png"
-                            alt="Interactive Experience Layout"
-                            onerror="this.src='https://via.placeholder.com/800x600?text=Interactive+Layout+Mockup'"
-                            class="w-full rounded-xl shadow-sm border border-gray-200 object-cover">
-                    </div>
-                </div>
-
-                <!-- Layout 2 -->
-                <div class="grid md:grid-cols-12 gap-8 items-center">
-                    <div class="md:col-span-7">
-                        <img src="https://ik.imagekit.io/YOUR_IMAGEKIT_ID/ced-compact-mode.png"
-                            alt="Compact Mode Layout"
-                            onerror="this.src='https://via.placeholder.com/800x600?text=Compact+Layout+Mockup'"
-                            class="w-full rounded-xl shadow-sm border border-gray-200 object-cover">
-                    </div>
-                    <div class="md:col-span-5 space-y-4">
-                        <span
-                            class="px-3 py-1 bg-gray-100 text-gray-700 text-xs font-bold uppercase tracking-wider rounded border border-gray-200">Mode
-                            02</span>
-                        <h3 class="text-2xl font-bold text-gray-900">Compact Mode</h3>
-                        <p class="text-gray-600 leading-relaxed">
-                            For users preferring a traditional, minimalist approach.
-                        </p>
-                        <ul class="space-y-2 text-sm text-gray-600">
-                            <li>• <strong>Uncluttered:</strong> Focuses strictly on the definitions.</li>
-                            <li>• <strong>Accessibility:</strong> Larger default font sizes for visually impaired/older
-                                users.</li>
-                            <li>• <strong>Familiarity:</strong> Mimics traditional print dictionaries.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 4. Education & Iteration -->
-        <section class="fade-up scroll-mt-24 space-y-16">
-
-            <!-- Making Lists Work -->
-            <div>
-                <h2 class="text-2xl font-bold text-gray-900 mb-6">Applying the Science of Learning</h2>
-                <div class="grid md:grid-cols-2 gap-8 items-center">
-                    <div>
-                        <p class="text-gray-600 leading-relaxed mb-4">
-                            A dictionary is an educational tool. Researching the science of learning revealed that users
-                            found standard "Word Lists" static and hard to engage with, leading to high abandonment
-                            rates.
-                        </p>
-                        <p class="text-gray-600 leading-relaxed">
-                            <strong>The Fix:</strong> I engineered dynamic filters and interactive functions for the
-                            favorite words list. This elevated user engagement and actively assisted users in recalling
-                            previously saved vocabulary.
-                        </p>
-                    </div>
-                    <div>
-                        <img src="https://ik.imagekit.io/YOUR_IMAGEKIT_ID/ced-making-lists-work.png"
-                            alt="Making Lists Work UI"
-                            onerror="this.src='https://via.placeholder.com/800x600?text=Making+Lists+Work+UI'"
-                            class="w-full rounded-xl shadow-sm border border-gray-200 object-cover">
-                    </div>
-                </div>
+                <img src="https://ik.imagekit.io/YOUR_IMAGEKIT_ID/ced-survey-document.png" alt="Survey Document"
+                    onerror="this.src='https://via.placeholder.com/400x300?text=Survey+Doc'"
+                    class="w-full mt-auto border border-slate-200">
             </div>
 
-            <!-- Testing Gems -->
-            <div class="bg-gray-900 text-white rounded-3xl p-8 md:p-12">
-                <h2 class="text-2xl font-bold mb-8">Usability Testing & Iteration</h2>
-                <div class="grid md:grid-cols-2 gap-8">
-                    <div class="space-y-4">
-                        <div class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-blue-400">
-                            <i data-lucide="message-square" class="w-5 h-5"></i>
-                        </div>
-                        <h4 class="text-lg font-bold">Insight 1: Community Desire</h4>
-                        <p class="text-gray-400 text-sm leading-relaxed">
-                            Users wanted to discuss quirky meanings at length. This directly led to the implementation
-                            of the <strong>Comments Section</strong>, transforming the dictionary from a static resource
-                            into an interactive community hub.
-                        </p>
-                    </div>
-                    <div class="space-y-4">
-                        <div class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-green-400">
-                            <i data-lucide="arrow-down-up" class="w-5 h-5"></i>
-                        </div>
-                        <h4 class="text-lg font-bold">Insight 2: Structural Hierarchy</h4>
-                        <p class="text-gray-400 text-sm leading-relaxed">
-                            Users were surprised when derived meanings became the primary definition. This prompted
-                            complex stakeholder discussions resulting in strict architectural rules regarding how
-                            meanings could be rearranged.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 5. Future Enhancements -->
-        <section class="fade-up scroll-mt-24">
-            <h2 class="text-2xl font-bold text-gray-900 mb-8">Future Enhancements</h2>
-            <div class="grid sm:grid-cols-3 gap-6">
-                <div class="p-6 border border-gray-200 rounded-xl bg-white hover:shadow-md transition-shadow">
-                    <i data-lucide="search" class="w-6 h-6 text-gray-400 mb-4"></i>
-                    <h4 class="font-bold text-gray-900 mb-2">Advanced Search</h4>
-                    <p class="text-sm text-gray-600">Filters prioritizing Canadianisms to provide a targeted experience
-                        for researchers and educators.</p>
-                </div>
-                <div class="p-6 border border-gray-200 rounded-xl bg-white hover:shadow-md transition-shadow">
-                    <i data-lucide="languages" class="w-6 h-6 text-gray-400 mb-4"></i>
-                    <h4 class="font-bold text-gray-900 mb-2">Canadian French</h4>
-                    <p class="text-sm text-gray-600">Expanding the platform to support Canada's bilingualism goals,
-                        based on overwhelming public support.</p>
-                </div>
-                <div class="p-6 border border-gray-200 rounded-xl bg-white hover:shadow-md transition-shadow">
-                    <i data-lucide="map" class="w-6 h-6 text-gray-400 mb-4"></i>
-                    <h4 class="font-bold text-gray-900 mb-2">Region-Specifics</h4>
-                    <p class="text-sm text-gray-600">Expanding the taxonomy to highlight localized linguistic variations
-                        across diverse communities.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Pagination -->
-        <div class="fade-up pt-12 mt-12 border-t border-gray-200 flex justify-between items-center">
-            <a href="globaldws.html"
-                class="text-gray-500 hover:text-gray-900 font-medium flex items-center gap-2 transition-colors">
-                <i data-lucide="arrow-left" class="w-4 h-4"></i> Previous: GlobalDWS
-            </a>
-            <a href="rakuten.html"
-                class="text-gray-500 hover:text-gray-900 font-medium flex items-center gap-2 transition-colors">
-                Next: Rakuten Payment <i data-lucide="arrow-right" class="w-4 h-4"></i>
-            </a>
         </div>
 
-    </main>
+        <!-- Bonus Note -->
+        <div class="mt-8 bg-blue-50/50 p-6 rounded-lg border border-blue-100 text-sm text-slate-700">
+            <strong class="font-sans text-slate-900">Bonus:</strong> A notable finding was a suggestion from a interview
+            participant from Newfoundland to design for regional language differences across Canada, emphasizing the
+            localized nature of certain terms.
+        </div>
+    </section>
 
-    <!-- Footer -->
-    <footer class="bg-gray-50 border-t border-gray-200 py-12">
-        <div class="max-w-4xl mx-auto px-6 text-center">
-            <h2 class="text-2xl font-bold text-gray-900 mb-6">Let's build something great.</h2>
-            <div class="flex justify-center gap-6 mb-8">
-                <a href="mailto:noorani.ali@gmail.com"
-                    class="text-gray-500 hover:text-gray-900 transition-colors flex items-center gap-2">
-                    <i data-lucide="mail" class="w-5 h-5"></i> Email Me
-                </a>
-                <a href="https://linkedin.com/in/alinoorani1" target="_blank"
-                    class="text-gray-500 hover:text-gray-900 transition-colors flex items-center gap-2">
-                    <i data-lucide="linkedin" class="w-5 h-5"></i> LinkedIn
+    <!-- Survey Outcomes -->
+    <section class="py-12 px-6 max-w-4xl mx-auto fade-up">
+        <h3 class="text-2xl font-bold text-slate-900 mb-6">Survey Outcomes</h3>
+        <p class="text-slate-600 mb-8 leading-relaxed">
+            During our survey, I noticed two different opinions about the entry page:
+        </p>
+
+        <div class="grid md:grid-cols-2 gap-8 mb-8">
+            <div>
+                <h4 class="font-sans font-bold text-slate-900 mb-2">Majority: Interactive, feature-packed</h4>
+                <p class="text-slate-600 text-sm leading-relaxed">
+                    Most users wanted the website to be easy to use and packed with helpful features. They liked the
+                    idea of a modern, interactive experience that works well online.
+                </p>
+            </div>
+            <div>
+                <h4 class="font-sans font-bold text-slate-900 mb-2">Minority: Barebone, no bells and whistles</h4>
+                <p class="text-slate-600 text-sm leading-relaxed">
+                    A smaller group of users preferred a more traditional dictionary. They wanted a simple version
+                    without extra features, similar to old print dictionaries. They valued straightforwardness and
+                    clarity over additional functions.
+                </p>
+            </div>
+        </div>
+        <p class="text-slate-700 font-medium italic border-l-4 border-brand-blue pl-4 py-1">
+            So, I set out to give them not only what they want but actually tools to control their experience.
+        </p>
+    </section>
+
+    <!-- Dual-Layout Section -->
+    <section class="py-16 px-6 max-w-4xl mx-auto fade-up space-y-16">
+        <div>
+            <h2 class="text-3xl font-bold text-slate-900 text-center mb-6">Dual-Layout on Entry Pages</h2>
+            <p class="text-slate-600 text-center max-w-2xl mx-auto leading-relaxed mb-16">
+                Our user survey revealed diverse preferences among potential users of the Canadian English Dictionary.
+                To address this, we implemented a dual-layout strategy that caters to both modern and traditional user
+                needs.
+            </p>
+        </div>
+
+        <!-- 1. Interactive Experience -->
+        <div class="space-y-6">
+            <h3 class="text-2xl font-bold text-slate-900">1. Interactive Experience</h3>
+            <p class="text-slate-600 leading-relaxed max-w-2xl">
+                This layout is designed for users seeking a modern, feature-rich interface. It includes:
+            </p>
+            <ul class="list-disc pl-5 space-y-2 text-slate-600 mb-8 max-w-2xl">
+                <li><strong>Easy Scanning:</strong> Users can quickly browse through multiple meanings and definitions.
+                </li>
+                <li><strong>Interactive Elements:</strong> Features like user comments, Like, Save and Share functions,
+                    and collapsible Meaning cards to improve focus on target connotations create an engaging experience.
+                </li>
+            </ul>
+            <img src="https://ik.imagekit.io/YOUR_IMAGEKIT_ID/ced-interactive-annotated.png"
+                alt="Annotated Interactive Interface"
+                onerror="this.src='https://via.placeholder.com/1000x800?text=Interactive+Annotated+UI'"
+                class="w-full shadow-md rounded-lg bg-white border border-slate-200">
+        </div>
+
+        <!-- 2. Compact Mode -->
+        <div class="space-y-6 pt-8">
+            <h3 class="text-2xl font-bold text-slate-900">2. Compact mode</h3>
+            <p class="text-slate-600 leading-relaxed max-w-2xl">
+                For users who prefer a more traditional, minimalist approach, this layout offers:
+            </p>
+            <ul class="list-disc pl-5 space-y-2 text-slate-600 mb-8 max-w-2xl">
+                <li><strong>Uncluttered Interface:</strong> A focus on clean design, presenting only the definitions.
+                </li>
+                <li><strong>Larger Default Font Sizes:</strong> Enhanced accessibility, particularly for older users.
+                </li>
+                <li><strong>Print-Like Format:</strong> A design that closely mimics traditional print dictionaries for
+                    familiarity.</li>
+            </ul>
+            <img src="https://ik.imagekit.io/YOUR_IMAGEKIT_ID/ced-compact-annotated.png"
+                alt="Annotated Compact Interface"
+                onerror="this.src='https://via.placeholder.com/1000x800?text=Compact+Annotated+UI'"
+                class="w-full shadow-md rounded-lg bg-white border border-slate-200">
+        </div>
+
+        <!-- Autonomy Text -->
+        <div class="text-center max-w-2xl mx-auto pt-12 pb-8">
+            <h3 class="text-2xl font-bold text-slate-900 italic mb-4">Autonomy</h3>
+            <p class="text-slate-600 leading-relaxed mb-4">
+                The dual-layout approach aligns with the principle of user control, allowing users to choose the
+                experience that best suits their needs.
+            </p>
+            <p class="text-slate-600 leading-relaxed">
+                It is more inclusive for all users with different levels of technology knowledge/interest and also
+                accommodates people with visual impairments or distraction issues.
+            </p>
+        </div>
+    </section>
+
+    <!-- Making lists work -->
+    <section class="py-12 px-6 max-w-4xl mx-auto fade-up">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+                <h3 class="text-2xl font-bold text-slate-900 mb-4">Making lists work</h3>
+                <p class="text-slate-600 leading-relaxed mb-4 text-sm">
+                    A dictionary is not only a reference tool. It also plays an important role in education. For this
+                    project, I researched science of learning theories to maximize learning and retention of vocabulary.
+                </p>
+                <p class="text-slate-600 leading-relaxed mb-4 text-sm">
+                    In our user research it was revealed that users found Words Lists static and hard to engage with as
+                    they got longer. So they often did not return to them even though they set out to use them more
+                    often.
+                </p>
+                <p class="text-slate-600 leading-relaxed text-sm">
+                    So, I created more relevant filters and functions for the favorite words list, to better user
+                    engagement and help them recall previously Saved words.
+                </p>
+            </div>
+            <div>
+                <img src="https://ik.imagekit.io/YOUR_IMAGEKIT_ID/ced-making-lists.png" alt="Making lists work UI"
+                    onerror="this.src='https://via.placeholder.com/600x400?text=Making+Lists+UI'"
+                    class="w-full shadow-sm border border-slate-200 bg-white rounded-lg">
+            </div>
+        </div>
+    </section>
+
+    <!-- Testing and Iterations -->
+    <section class="py-16 px-6 max-w-4xl mx-auto fade-up">
+        <h3 class="text-2xl font-bold text-slate-900 text-center mb-6">Testing and Iterations</h3>
+        <p class="text-slate-600 text-center max-w-2xl mx-auto leading-relaxed mb-12">
+            We went through numerous iterations from wireframes to the hi-fidelity stage.<br>
+            <strong>Usability testing:</strong> At each stage, usability testing was conducted to pinpoint areas of
+            opportunity.
+        </p>
+
+        <div class="space-y-8 mb-12 text-center max-w-3xl mx-auto">
+            <p class="text-slate-600 leading-relaxed text-sm">
+                <strong>Gem 1:</strong> Through discussing some of the words, I found that users were interested in some
+                of the quirky meanings and usages and were eager to talk about it at length. This led us to add the
+                comments section, which allows users to interact with the dictionary and other members of the public
+                about the language.
+            </p>
+            <p class="text-slate-600 leading-relaxed text-sm">
+                <strong>Gem 2:</strong> One user was amazed to learn the derived meaning of a word has taken over to
+                become the first meaning that comes to mind. This prompted discussions with stakeholders on how to
+                arrange an entry's hierarchy, causing us to set limits on the level of flexibility for rearranging
+                meanings.
+            </p>
+        </div>
+
+        <img src="https://ik.imagekit.io/YOUR_IMAGEKIT_ID/ced-testing-iterations.png" alt="Testing Iteration Wireframes"
+            onerror="this.src='https://via.placeholder.com/1000x500?text=Testing+Iterations+UI'"
+            class="w-full mx-auto shadow-sm bg-white border border-slate-200 p-2">
+    </section>
+
+    <!-- Future Enhancements -->
+    <section class="py-16 px-6 max-w-4xl mx-auto fade-up">
+        <h3 class="text-2xl font-bold text-slate-900 mb-8 border-b border-slate-200 pb-2">Future Enhancements</h3>
+
+        <div class="space-y-8">
+            <div>
+                <strong class="font-sans text-slate-900 block mb-2">Advanced Search with Canadianism Filters</strong>
+                <p class="text-slate-600 leading-relaxed text-sm">
+                    In the next phase, I propose to introduce advanced search filters that prioritize Canadianisms,
+                    enabling users to easily find and explore words unique to Canadian English. This will provide a more
+                    targeted search experience, benefiting researchers, educators, and language enthusiasts.
+                </p>
+            </div>
+            <div>
+                <strong class="font-sans text-slate-900 block mb-2">Canadian French Version</strong>
+                <p class="text-slate-600 leading-relaxed text-sm">
+                    This MVP phase has received tremendous support from the public with some of them expressing a wish
+                    to see the same for Canadian French. It would be great to develop a Canadian French version of the
+                    dictionary to reflect the unique characteristics of Canadian French. It will support Canada's
+                    bilingualism goals and enrich the cultural and linguistic resources available to users.
+                </p>
+            </div>
+            <div>
+                <strong class="font-sans text-slate-900 block mb-2">Region-Specific Usage</strong>
+                <p class="text-slate-600 leading-relaxed text-sm">
+                    To further enhance the dictionary's relevance, based on user feedback we can also expand
+                    Canadianisms to include region-specific terms. This feature will highlight regional linguistic
+                    variations and better represent the diverse communities across Canada.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Next Project (Rakuten Teaser) -->
+    <section class="py-16 px-6 max-w-4xl mx-auto fade-up">
+        <div class="border-t border-slate-200 pt-16 grid md:grid-cols-2 gap-12 items-center">
+            <div>
+                <span class="text-sm font-sans font-bold text-slate-400 uppercase tracking-widest block mb-4">Next
+                    Project</span>
+                <h2 class="text-4xl font-bold text-slate-900 uppercase tracking-wider mb-2">Rakuten</h2>
+                <h3 class="text-xl font-sans text-slate-600 mb-4">Information Architecture research</h3>
+                <p class="text-slate-500 text-sm leading-relaxed mb-6">
+                    Achieving better message categories through a card-sort research helped information architecture of
+                    a high-traffic mobile app.
+                </p>
+                <a href="rakuten.html"
+                    class="inline-flex items-center gap-2 text-sm font-sans font-semibold text-brand-blue hover:underline">
+                    View Project <i data-lucide="arrow-right" class="w-4 h-4"></i>
                 </a>
             </div>
-            <p class="text-sm text-gray-400">&copy; 2026 Ali Noorani. Designed with purpose.</p>
+            <div>
+                <a href="rakuten.html" class="block hover:opacity-90 transition-opacity">
+                    <img src="https://ik.imagekit.io/YOUR_IMAGEKIT_ID/rakuten-card-sorting.jpg"
+                        alt="Rakuten Card Sorting"
+                        onerror="this.src='https://via.placeholder.com/600x400/00d8b5/ffffff?text=CARD+SORTING'"
+                        class="w-full">
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 py-10">
+        <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="text-sm font-sans text-slate-500">&copy; 2026 All rights reserved.</p>
+            <div class="flex gap-4 items-center">
+                <span class="text-sm font-sans text-slate-500 cursor-pointer hover:text-slate-900">Toggle theme</span>
+                <a href="https://linkedin.com/in/alinoorani1" target="_blank"
+                    class="text-slate-400 hover:text-brand-blue transition-colors">
+                    <i data-lucide="linkedin" class="w-5 h-5"></i>
+                </a>
+                <a href="#" class="text-slate-400 hover:text-slate-900 transition-colors">
+                    <!-- Placeholder for Be / X icons if needed -->
+                    <i data-lucide="globe" class="w-5 h-5"></i>
+                </a>
+            </div>
         </div>
     </footer>
 
