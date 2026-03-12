@@ -90,16 +90,17 @@
                 <span class="px-5 py-2 bg-slate-900 text-white rounded-full cursor-default">Contact</span>
             </div>
 
-            <button class="md:hidden text-slate-600 hover:text-slate-900" id="mobile-menu-btn">
+            <button class="md:hidden text-slate-600 hover:text-slate-900 focus:outline-none" id="mobile-menu-btn">
                 <i data-lucide="menu" class="w-6 h-6"></i>
             </button>
         </div>
 
+        <!-- Mobile Nav -->
         <div class="md:hidden hidden bg-white border-b border-slate-200 px-6 py-4 space-y-4 absolute w-full"
             id="mobile-menu">
-            <a href="index.html" class="block text-sm font-medium text-slate-600">Home</a>
-            <a href="about.html" class="block text-sm font-medium text-slate-600">About</a>
-            <a href="portfolio.html" class="block text-sm font-medium text-slate-600">Portfolio</a>
+            <a href="index.html" class="block text-sm font-medium text-slate-600 hover:text-slate-900">Home</a>
+            <a href="about.html" class="block text-sm font-medium text-slate-600 hover:text-slate-900">About</a>
+            <a href="portfolio.html" class="block text-sm font-medium text-slate-600 hover:text-slate-900">Portfolio</a>
             <a href="contact.html" class="block text-sm font-medium text-brand-blue">Contact</a>
         </div>
     </nav>
@@ -160,12 +161,6 @@
 
             <!-- Right Side: Contact Form -->
             <div class="md:col-span-7 bg-white p-8 md:p-12 rounded-3xl border border-slate-200 shadow-sm fade-up">
-                <!-- 
-                    To make this form work:
-                    1. Go to Formspree.io and create a free account.
-                    2. Create a "New Form" and copy the unique ID.
-                    3. Replace "YOUR_FORMSPREE_ID" below with your actual ID.
-                -->
                 <form action="https://formspree.io/f/myknwvel" method="POST" class="space-y-6 font-sans">
                     <div class="grid sm:grid-cols-2 gap-6">
                         <div class="space-y-2">
