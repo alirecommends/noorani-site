@@ -9,7 +9,7 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Google Fonts: Inter & Lora (for Serif headings) -->
+    <!-- Google Fonts: Inter & Lora -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -39,7 +39,6 @@
     </script>
 
     <style>
-        /* CSS variables for the Card Scroller mechanics */
         :root {
             --card-height: 65vh;
             --card-aspect-ratio: 0.60;
@@ -54,14 +53,12 @@
             font-family: 'Inter', sans-serif;
             background-color: #f8fafc;
             overflow: hidden;
-            /* Critical for the scroll effect */
             height: 100vh;
             width: 100vw;
             display: flex;
             flex-direction: column;
         }
 
-        /* Main container for the scene */
         .scene-container {
             position: relative;
             width: 100%;
@@ -71,14 +68,12 @@
             justify-content: center;
         }
 
-        /* Wrapper to contain the absolute-positioned cards */
         .cards-wrapper {
             position: relative;
             width: 100%;
             height: 100%;
         }
 
-        /* Individual card base styling */
         .card {
             position: absolute;
             width: var(--card-width);
@@ -104,7 +99,6 @@
             cursor: grabbing;
         }
 
-        /* End of Deck Actions Styling */
         .end-of-deck-actions {
             position: absolute;
             top: 50%;
@@ -126,7 +120,7 @@
 
 <body class="text-slate-800 antialiased selection:bg-brand-blue selection:text-white">
 
-    <!-- Navigation (Same as CED Case Study, paths updated for root) -->
+    <!-- Navigation -->
     <nav
         class="fixed w-full z-50 top-0 transition-all duration-300 bg-slate-50/90 backdrop-blur-md border-b border-slate-200">
         <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
@@ -138,28 +132,37 @@
                     <i data-lucide="lock" class="w-3 h-3"></i> Private
                 </span>
             </div>
-            <div class="hidden md:flex gap-6 items-center">
-                <a href="index.html"
-                    class="text-sm font-medium font-sans text-slate-500 hover:text-slate-900 transition-colors">Home</a>
-                <a href="index.html#about"
-                    class="text-sm font-medium font-sans text-slate-500 hover:text-slate-900 transition-colors">About</a>
-                <a href="portfolio.html"
-                    class="text-sm font-medium font-sans text-brand-blue transition-colors">Portfolio</a>
-                <a href="index.html#contact"
-                    class="text-sm font-medium font-sans text-slate-500 hover:text-slate-900 transition-colors">Contact</a>
+
+            <div class="hidden md:flex gap-8 items-center text-sm font-medium font-sans">
+                <a href="index.html" class="text-slate-500 hover:text-slate-900 transition-colors">Home</a>
+                <a href="about.html" class="text-slate-500 hover:text-slate-900 transition-colors">About</a>
+                <span class="text-brand-blue border-b-2 border-brand-blue py-1">Portfolio</span>
+                <a href="contact.html"
+                    class="px-5 py-2 bg-slate-900 text-white rounded-full hover:bg-slate-800 transition-colors">Get in
+                    touch</a>
             </div>
+
+            <!-- Mobile Menu Btn -->
+            <button class="md:hidden text-slate-600" id="mobile-menu-btn">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+        </div>
+
+        <div class="md:hidden hidden bg-white border-b border-slate-200 px-6 py-4 space-y-4 absolute w-full z-[2000]"
+            id="mobile-menu">
+            <a href="index.html" class="block text-slate-600">Home</a>
+            <a href="about.html" class="block text-slate-600">About</a>
+            <a href="portfolio.html" class="block text-brand-blue">Portfolio</a>
+            <a href="contact.html" class="block text-slate-600">Contact</a>
         </div>
     </nav>
 
     <!-- Filter Tabs Container -->
-    <div class="pt-28 pb-4 text-center relative z-[1000]" id="filter-container">
-        <!-- JS will populate tabs here -->
-    </div>
+    <div class="pt-28 pb-4 text-center relative z-[1000]" id="filter-container"></div>
 
     <!-- Interactive Card Scene -->
     <main class="scene-container">
         <div class="cards-wrapper">
-            <!-- End of deck buttons -->
             <div class="end-of-deck-actions">
                 <div id="filtered-actions" class="flex flex-col gap-4">
                     <button id="switch-category-btn"
@@ -171,7 +174,7 @@
                 <div id="all-actions" class="hidden flex-col gap-4">
                     <button id="go-to-first-btn"
                         class="bg-slate-900 text-white px-6 py-3 rounded-full font-medium hover:bg-slate-800 transition-colors shadow-lg">Back
-                        to First Project</button>
+                        to Start</button>
                 </div>
             </div>
         </div>
@@ -180,32 +183,25 @@
     <!-- Footer -->
     <footer
         class="w-full px-10 py-6 flex justify-between items-center shrink-0 border-t border-slate-200 bg-white z-[1000]">
-        <div class="flex items-center gap-6">
-            <p class="text-sm font-sans text-slate-500">&copy; 2026 Ali Noorani.</p>
-        </div>
-        <div class="flex items-center">
-            <div class="flex items-center border-b border-slate-300 pb-1">
-                <i data-lucide="mail" class="w-4 h-4 text-slate-400 mr-2"></i>
-                <input type="email" id="newsletter" placeholder="Drop me an email..."
-                    class="bg-transparent border-none outline-none text-sm text-slate-700 w-48 placeholder-slate-400">
-                <a href="mailto:noorani.ali@gmail.com" class="text-slate-400 hover:text-brand-blue transition-colors">
-                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                </a>
-            </div>
-        </div>
+        <p class="text-sm font-sans text-slate-500">&copy; 2026 Ali Noorani.</p>
         <div class="flex items-center gap-4">
             <a href="https://linkedin.com/in/alinoorani1" target="_blank"
                 class="text-slate-400 hover:text-brand-blue transition-colors">
                 <i data-lucide="linkedin" class="w-5 h-5"></i>
             </a>
-            <a href="#" class="text-slate-400 hover:text-slate-900 transition-colors">
-                <i data-lucide="globe" class="w-5 h-5"></i>
+            <a href="mailto:noorani.ali@gmail.com" class="text-slate-400 hover:text-brand-blue transition-colors">
+                <i data-lucide="mail" class="w-5 h-5"></i>
             </a>
         </div>
     </footer>
 
     <script>
         lucide.createIcons();
+
+        // Mobile Menu
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileBtn?.addEventListener('click', () => mobileMenu?.classList.toggle('hidden'));
 
         class CardScroller {
             constructor(containerSelector, filterContainerSelector, initialCardData) {
@@ -218,14 +214,8 @@
                 this.viewAllBtn = document.getElementById('view-all-btn');
                 this.goToFirstBtn = document.getElementById('go-to-first-btn');
 
-                if (!this.container || !this.filterContainer || !this.endOfDeckContainer) {
-                    console.error("Required container not found.");
-                    return;
-                }
-
                 this.allCardData = initialCardData;
                 this.cardData = [...this.allCardData];
-
                 this.cards = [];
                 this.currentIndex = 0;
                 this.isAnimating = false;
@@ -244,49 +234,29 @@
 
             createFilters() {
                 const filters = ['All', 'Professional', 'Personal'];
-                const fragment = document.createDocumentFragment();
                 filters.forEach(filter => {
                     const tab = document.createElement('div');
-
-                    // Base Tailwind styling for tabs
-                    tab.className = 'inline-block mx-2 px-6 py-2 text-sm font-medium text-slate-500 cursor-pointer rounded-full transition-all border border-transparent hover:text-slate-900 hover:bg-slate-100';
+                    tab.className = 'inline-block mx-2 px-6 py-2 text-sm font-medium text-slate-500 cursor-pointer rounded-full transition-all border border-transparent hover:bg-slate-100';
                     tab.textContent = filter;
                     tab.dataset.filter = filter;
-
-                    // Active state styling
-                    if (filter === this.currentFilter) {
-                        tab.classList.add('text-slate-900', 'bg-white', 'border-slate-200', 'shadow-sm');
-                        tab.classList.remove('hover:bg-slate-100');
-                    }
-
+                    if (filter === this.currentFilter) tab.classList.add('text-slate-900', 'bg-white', 'border-slate-200', 'shadow-sm');
                     tab.addEventListener('click', () => this.applyFilter(filter));
-                    fragment.appendChild(tab);
+                    this.filterContainer.appendChild(tab);
                 });
-                this.filterContainer.innerHTML = '';
-                this.filterContainer.appendChild(fragment);
             }
 
             applyFilter(filter) {
                 if (filter === this.currentFilter || this.isAnimating) return;
-
                 this.currentFilter = filter;
                 this.endOfDeckContainer.classList.remove('visible');
-
-                // Update active tab styles
                 this.filterContainer.querySelectorAll('div').forEach(tab => {
-                    if (tab.dataset.filter === filter) {
-                        tab.classList.add('text-slate-900', 'bg-white', 'border-slate-200', 'shadow-sm');
-                        tab.classList.remove('hover:bg-slate-100');
-                    } else {
-                        tab.classList.remove('text-slate-900', 'bg-white', 'border-slate-200', 'shadow-sm');
-                        tab.classList.add('hover:bg-slate-100');
-                    }
+                    const active = tab.dataset.filter === filter;
+                    tab.classList.toggle('text-slate-900', active);
+                    tab.classList.toggle('bg-white', active);
+                    tab.classList.toggle('border-slate-200', active);
+                    tab.classList.toggle('shadow-sm', active);
                 });
-
-                this.cardData = (filter === 'All')
-                    ? [...this.allCardData]
-                    : this.allCardData.filter(card => card.tag === filter);
-
+                this.cardData = (filter === 'All') ? [...this.allCardData] : this.allCardData.filter(card => card.tag === filter);
                 this.renderCards();
             }
 
@@ -294,12 +264,6 @@
                 this.container.querySelectorAll('.card').forEach(c => c.remove());
                 this.cards = [];
                 this.currentIndex = 0;
-
-                if (this.cardData.length === 0) {
-                    this.container.innerHTML = `<p class="text-slate-400 font-medium absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">No projects found for this category.</p>`;
-                    return;
-                }
-
                 this.createCards();
                 requestAnimationFrame(() => this.calculateAndSetPositions());
             }
@@ -309,30 +273,17 @@
                 this.cardData.forEach((data, index) => {
                     const cardEl = document.createElement('div');
                     cardEl.className = 'card shadow-xl';
-                    cardEl.dataset.index = index;
-
-                    cardEl.style.opacity = '0';
-                    cardEl.style.transform = `translateX(110vw) translateY(-50%)`;
                     cardEl.style.background = data.gradient;
-
-                    let imageHtml = '';
-                    if (data.imageUrl) {
-                        const placeholderUrl = `https://placehold.co/400x300/f0f0f0/ccc?text=Preview`;
-                        imageHtml = `<img src="${data.imageUrl}" alt="${data.title} project preview" class="w-full h-[45%] object-cover border-b border-white/40" onerror="this.onerror=null;this.src='${placeholderUrl}';">`;
-                    }
-
-                    // Card inner HTML integrating Tailwind + the Lora serif font
+                    cardEl.style.transform = `translateX(110vw) translateY(-50%)`;
                     cardEl.innerHTML = `
-                        ${imageHtml}
+                        <img src="${data.imageUrl}" class="w-full h-[45%] object-cover border-b border-white/20">
                         <div class="p-8 h-[55%] flex flex-col justify-between">
                             <div>
                                 <h2 class="font-serif text-3xl font-bold text-slate-900 mb-3 leading-tight">${data.title}</h2>
                                 <p class="text-slate-700 text-sm leading-relaxed">${data.content}</p>
                             </div>
                             <div class="flex justify-between items-center">
-                                <span class="text-[11px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-full bg-white/50 text-slate-700 border border-white/60">
-                                    ${data.tag}
-                                </span>
+                                <span class="text-[11px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-full bg-white/50 text-slate-700">${data.tag}</span>
                                 ${data.link ? `<a href="${data.link}" class="text-sm font-semibold text-brand-blue hover:underline flex items-center gap-1">Explore <i data-lucide="arrow-right" class="w-4 h-4"></i></a>` : ''}
                             </div>
                         </div>`;
@@ -340,172 +291,84 @@
                     fragment.appendChild(cardEl);
                 });
                 this.container.prepend(fragment);
-
-                // Re-initialize any new icons injected into the DOM
                 lucide.createIcons();
             }
 
             calculateAndSetPositions() {
                 const vh = window.innerHeight / 100;
                 const cardWidthPx = this.cards.length > 0 ? this.cards[0].offsetWidth : 0;
-                if (cardWidthPx === 0) return;
-
                 const spotlightX = 19 * vh;
-                const stackMargin = 4 * vh;
-                const stackStartX = spotlightX + cardWidthPx + stackMargin;
-
-                this.positions = [];
-                this.positions.push({
-                    x: spotlightX, rotate: 0, opacity: 1, scale: 1,
-                    shadow: 'var(--spotlight-shadow)', zIndex: this.cardData.length + 1
-                });
-
-                let currentX = stackStartX;
+                this.positions = [{ x: spotlightX, rotate: 0, opacity: 1, scale: 1, shadow: 'var(--spotlight-shadow)', zIndex: this.cardData.length + 1 }];
+                let curX = spotlightX + cardWidthPx + 4 * vh;
                 for (let i = 1; i < this.cardData.length; i++) {
-                    const randomJitter = (Math.random() - 0.5) * (2 * vh);
-                    const stackOffset = 15 * vh;
-                    this.positions.push({
-                        x: currentX, rotate: 0, opacity: 1, scale: 1,
-                        shadow: 'var(--stack-shadow)', zIndex: this.cardData.length - i
-                    });
-                    currentX += stackOffset + randomJitter;
+                    this.positions.push({ x: curX, rotate: 0, opacity: 1, scale: 1, shadow: 'var(--stack-shadow)', zIndex: this.cardData.length - i });
+                    curX += 15 * vh;
                 }
-
-                this.exitLeftPosition = {
-                    x: -cardWidthPx * 1.5, rotate: -20, opacity: 0, scale: 1, shadow: 'none', zIndex: 0
-                };
-
+                this.exitLeftPosition = { x: -cardWidthPx * 1.5, rotate: -20, opacity: 0, scale: 1, shadow: 'none', zIndex: 0 };
                 this.updateCardStyles(true);
             }
 
-            goTo(newIndex) {
-                if (this.isAnimating || newIndex < 0 || newIndex >= this.cards.length) return;
+            goTo(idx) {
+                if (this.isAnimating || idx < 0 || idx >= this.cards.length) return;
                 this.isAnimating = true;
-                this.currentIndex = newIndex;
+                this.currentIndex = idx;
                 this.updateCardStyles();
                 this.checkEndOfDeck();
                 setTimeout(() => { this.isAnimating = false; }, 1000);
             }
 
-            updateCardStyles(isInitialLoad = false) {
+            updateCardStyles(isInit = false) {
                 this.cards.forEach((card, i) => {
-                    const relativeIndex = i - this.currentIndex;
-                    let pos, transitionDelay = 0;
-
-                    if (relativeIndex < 0) {
-                        pos = this.exitLeftPosition;
-                    } else if (relativeIndex === 0) {
-                        pos = this.positions[0];
-                        transitionDelay = 0;
-                    } else {
-                        pos = this.positions[relativeIndex] || { ...this.positions[this.positions.length - 1], x: window.innerWidth + 500, opacity: 0 };
-                    }
-
-                    if (isInitialLoad) transitionDelay = relativeIndex * 100;
-
-                    card.style.transitionDelay = `${transitionDelay}ms`;
+                    const rel = i - this.currentIndex;
+                    let pos = rel < 0 ? this.exitLeftPosition : (this.positions[rel] || { ...this.positions[this.positions.length - 1], x: window.innerWidth + 500, opacity: 0 });
+                    card.style.transitionDelay = isInit ? `${rel * 100}ms` : '0ms';
                     card.style.transform = `translate(${pos.x}px, -50%) rotate(${pos.rotate}deg) scale(${pos.scale})`;
                     card.style.opacity = pos.opacity;
                     card.style.boxShadow = pos.shadow;
                     card.style.zIndex = pos.zIndex;
                 });
-
-                setTimeout(() => {
-                    this.cards.forEach(card => card.style.transitionDelay = '0ms');
-                }, 1000 + (this.cards.length * 100));
             }
 
             checkEndOfDeck() {
-                const isLastCard = this.currentIndex === this.cardData.length - 1;
-                const isFiltered = this.currentFilter !== 'All';
-
-                let showActions = false;
-                let positionX = 0;
-
-                if (isLastCard && this.cardData.length > 0) {
-                    this.filteredActions.style.display = isFiltered ? 'flex' : 'none';
-                    this.allActions.style.display = isFiltered ? 'none' : 'flex';
-
-                    if (isFiltered) {
-                        const otherCategory = this.currentFilter === 'Professional' ? 'Personal' : 'Professional';
-                        this.switchCategoryBtn.textContent = `View ${otherCategory} Projects`;
+                const isLast = this.currentIndex === this.cardData.length - 1;
+                if (isLast && this.cardData.length > 0) {
+                    this.filteredActions.style.display = this.currentFilter !== 'All' ? 'flex' : 'none';
+                    this.allActions.style.display = this.currentFilter === 'All' ? 'flex' : 'none';
+                    if (this.currentFilter !== 'All') {
+                        this.switchCategoryBtn.textContent = `View ${this.currentFilter === 'Professional' ? 'Personal' : 'Professional'} Projects`;
                     }
-
-                    const nextCardPosition = this.positions[1] || this.positions[0];
-
-                    positionX = nextCardPosition.x;
-                    showActions = true;
-                }
-
-                if (showActions) {
-                    this.endOfDeckContainer.style.transform = `translate(${positionX}px, -50%)`;
+                    this.endOfDeckContainer.style.transform = `translate(${this.positions[1]?.x || this.positions[0].x}px, -50%)`;
                     this.endOfDeckContainer.classList.add('visible');
-                } else {
-                    this.endOfDeckContainer.classList.remove('visible');
-                }
+                } else this.endOfDeckContainer.classList.remove('visible');
             }
 
             addEventListeners() {
-                // --- Mouse Wheel Scroll ---
-                let scrollTimeout;
-                document.body.addEventListener('wheel', (e) => {
-                    e.preventDefault();
-                    if (this.isAnimating) return;
-                    clearTimeout(scrollTimeout);
-                    scrollTimeout = setTimeout(() => {
-                        if (e.deltaY > 0) this.goTo(this.currentIndex + 1);
-                        else if (e.deltaY < 0) this.goTo(this.currentIndex - 1);
-                    }, 50);
-                }, { passive: false });
-
-                // --- Touch Swipe Scroll ---
-                let touchStartX = 0;
-                const swipeThreshold = 50; // Minimum distance in pixels for a swipe
-
-                document.body.addEventListener('touchstart', (e) => {
-                    if (e.target.tagName === 'BUTTON' || e.target.closest('a')) return;
-                    touchStartX = e.changedTouches[0].screenX;
-                }, { passive: true });
-
+                let st; document.body.addEventListener('wheel', (e) => { e.preventDefault(); if (this.isAnimating) return; clearTimeout(st); st = setTimeout(() => this.goTo(this.currentIndex + (e.deltaY > 0 ? 1 : -1)), 50); }, { passive: false });
+                let tx = 0; document.body.addEventListener('touchstart', (e) => tx = e.changedTouches[0].screenX, { passive: true });
                 document.body.addEventListener('touchend', (e) => {
-                    if (this.isAnimating || e.target.tagName === 'BUTTON' || e.target.closest('a')) return;
-                    const touchEndX = e.changedTouches[0].screenX;
-                    const swipeDistance = touchEndX - touchStartX;
-
-                    if (swipeDistance < -swipeThreshold) {
-                        this.goTo(this.currentIndex + 1); // Swiped left
-                    } else if (swipeDistance > swipeThreshold) {
-                        this.goTo(this.currentIndex - 1); // Swiped right
-                    }
+                    if (this.isAnimating) return;
+                    const dist = e.changedTouches[0].screenX - tx;
+                    if (Math.abs(dist) > 50) this.goTo(this.currentIndex + (dist < 0 ? 1 : -1));
                 }, { passive: true });
-
-
-                // --- Other Event Listeners ---
                 window.addEventListener('resize', () => this.calculateAndSetPositions());
-
-                this.switchCategoryBtn.addEventListener('click', () => {
-                    const otherCategory = this.currentFilter === 'Professional' ? 'Personal' : 'Professional';
-                    this.applyFilter(otherCategory);
-                });
-
+                this.switchCategoryBtn.addEventListener('click', () => this.applyFilter(this.currentFilter === 'Professional' ? 'Personal' : 'Professional'));
                 this.viewAllBtn.addEventListener('click', () => this.applyFilter('All'));
                 this.goToFirstBtn.addEventListener('click', () => this.goTo(0));
             }
         }
 
-        // --- App Initialization with Data ---
-        // I added the 'link' property to CED so it successfully connects to the case study we built!
+        // Project Data with fixed 'studies/' directory paths
         const cardData = [
-            { title: "Canadian English Dictionary", content: "A digital dictionary for Canadian English. Exploring the design and implementation of the first comprehensive digital resource.", tag: "Professional", gradient: "linear-gradient(135deg, #eafbff, #dce7ff)", imageUrl: "https://assets-global.website-files.com/6552495918f71e5b49767672/6552495918f71e5b497676f2_Canadian%20English%20Dictionary.png", link: "case-studies/ced.html" },
-            { title: "Rakuten", content: "Enhancing the user experience for a global e-commerce and high-traffic mobile payment app architecture.", tag: "Professional", gradient: "linear-gradient(135deg, #ffebeb, #ffcaca)", imageUrl: "https://assets-global.website-files.com/6552495918f71e5b49767672/6552495918f71e5b497676f8_Rakuten.png", link: "case-studies/rakuten.html" },
-            { title: "Rakuten Viber", content: "Designing for a cross-platform voice over IP and instant messaging platform ensuring connectivity.", tag: "Professional", gradient: "linear-gradient(135deg, #f0eaff, #e2d8ff)", imageUrl: "https://assets-global.website-files.com/6552495918f71e5b49767672/6552495918f71e5b497676f9_Rakuten%20Viber.png" },
-            { title: "Andook", content: "A platform for sharing and discovering books, connecting readers through intuitive asset categorizations.", tag: "Professional", gradient: "linear-gradient(135deg, #d7f9f8, #bdeee4)", imageUrl: "https://assets-global.website-files.com/6552495918f71e5b49767672/6552495918f71e5b497676f1_Andook.png" },
-            { title: "Antique Rugs", content: "Creating a digital showcase for a collection of unique, handcrafted rugs ensuring elegant display.", tag: "Personal", gradient: "linear-gradient(135deg, #fff0d4, #ffe4b5)", imageUrl: "https://assets-global.website-files.com/6552495918f71e5b49767672/6552495918f71e5b497676f0_Antique%20Rugs.png" },
-            { title: "LiveUp", content: "A lifestyle app designed to help users discover local events and activities in their neighborhoods.", tag: "Personal", gradient: "linear-gradient(135deg, #d4ffd6, #b8f2b1)", imageUrl: "https://assets-global.website-files.com/6552495918f71e5b49767672/6552495918f71e5b497676f6_LiveUp.png" },
-            { title: "Palette for Color-Blind Users", content: "Developing a tool to help designers create accessible color palettes prioritizing WCAG contrast compliance.", tag: "Professional", gradient: "linear-gradient(135deg, #ffd4f4, #ffbde3)", imageUrl: "https://assets-global.website-files.com/6552495918f71e5b49767672/6552495918f71e5b497676f7_Palette.png" },
-            { title: "Zara", content: "A conceptual redesign of the user experience for the global fashion retailer prioritizing mobile-first shopping.", tag: "Personal", gradient: "linear-gradient(135deg, #e0e0e0, #c7c7c7)", imageUrl: "https://assets-global.website-files.com/6552495918f71e5b49767672/6552495918f71e5b497676fa_Zara.png" },
-            { title: "Ideh Hub", content: "A collaborative platform for innovators and entrepreneurs to connect and execute digital ideas.", tag: "Professional", gradient: "linear-gradient(135deg, #d1faff, #b8f1ff)", imageUrl: "https://assets-global.website-files.com/6552495918f71e5b49767672/6552495918f71e5b497676f5_Ideh%20Hub.png" },
-            { title: "Studyizy", content: "A startup dashboard helping international students navigate the complex journey from admission to visa.", tag: "Professional", gradient: "linear-gradient(135deg, #d4f9f3, #bde6ff)", imageUrl: "https://assets-global.website-files.com/6552495918f71e5b49767672/6552495918f71e5b497676fb_Web%201920%20%E2%80%93%201.png" },
+            { title: "GlobalDWS", content: "End-to-end redesign for a complex B2B digital platform increasing session duration by 80%.", tag: "Professional", gradient: "linear-gradient(135deg, #f1f5f9, #e2e8f0)", imageUrl: "https://ik.imagekit.io/YOUR_ID/global-cover.png", link: "studies/globaldws.html" },
+            { title: "Canadian English Dictionary", content: "Designing the first comprehensive digital resource for Canadian English in over 20 years.", tag: "Professional", gradient: "linear-gradient(135deg, #eafbff, #dce7ff)", imageUrl: "https://ik.imagekit.io/YOUR_ID/ced-cover.png", link: "studies/ced.html" },
+            { title: "Rakuten Pay", content: "Information Architecture research and card sorting for a 44M user Fintech ecosystem.", tag: "Professional", gradient: "linear-gradient(135deg, #ffebeb, #ffcaca)", imageUrl: "https://ik.imagekit.io/YOUR_ID/rakuten-cover.png", link: "studies/rakuten.html" },
+            { title: "Rakuten Viber", content: "Integrating R-Cash P2P payments seamlessly into the Viber messaging platform.", tag: "Professional", gradient: "linear-gradient(135deg, #f4f1ff, #e2d8ff)", imageUrl: "https://ik.imagekit.io/YOUR_ID/viber-cover.webp", link: "studies/viber.html" },
+            { title: "Andook", content: "Simplifying personal finance categories through user research for an American startup.", tag: "Professional", gradient: "linear-gradient(135deg, #d7f9f8, #bdeee4)", imageUrl: "https://ik.imagekit.io/YOUR_ID/andook-cover.png", link: "studies/andook.html" },
+            { title: "Accessible Palette", content: "Methodological color system design for users with color-blindness and weak eyesight.", tag: "Professional", gradient: "linear-gradient(135deg, #fdf2f8, #fbcfe8)", imageUrl: "https://ik.imagekit.io/YOUR_ID/palette-cover.png", link: "studies/palette.html" },
+            { title: "Ideh Hub", content: "Timeless brand identity and stationery design for a boutique startup consultancy.", tag: "Professional", gradient: "linear-gradient(135deg, #fef3c7, #fde68a)", imageUrl: "https://ik.imagekit.io/YOUR_ID/ideh-cover.png", link: "studies/idehhub.html" },
+            { title: "Antique Rugs", content: "Elegant digital showcase for a collection of unique, handcrafted rugs.", tag: "Personal", gradient: "linear-gradient(135deg, #fff7ed, #ffedd5)", imageUrl: "https://via.placeholder.com/400x300?text=Rugs" },
+            { title: "LiveUp", content: "A lifestyle app designed to help users discover local community events.", tag: "Personal", gradient: "linear-gradient(135deg, #f0fdf4, #dcfce7)", imageUrl: "https://via.placeholder.com/400x300?text=LiveUp" },
+            { title: "Studyizy", content: "Startup dashboard helping international students manage the admission journey.", tag: "Professional", gradient: "linear-gradient(135deg, #ecfeff, #cffafe)", imageUrl: "https://via.placeholder.com/400x300?text=Studyizy" }
         ];
 
         document.addEventListener('DOMContentLoaded', () => {
