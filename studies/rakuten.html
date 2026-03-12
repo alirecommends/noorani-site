@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rakuten Case Study | Ali Noorani</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter & Lora (for Serif headings) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Lora', 'serif'],
+                    },
+                    colors: {
+                        brand: {
+                            blue: '#0b5cff',
+                            purple: '#f5effa', /* Light purple block background from screenshot */
+                            bg: '#f8fafc',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Lora', serif;
+        }
+
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body class="text-slate-800 antialiased selection:bg-purple-200 selection:text-slate-900">
+
+    <!-- Navigation -->
+    <nav
+        class="fixed w-full z-50 top-0 transition-all duration-300 bg-white/90 backdrop-blur-md border-b border-slate-100">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <a href="../index.html" class="text-xl font-bold font-sans tracking-tight text-slate-900">Ali
+                    Noorani<span class="text-slate-400 font-normal">.work</span></a>
+                <span
+                    class="hidden sm:flex ml-4 px-2.5 py-1 bg-slate-50 text-slate-500 text-[11px] font-semibold uppercase tracking-wider rounded border border-slate-200 items-center gap-1.5 cursor-default">
+                    <i data-lucide="lock" class="w-3 h-3"></i> Private
+                </span>
+            </div>
+            <div class="hidden md:flex gap-6 items-center">
+                <a href="../index.html"
+                    class="text-sm font-medium font-sans text-slate-500 hover:text-slate-900 transition-colors">Home</a>
+                <a href="../index.html#about"
+                    class="text-sm font-medium font-sans text-slate-500 hover:text-slate-900 transition-colors">About</a>
+                <a href="../portfolio.html"
+                    class="text-sm font-medium font-sans text-slate-900 transition-colors">Portfolio</a>
+                <a href="../index.html#contact"
+                    class="text-sm font-medium font-sans text-slate-500 hover:text-slate-900 transition-colors">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="pt-32 pb-16 px-6 max-w-5xl mx-auto fade-up">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <!-- Text Left -->
+            <div class="space-y-6">
+                <h1 class="text-4xl md:text-5xl font-bold text-slate-900 leading-tight">
+                    Information Architecture research on notifications categories
+                </h1>
+                <p class="text-slate-600 leading-relaxed text-sm">
+                    A major pain point for our 44 million global users was the search and notifications usability within
+                    the cashless payment app.
+                </p>
+                <p class="text-slate-600 leading-relaxed text-sm">
+                    As the core product designer, I collaborated with cross-functional team members to rethink the
+                    information architecture of the high-traffic mobile app. We focused on standardizing message
+                    categories to improve findability and user success.
+                </p>
+            </div>
+            <!-- Image Right -->
+            <div>
+                <img src="https://ik.imagekit.io/YOUR_IMAGEKIT_ID/rakuten-hero-sticky-notes.jpg"
+                    alt="Information Architecture Planning"
+                    onerror="this.src='https://via.placeholder.com/800x600/f3e8ff/8b5cf6?text=Sticky+Notes+Research'"
+                    class="w-full object-cover">
+            </div>
+        </div>
+    </header>
+
+    <!-- Overview Section -->
+    <section class="py-12 px-6 max-w-5xl mx-auto fade-up">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <!-- Image Left -->
+            <div class="bg-red-50/50 p-6 rounded-lg flex justify-center border border-red-100">
+                <img src="https://ik.imagekit.io/YOUR_IMAGEKIT_ID/rakuten-ui-before-after.png"
+                    alt="Notifications UI Before and After"
+                    onerror="this.src='https://via.placeholder.com/600x400/ffebeb/ef4444?text=UI+Before+After'"
+                    class="w-full shadow-sm bg-white rounded-md">
+            </div>
+            <!-- Text Right -->
+            <div class="space-y-4">
+                <h2 class="text-2xl font-bold text-slate-900 mb-6">Overview</h2>
+                <div class="space-y-3">
+                    <p class="text-slate-700 text-sm"><strong
+                            class="font-sans text-slate-900 w-24 inline-block">Duration:</strong> Two months</p>
+                    <p class="text-slate-700 text-sm"><strong
+                            class="font-sans text-slate-900 w-24 inline-block">Role:</strong> UX/UI Designer</p>
+                    <p class="text-slate-700 text-sm"><strong
+                            class="font-sans text-slate-900 w-24 inline-block">Impact:</strong> Improved message
+                        usability, validating design choices through rigorous user testing.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How to validate success (Purple Block) -->
+    <section class="py-12 px-6 max-w-4xl mx-auto fade-up">
+        <div class="bg-brand-purple rounded-xl p-10 text-center">
+            <h2 class="text-2xl font-bold text-slate-900 mb-8">How to validate success?</h2>
+
+            <div class="inline-block text-left space-y-4">
+                <div class="flex items-start gap-3">
+                    <i data-lucide="check-square" class="w-5 h-5 text-purple-600 mt-0.5 shrink-0"></i>
+                    <p class="text-slate-700 text-sm">Find out what categories are causing confusion &rarr; <strong
+                            class="text-slate-900 font-sans">Card sorting</strong></p>
+                </div>
+                <div class="flex items-start gap-3">
+                    <i data-lucide="check-square" class="w-5 h-5 text-purple-600 mt-0.5 shrink-0"></i>
+                    <p class="text-slate-700 text-sm">Discuss the success with PMs and stakeholders &rarr; <strong
+                            class="text-slate-900 font-sans">Tree Testing</strong></p>
+                </div>
+                <div class="flex items-start gap-3 pl-8">
+                    <ul class="list-disc text-slate-600 text-sm space-y-1">
+                        <li>Update the categories based on insights</li>
+                        <li>Provide logic and reasoning</li>
+                        <li>Test with users &rarr; <strong class="text-slate-900 font-sans">Usability testing</strong>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Design: Card-sorting -->
+    <section class="py-16 px-6 max-w-5xl mx-auto fade-up">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <!-- Images Left (2x2 Grid) -->
+            <div class="grid grid-cols-2 gap-2">
+                <img src="https://ik.imagekit.io/YOUR_IMAGEKIT_ID/rakuten-sort-1.jpg" alt="Workshop 1"
+                    onerror="this.src='https://via.placeholder.com/300x200?text=Sort+1'"
+                    class="w-full object-cover rounded shadow-sm border border-slate-200">
+                <img src="https://ik.imagekit.io/YOUR_IMAGEKIT_ID/rakuten-sort-2.jpg" alt="Workshop 2"
+                    onerror="this.src='https://via.placeholder.com/300x200?text=Sort+2'"
+                    class="w-full object-cover rounded shadow-sm border border-slate-200">
+                <img src="https://ik.imagekit.io/YOUR_IMAGEKIT_ID/rakuten-sort-3.jpg" alt="Workshop 3"
+                    onerror="this.src='https://via.placeholder.com/300x200?text=Sort+3'"
+                    class="w-full object-cover rounded shadow-sm border border-slate-200">
+                <img src="https://ik.imagekit.io/YOUR_IMAGEKIT_ID/rakuten-sort-4.jpg" alt="Workshop 4"
+                    onerror="this.src='https://via.placeholder.com/300x200?text=Sort+4'"
+                    class="w-full object-cover rounded shadow-sm border border-slate-200">
+            </div>
+            <!-- Text Right -->
+            <div>
+                <h2 class="text-2xl font-bold text-slate-900 mb-6">Research Design: Card-sorting</h2>
+                <ul class="list-decimal pl-5 space-y-3 text-slate-600 text-sm leading-relaxed">
+                    <li>Gather 15 users for the card sorting app.</li>
+                    <li>Analyze current notification categories and usage data.</li>
+                    <li>Design open card-sorting tasks to observe how users intuitively group and label information.
+                    </li>
+                    <li>Identify patterns in cognitive models and overlap in terminology.</li>
+                    <li>Refine categories to ensure mutually exclusive, comprehensive labels.</li>
+                    <li>Build a revised architecture tailored to user expectations.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Next & Outcomes Section -->
+    <section class="py-16 px-6 max-w-5xl mx-auto fade-up">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <!-- Text Left -->
+            <div>
+                <h3 class="text-2xl font-bold text-slate-900 mb-4">Next</h3>
+                <ul class="list-disc pl-5 space-y-2 text-slate-600 text-sm mb-8">
+                    <li>What categories fit user expectations best?</li>
+                    <li>Where did users struggle to place specific notifications?</li>
+                </ul>
+
+                <h3 class="text-2xl font-bold text-slate-900 mb-4">Outcomes</h3>
+                <ul class="list-disc pl-5 space-y-2 text-slate-600 text-sm leading-relaxed">
+                    <li>Users consistently sorted transactional messages into primary groups.</li>
+                    <li>Promotional messages required clearer distinction.</li>
+                    <li>Terminology was simplified for localization.</li>
+                    <li>Established a scalable notification taxonomy that accommodates future feature expansions without
+                        breaking.</li>
+                    <li>Eliminated dead-ends and reduced time-on-task for finding specific historical transactions.</li>
+                </ul>
+            </div>
+            <!-- Image Right -->
+            <div class="bg-slate-50 p-6 rounded-lg flex flex-col items-center border border-slate-100">
+                <img src="https://ik.imagekit.io/YOUR_IMAGEKIT_ID/rakuten-wireframes.png" alt="Wireframes and Flows"
+                    onerror="this.src='https://via.placeholder.com/600x500?text=Wireframes'"
+                    class="w-full shadow-sm bg-white border border-slate-200">
+                <p class="text-[11px] text-slate-500 mt-4 text-center px-4">
+                    Wireframes detailed the new IA structure mapping out primary, secondary, and tertiary layers to
+                    ensure scalability.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Takeaways (Purple Block) -->
+    <section class="py-12 px-6 max-w-5xl mx-auto fade-up">
+        <div class="bg-brand-purple rounded-xl p-10 md:p-14 grid md:grid-cols-12 gap-8">
+            <div class="md:col-span-4">
+                <h2 class="text-3xl font-bold text-slate-900">Takeaways <span class="text-purple-400">✦</span></h2>
+            </div>
+            <div class="md:col-span-8 space-y-4 text-sm text-slate-700 leading-relaxed">
+                <p>Card sorting provided crucial behavioral data that superseded internal company jargon and
+                    assumptions.</p>
+                <p>When presenting data to stakeholders, structuring the findings around user pain points (e.g., failed
+                    search queries) proved far more effective than just presenting the raw data.</p>
+                <p>Accessibility is not just about contrast; cognitive accessibility means organizing information so
+                    that it requires the lowest possible mental load from the user.</p>
+                <p>A scalable design system starts with scalable architecture. If the foundation is confusing, the UI
+                    cannot save it.</p>
+                <p>Documenting these findings created a knowledge base for future product squads, reducing duplicate
+                    research.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Presentation Placeholder -->
+    <section class="py-16 px-6 max-w-3xl mx-auto text-center fade-up">
+        <p class="text-sm text-slate-500 mb-6 uppercase tracking-widest font-semibold">Watch the research & findings
+            presentation</p>
+        <div class="aspect-video bg-slate-900 rounded-xl overflow-hidden relative shadow-lg border border-slate-200">
+            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/heWsU0-NPCI"
+                title="Rakuten Card Sorting Presentation" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen class="w-full h-full border-0">
+            </iframe>
+        </div>
+    </section>
+
+    <!-- Reflection Section -->
+    <section class="py-16 px-6 max-w-5xl mx-auto fade-up">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <!-- Image Left (QR App) -->
+            <div
+                class="flex justify-center border border-slate-200 bg-slate-50 rounded-lg overflow-hidden p-8 shadow-sm">
+                <img src="https://ik.imagekit.io/YOUR_IMAGEKIT_ID/rakuten-pay-qr-app.png" alt="Rakuten Pay App Screen"
+                    onerror="this.src='https://via.placeholder.com/400x600/ffffff/ef4444?text=Rakuten+Pay+App'"
+                    class="max-w-[250px] shadow-xl border border-slate-200 rounded-3xl">
+            </div>
+            <!-- Text Right -->
+            <div>
+                <h2 class="text-2xl font-bold text-slate-900 mb-6">Reflection</h2>
+                <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                    This project was a masterclass in aligning user needs with strict business and technical constraints
+                    within a massive global enterprise.
+                </p>
+                <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                    In parallel, I co-designed a first-ever responsive QR-code SDK, allowing the company to extend its
+                    cashless payment solutions to several other applications within the Rakuten ecosystem.
+                </p>
+                <p class="text-slate-600 text-sm leading-relaxed">
+                    Ultimately, navigating complex stakeholder environments and ensuring our designs successfully passed
+                    strict accessibility standard audits (WCAG 2.0) reinforced the importance of inclusive, data-backed
+                    design.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Next Project (Rakuten Viber) -->
+    <section class="py-16 px-6 max-w-4xl mx-auto fade-up">
+        <div class="border-t border-slate-200 pt-16 grid md:grid-cols-2 gap-12 items-center">
+            <div>
+                <span class="text-sm font-sans font-bold text-slate-400 uppercase tracking-widest block mb-4">Next
+                    Project</span>
+                <h2 class="text-4xl font-bold text-slate-900 uppercase tracking-wider mb-2">Rakuten Viber</h2>
+                <h3 class="text-xl font-sans text-slate-600 mb-4">Feature proposals & accessibility</h3>
+                <p class="text-slate-500 text-sm leading-relaxed mb-6">
+                    Designing for a cross-platform voice over IP and instant messaging platform ensuring connectivity
+                    and smooth communication flows.
+                </p>
+                <a href="#"
+                    class="inline-flex items-center gap-2 text-sm font-sans font-semibold text-brand-blue hover:underline">
+                    View Project <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </a>
+            </div>
+            <div>
+                <a href="#" class="block hover:opacity-90 transition-opacity">
+                    <img src="https://ik.imagekit.io/YOUR_IMAGEKIT_ID/rakuten-viber-screens.png"
+                        alt="Rakuten Viber Screens"
+                        onerror="this.src='https://via.placeholder.com/600x400/9333ea/ffffff?text=VIBER+SCREENS'"
+                        class="w-full rounded-lg shadow-md border border-slate-200">
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pagination -->
+    <div
+        class="max-w-4xl mx-auto px-6 fade-up pb-12 pt-4 border-t border-slate-200 flex justify-between items-center mt-12">
+        <a href="ced.html"
+            class="text-slate-500 hover:text-slate-900 font-medium flex items-center gap-2 transition-colors text-sm">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i> Previous: CED
+        </a>
+        <a href="andook.html"
+            class="text-slate-500 hover:text-slate-900 font-medium flex items-center gap-2 transition-colors text-sm">
+            Next: Andook <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 py-10">
+        <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="text-sm font-sans text-slate-500">&copy; 2026 All rights reserved.</p>
+            <div class="flex gap-4 items-center">
+                <span class="text-sm font-sans text-slate-500 cursor-pointer hover:text-slate-900">Toggle theme</span>
+                <a href="https://linkedin.com/in/alinoorani1" target="_blank"
+                    class="text-slate-400 hover:text-brand-blue transition-colors">
+                    <i data-lucide="linkedin" class="w-5 h-5"></i>
+                </a>
+                <a href="#" class="text-slate-400 hover:text-slate-900 transition-colors">
+                    <i data-lucide="globe" class="w-5 h-5"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Initialize Icons & Scroll Animations -->
+    <script>
+        lucide.createIcons();
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.fade-up').forEach((el) => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+
+</html>
