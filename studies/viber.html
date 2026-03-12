@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rakuten Viber Case Study | Ali Noorani</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter & Lora (for Serif headings) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Lora', 'serif'],
+                    },
+                    colors: {
+                        brand: {
+                            blue: '#0b5cff',
+                            purple: '#f5effa',
+                            viber: '#7360f2', /* Custom Viber Purple Accent */
+                            viberLight: '#f4f1ff',
+                            bg: '#f8fafc',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Lora', serif;
+        }
+
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body class="text-slate-800 antialiased selection:bg-brand-viber selection:text-white">
+
+    <!-- Navigation -->
+    <nav
+        class="fixed w-full z-50 top-0 transition-all duration-300 bg-white/90 backdrop-blur-md border-b border-slate-100">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <a href="../index.html" class="text-xl font-bold font-sans tracking-tight text-slate-900">Ali
+                    Noorani<span class="text-slate-400 font-normal">.work</span></a>
+                <span
+                    class="hidden sm:flex ml-4 px-2.5 py-1 bg-slate-50 text-slate-500 text-[11px] font-semibold uppercase tracking-wider rounded border border-slate-200 items-center gap-1.5 cursor-default">
+                    <i data-lucide="lock" class="w-3 h-3"></i> Private
+                </span>
+            </div>
+            <div class="hidden md:flex gap-6 items-center">
+                <a href="../index.html"
+                    class="text-sm font-medium font-sans text-slate-500 hover:text-slate-900 transition-colors">Home</a>
+                <a href="../index.html#about"
+                    class="text-sm font-medium font-sans text-slate-500 hover:text-slate-900 transition-colors">About</a>
+                <a href="../portfolio.html"
+                    class="text-sm font-medium font-sans text-slate-900 transition-colors">Portfolio</a>
+                <a href="../index.html#contact"
+                    class="text-sm font-medium font-sans text-slate-500 hover:text-slate-900 transition-colors">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="pt-32 pb-16 px-6 max-w-5xl mx-auto fade-up">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <!-- Text Left -->
+            <div class="space-y-6">
+                <div class="flex items-center gap-3 mb-2">
+                    <span
+                        class="px-3 py-1 bg-brand-viberLight text-brand-viber text-xs font-bold uppercase tracking-wider rounded-full border border-brand-viber/20">Feature
+                        Proposal</span>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-bold text-slate-900 leading-tight">
+                    Designing a Viber Pay R-Cash Wallet
+                </h1>
+                <p class="text-slate-600 leading-relaxed text-sm">
+                    In this project, I played a pivotal role in expanding the Viber Pay Wallet to incorporate the
+                    functionality of sending and receiving R-Cash, Rakuten's e-money, within the Viber messaging app.
+                </p>
+                <p class="text-slate-600 leading-relaxed text-sm">
+                    The primary goal was to encourage the utilization of R-Cash among Viber users by seamlessly
+                    integrating it into their daily communication platform.
+                </p>
+            </div>
+            <!-- Image Right -->
+            <div>
+                <!-- Using your uploaded viber-cover.webp -->
+                <img src="https://ik.imagekit.io/YOUR_IMAGEKIT_ID/viber-cover.webp" alt="Rakuten Viber UI Cover"
+                    onerror="this.src='https://via.placeholder.com/800x600/f4f1ff/7360f2?text=Viber+Prototypes'"
+                    class="w-full object-cover rounded-xl shadow-lg border border-slate-200">
+            </div>
+        </div>
+    </header>
+
+    <!-- Overview Section -->
+    <section class="py-12 px-6 max-w-5xl mx-auto fade-up">
+        <div
+            class="bg-brand-viberLight p-8 md:p-12 rounded-2xl border border-brand-viber/10 flex flex-col md:flex-row justify-between gap-8 items-start md:items-center">
+            <div class="max-w-2xl space-y-6">
+                <h2 class="text-2xl font-bold text-slate-900 mb-4">The Challenges</h2>
+
+                <div>
+                    <h3 class="font-bold text-slate-900 text-sm mb-1">Unified User Experience</h3>
+                    <p class="text-slate-700 leading-relaxed text-sm">One of the significant challenges was to create a
+                        cohesive user experience that seamlessly merged the existing Viber interface with the new wallet
+                        functionality, ensuring users could use the wallet intuitively without feeling like they were
+                        switching to a different app.</p>
+                </div>
+
+                <div>
+                    <h3 class="font-bold text-slate-900 text-sm mb-1">Visual Design Integration</h3>
+                    <p class="text-slate-700 leading-relaxed text-sm">Achieving a visual design that harmonized with the
+                        Viber app's aesthetics while introducing new wallet features. I needed to ensure that the
+                        wallet's UI didn't clash with the familiar design but instead felt like a natural extension.</p>
+                </div>
+
+                <div>
+                    <h3 class="font-bold text-slate-900 text-sm mb-1">Functional Expansion</h3>
+                    <p class="text-slate-700 leading-relaxed text-sm">Expanding the wallet's capabilities to include
+                        sending and receiving R-Cash required meticulous planning to make transactions effortless while
+                        strictly adhering to security and regulatory standards.</p>
+                </div>
+            </div>
+            <div class="shrink-0 space-y-3 bg-white p-6 rounded-xl shadow-sm border border-slate-100 min-w-[250px]">
+                <p class="text-slate-700 text-sm"><strong
+                        class="font-sans text-slate-900 w-20 inline-block">Role:</strong> UX/UI Designer</p>
+                <p class="text-slate-700 text-sm"><strong
+                        class="font-sans text-slate-900 w-20 inline-block">Scope:</strong> Prototyping & SDK</p>
+                <p class="text-slate-700 text-sm"><strong
+                        class="font-sans text-slate-900 w-20 inline-block">Platform:</strong> iOS & Android</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Features Proposed -->
+    <section class="py-16 px-6 max-w-4xl mx-auto fade-up">
+        <h2 class="text-3xl font-bold text-slate-900 text-center mb-12">Successes & Integration</h2>
+
+        <div class="space-y-16">
+            <!-- Flow 1: Splitting Shares -->
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="order-2 md:order-1 space-y-4">
+                    <div
+                        class="w-10 h-10 bg-brand-viberLight rounded-full flex items-center justify-center text-brand-viber mb-4">
+                        <i data-lucide="users" class="w-5 h-5"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-slate-900">1. User-Centric Transactions</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        I ensured that the design prioritized the user's perspective. The "Send R-Cash" feature
+                        simplifies transactions, making it easy for users to send R-Cash to their contacts directly from
+                        their Viber contact list. Clear displays of incoming R-Cash transactions were also added to
+                        provide complete transparency to the process.
+                    </p>
+                </div>
+                <div class="order-1 md:order-2 bg-slate-50 p-6 rounded-xl border border-slate-200 flex justify-center">
+                    <img src="https://ik.imagekit.io/YOUR_IMAGEKIT_ID/viber-cover.webp" alt="Send R-Cash Flow"
+                        onerror="this.src='https://via.placeholder.com/400x500/f4f1ff/7360f2?text=Send+R-Cash+UI'"
+                        class="max-h-[400px] object-contain shadow-md rounded-lg scale-110 origin-right">
+                </div>
+            </div>
+
+            <!-- Flow 2: Send R-Cash & QR -->
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="bg-slate-50 p-6 rounded-xl border border-slate-200 flex justify-center">
+                    <img src="https://ik.imagekit.io/YOUR_IMAGEKIT_ID/viber-cover.webp" alt="Viber Wallet Tab"
+                        onerror="this.src='https://via.placeholder.com/400x500/f4f1ff/7360f2?text=Wallet+Tab+UI'"
+                        class="max-h-[400px] object-contain shadow-md rounded-lg scale-110 origin-left">
+                </div>
+                <div class="space-y-4">
+                    <div
+                        class="w-10 h-10 bg-brand-viberLight rounded-full flex items-center justify-center text-brand-viber mb-4">
+                        <i data-lucide="wallet" class="w-5 h-5"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-slate-900">2. Seamless Wallet Integration</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        One of the project's most significant successes was the seamless integration of the R-Cash
+                        wallet into the app ecosystem. Users can now access the wallet functionality through a newly
+                        dedicated "Wallet" tab directly in the Viber menu, eliminating the need to ever open a separate
+                        application.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Design System & High Fidelity (Image Gallery) -->
+    <section class="py-16 px-6 max-w-5xl mx-auto fade-up">
+        <h2 class="text-2xl font-bold text-slate-900 mb-6 text-center">Design System Compatibility</h2>
+        <p class="text-slate-600 text-sm leading-relaxed text-center max-w-2xl mx-auto mb-12">
+            To overcome the challenge of a unified experience, I extensively studied the design systems of both Viber
+            and Rakuten Pay. This research allowed me to develop a design that seamlessly blended the two while
+            introducing new functionalities. By thoroughly understanding the user journey, I created a UI that is both
+            highly functional and visually appealing.
+        </p>
+
+        <div class="bg-slate-100 rounded-2xl p-4 md:p-8 border border-slate-200">
+            <img src="https://ik.imagekit.io/YOUR_IMAGEKIT_ID/viber-cover.webp" alt="Full Viber Prototype Screens"
+                onerror="this.src='https://via.placeholder.com/1200x800/f4f1ff/7360f2?text=Full+High-Fi+Prototypes'"
+                class="w-full h-auto rounded-xl shadow-sm">
+        </div>
+    </section>
+
+    <!-- Takeaways & Strategic Value -->
+    <section class="py-12 px-6 max-w-5xl mx-auto fade-up">
+        <div
+            class="bg-brand-purple rounded-xl p-10 md:p-14 grid md:grid-cols-12 gap-8 items-center border border-purple-100">
+            <div class="md:col-span-4">
+                <h2 class="text-3xl font-bold text-slate-900">Project Outcome <span class="text-brand-viber">✦</span>
+                </h2>
+            </div>
+            <div class="md:col-span-8 space-y-4 text-sm text-slate-700 leading-relaxed">
+                <p><strong>A Blueprint for Development:</strong> The outcome of the project was a well-received
+                    prototype that showcased the potential of integrating R-Cash functionality into Viber. The
+                    management was impressed with the design, as it not only met the project's objectives but also
+                    provided a clear blueprint for further development.</p>
+                <p><strong>Promoting Adoption:</strong> Ultimately, the project successfully aimed to promote the use of
+                    R-Cash among Viber users. The success of the prototype laid the concrete groundwork for a potential
+                    feature expansion within the Viber app.</p>
+                <p><strong>Enhancing Engagement:</strong> This initiative clearly demonstrated how UI-UX design plays a
+                    pivotal role in enhancing user engagement and expanding the financial functionality of a widely-used
+                    messaging platform.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Next Project (Andook) -->
+    <section class="py-16 px-6 max-w-4xl mx-auto fade-up">
+        <div class="border-t border-slate-200 pt-16 grid md:grid-cols-2 gap-12 items-center">
+            <div>
+                <span class="text-sm font-sans font-bold text-slate-400 uppercase tracking-widest block mb-4">Next
+                    Project</span>
+                <h2 class="text-4xl font-bold text-slate-900 uppercase tracking-wider mb-2">Andook</h2>
+                <h3 class="text-xl font-sans text-slate-600 mb-4">Simplifying Asset Management</h3>
+                <p class="text-slate-500 text-sm leading-relaxed mb-6">
+                    A platform for sharing and discovering books, connecting readers through intuitive asset
+                    categorizations and visual design.
+                </p>
+                <a href="#"
+                    class="inline-flex items-center gap-2 text-sm font-sans font-semibold text-brand-blue hover:underline">
+                    View Project <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </a>
+            </div>
+            <div>
+                <a href="#" class="block hover:opacity-90 transition-opacity">
+                    <!-- Placeholder for the next project image -->
+                    <img src="https://ik.imagekit.io/YOUR_IMAGEKIT_ID/andook-cover.png" alt="Andook Project Cover"
+                        onerror="this.src='https://via.placeholder.com/600x400/d7f9f8/0f766e?text=ANDOOK'"
+                        class="w-full rounded-lg shadow-md border border-slate-200">
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pagination -->
+    <div
+        class="max-w-4xl mx-auto px-6 fade-up pb-12 pt-4 border-t border-slate-200 flex justify-between items-center mt-12">
+        <a href="rakuten.html"
+            class="text-slate-500 hover:text-slate-900 font-medium flex items-center gap-2 transition-colors text-sm">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i> Previous: Rakuten Pay
+        </a>
+        <a href="andook.html"
+            class="text-slate-500 hover:text-slate-900 font-medium flex items-center gap-2 transition-colors text-sm">
+            Next: Andook <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 py-10">
+        <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="text-sm font-sans text-slate-500">&copy; 2026 All rights reserved.</p>
+            <div class="flex gap-4 items-center">
+                <span class="text-sm font-sans text-slate-500 cursor-pointer hover:text-slate-900">Toggle theme</span>
+                <a href="https://linkedin.com/in/alinoorani1" target="_blank"
+                    class="text-slate-400 hover:text-brand-viber transition-colors">
+                    <i data-lucide="linkedin" class="w-5 h-5"></i>
+                </a>
+                <a href="#" class="text-slate-400 hover:text-slate-900 transition-colors">
+                    <i data-lucide="globe" class="w-5 h-5"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Initialize Icons & Scroll Animations -->
+    <script>
+        lucide.createIcons();
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.fade-up').forEach((el) => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+
+</html>
