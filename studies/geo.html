@@ -15,6 +15,9 @@
         rel="stylesheet">
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Three.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
     <script>
         tailwind.config = {
             theme: {
@@ -29,6 +32,7 @@
                             blueHover: '#0046d5', /* Hover State Color */
                             bg: '#f8fafc',        /* Site-wide Background */
                             text: '#1e293b',      /* Dark Slate Text */
+                            cyan: '#00f0ff',      /* 3D Accent Color */
                         }
                     }
                 }
@@ -63,16 +67,9 @@
             box-shadow: 0 10px 25px -5px rgba(11, 92, 255, 0.3);
         }
 
-        /* Ambient hero glow effect */
-        .hero-glow {
-            position: absolute;
-            top: -10%;
-            right: -5%;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(11, 92, 255, 0.04) 0%, rgba(255, 255, 255, 0) 70%);
-            z-index: -1;
-            pointer-events: none;
+        /* Ambient text glow so it's readable over the 3D mesh */
+        .text-glow-bg {
+            background: radial-gradient(circle, rgba(248, 250, 252, 0.85) 0%, rgba(248, 250, 252, 0.4) 50%, rgba(248, 250, 252, 0) 80%);
         }
 
         .code-display {
@@ -119,29 +116,37 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <header class="pt-48 pb-24 px-6 text-center max-w-5xl mx-auto fade-up relative overflow-hidden">
-        <div class="hero-glow"></div>
-        <div
-            class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-brand-blue text-[10px] font-bold uppercase tracking-widest mb-6 font-sans">
-            <i data-lucide="cpu" class="w-3 h-3"></i> The Agentic Era is Here
+    <!-- Hero Section with Organic 3D Blob -->
+    <header
+        class="pt-48 pb-24 px-6 text-center max-w-full mx-auto relative overflow-hidden flex items-center min-h-[90vh]">
+        <!-- 3D Canvas Background -->
+        <div id="globe-container" class="absolute inset-0 z-0 pointer-events-none opacity-90 mix-blend-multiply"></div>
+
+        <!-- Content Overlay -->
+        <div class="relative z-10 max-w-5xl mx-auto fade-up text-glow-bg p-8 md:p-16 rounded-[3rem]">
+            <div
+                class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 border border-blue-200 text-brand-blue text-xs font-bold uppercase tracking-widest mb-6 font-sans shadow-sm">
+                <i data-lucide="cpu" class="w-4 h-4"></i> The Agentic Era is Here
+            </div>
+            <h1 class="text-5xl md:text-7xl font-bold text-slate-900 tracking-tight leading-[1.1] mb-8 drop-shadow-sm">
+                From Search Engines <br /> to <span
+                    class="text-brand-blue bg-clip-text text-transparent bg-gradient-to-r from-brand-blue to-purple-600">Answer
+                    Engines.</span>
+            </h1>
+            <p class="text-xl text-slate-800 font-medium mb-12 max-w-3xl mx-auto font-sans leading-relaxed">
+                Helping technical brands transition from traditional SEO to <strong>Generative Engine Optimization
+                    (GEO)</strong>—ensuring your expertise is the "Source of Truth" for AI models like Gemini, GPT-4,
+                and Perplexity.
+            </p>
+            <a href="../contact.html"
+                class="px-10 py-5 bg-brand-blue text-white font-bold rounded-2xl text-lg hover:bg-brand-blueHover transition-all cta-shadow inline-flex items-center gap-2 transform hover:-translate-y-0.5">
+                Secure Your 2026 Strategy <i data-lucide="arrow-right" class="w-5 h-5"></i>
+            </a>
         </div>
-        <h1 class="text-5xl md:text-7xl font-bold text-slate-900 tracking-tight leading-[1.1] mb-8">
-            From Search Engines <br /> to <span class="text-brand-blue">Answer Engines.</span>
-        </h1>
-        <p class="text-xl text-slate-600 mb-12 max-w-3xl mx-auto font-sans leading-relaxed">
-            Helping technical brands transition from traditional SEO to <strong>Generative Engine Optimization
-                (GEO)</strong>—ensuring your expertise is the "Source of Truth" for AI models like Gemini, GPT-4, and
-            Perplexity.
-        </p>
-        <a href="../contact.html"
-            class="px-10 py-5 bg-brand-blue text-white font-bold rounded-2xl text-lg hover:bg-brand-blueHover transition-all cta-shadow inline-flex items-center gap-2 transform hover:-translate-y-0.5">
-            Secure Your 2026 Strategy <i data-lucide="arrow-right" class="w-5 h-5"></i>
-        </a>
     </header>
 
     <!-- The Difference Section (Interactive Toggle) -->
-    <section class="py-32 bg-white border-y border-slate-100">
+    <section class="py-32 bg-white border-y border-slate-100 relative z-20">
         <div class="max-w-6xl mx-auto px-6">
             <div class="grid md:grid-cols-2 gap-20 items-center">
                 <div class="fade-up">
@@ -350,6 +355,137 @@
     <script>
         lucide.createIcons();
 
+        // 3D Organic Blob Animation Initialization
+        function initGlobe() {
+            const container = document.getElementById('globe-container');
+            if (!container) return;
+
+            const scene = new THREE.Scene();
+
+            // Adjust camera 
+            const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.z = 32;
+
+            const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            container.appendChild(renderer.domElement);
+
+            // Lighting to show depth and material properties
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+            scene.add(ambientLight);
+
+            const dirLight1 = new THREE.DirectionalLight(0x00f0ff, 2.0); // Cyan light
+            dirLight1.position.set(10, 15, 10);
+            scene.add(dirLight1);
+
+            const dirLight2 = new THREE.DirectionalLight(0x8b5cf6, 2.0); // Purple light
+            dirLight2.position.set(-10, -10, 10);
+            scene.add(dirLight2);
+
+            const globeGroup = new THREE.Group();
+            scene.add(globeGroup);
+
+            // High-resolution Base Geometry for a smooth blob
+            const radius = 10;
+            const segments = 64;
+            const geometry = new THREE.SphereGeometry(radius, segments, segments);
+
+            // Save original positions to calculate stable blob deformation
+            const originalPositions = geometry.attributes.position.clone();
+            geometry.setAttribute('originalPosition', originalPositions);
+
+            // 1. Solid Translucent Inner Blob
+            const blobMaterial = new THREE.MeshPhysicalMaterial({
+                color: 0x0b5cff,
+                emissive: 0x001133,
+                roughness: 0.1,
+                metalness: 0.2,
+                transparent: true,
+                opacity: 0.8,
+                clearcoat: 1.0,
+                clearcoatRoughness: 0.1
+            });
+            const solidBlob = new THREE.Mesh(geometry, blobMaterial);
+            globeGroup.add(solidBlob);
+
+            // 2. Outer Wireframe for the "Tech/Data" aesthetic
+            const wireMaterial = new THREE.MeshBasicMaterial({
+                color: 0x00f0ff,
+                wireframe: true,
+                transparent: true,
+                opacity: 0.15
+            });
+            const wireBlob = new THREE.Mesh(geometry, wireMaterial);
+            wireBlob.scale.set(1.01, 1.01, 1.01); // Just slightly larger than the solid blob
+            globeGroup.add(wireBlob);
+
+            // Position adjustment based on screen size
+            globeGroup.position.y = window.innerWidth < 768 ? -2 : -2;
+            globeGroup.position.x = window.innerWidth < 768 ? 0 : 8; // Offset to the right on desktop
+
+            // Animation Loop variables
+            const clock = new THREE.Clock();
+
+            function animate() {
+                requestAnimationFrame(animate);
+
+                // Extremely slow, graceful time progression
+                const time = clock.getElapsedTime() * 0.25;
+
+                // Slow ambient rotation
+                globeGroup.rotation.y = time * 0.1;
+                globeGroup.rotation.x = Math.sin(time * 0.2) * 0.1;
+
+                // Organic Mesh Morphing Math
+                const positions = geometry.attributes.position;
+                const orig = geometry.attributes.originalPosition;
+
+                for (let i = 0; i < positions.count; i++) {
+                    const u = orig.getX(i);
+                    const v = orig.getY(i);
+                    const w = orig.getZ(i);
+
+                    // Multi-frequency sine waves to simulate 3D organic noise
+                    const noise1 = Math.sin(u * 0.15 + time) * Math.cos(v * 0.15 + time) * Math.sin(w * 0.15 + time);
+                    const noise2 = Math.sin(u * 0.25 - time) * Math.cos(v * 0.25 + time);
+                    const noise3 = Math.cos(w * 0.3 + time) * Math.sin(u * 0.3 - time);
+
+                    // Large, sweeping displacements
+                    const displacement = (noise1 * 3.5) + (noise2 * 2.0) + (noise3 * 1.0);
+
+                    // Push vertices along their normal vector from center
+                    const normX = u / radius;
+                    const normY = v / radius;
+                    const normZ = w / radius;
+
+                    positions.setXYZ(
+                        i,
+                        u + (normX * displacement),
+                        v + (normY * displacement),
+                        w + (normZ * displacement)
+                    );
+                }
+                positions.needsUpdate = true;
+
+                // Recalculate normals so the physical lighting reflects properly off the new morphed shape
+                geometry.computeVertexNormals();
+
+                renderer.render(scene, camera);
+            }
+            animate();
+
+            // Handle Window Resizing smoothly
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                globeGroup.position.y = window.innerWidth < 768 ? -2 : -2;
+                globeGroup.position.x = window.innerWidth < 768 ? 0 : 8;
+            });
+        }
+
+        // Toggle UI logic
         function switchView(type) {
             const hBlock = document.getElementById('view-human');
             const bBlock = document.getElementById('view-bot');
@@ -367,11 +503,14 @@
             }
         }
 
-        const mobileBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        mobileBtn?.addEventListener('click', () => mobileMenu?.classList.toggle('hidden'));
-
+        // Setup DOM Listeners
         document.addEventListener('DOMContentLoaded', () => {
+            initGlobe(); // Trigger 3D background
+
+            const mobileBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileBtn?.addEventListener('click', () => mobileMenu?.classList.toggle('hidden'));
+
             const observerOptions = { threshold: 0.1 };
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
