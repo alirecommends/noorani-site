@@ -233,7 +233,8 @@
             }
 
             createFilters() {
-                const filters = ['All', 'Professional', 'Personal'];
+                // Filtered to remove "Personal" category
+                const filters = ['All', 'Professional'];
                 filters.forEach(filter => {
                     const tab = document.createElement('div');
                     tab.className = 'inline-block mx-2 px-6 py-2 text-sm font-medium text-slate-500 cursor-pointer rounded-full transition-all border border-transparent hover:bg-slate-100';
@@ -332,11 +333,10 @@
             checkEndOfDeck() {
                 const isLast = this.currentIndex === this.cardData.length - 1;
                 if (isLast && this.cardData.length > 0) {
-                    this.filteredActions.style.display = this.currentFilter !== 'All' ? 'flex' : 'none';
-                    this.allActions.style.display = this.currentFilter === 'All' ? 'flex' : 'none';
-                    if (this.currentFilter !== 'All') {
-                        this.switchCategoryBtn.textContent = `View ${this.currentFilter === 'Professional' ? 'Personal' : 'Professional'} Projects`;
-                    }
+                    // Since personal is hidden, we hide the switch button as there is only one specific category left
+                    this.filteredActions.style.display = 'none';
+                    this.allActions.style.display = 'flex';
+
                     this.endOfDeckContainer.style.transform = `translate(${this.positions[1]?.x || this.positions[0].x}px, -50%)`;
                     this.endOfDeckContainer.classList.add('visible');
                 } else this.endOfDeckContainer.classList.remove('visible');
@@ -351,13 +351,13 @@
                     if (Math.abs(dist) > 50) this.goTo(this.currentIndex + (dist < 0 ? 1 : -1));
                 }, { passive: true });
                 window.addEventListener('resize', () => this.calculateAndSetPositions());
-                this.switchCategoryBtn.addEventListener('click', () => this.applyFilter(this.currentFilter === 'Professional' ? 'Personal' : 'Professional'));
+                this.switchCategoryBtn.addEventListener('click', () => this.applyFilter('Professional'));
                 this.viewAllBtn.addEventListener('click', () => this.applyFilter('All'));
                 this.goToFirstBtn.addEventListener('click', () => this.goTo(0));
             }
         }
 
-        // Project Data with fixed 'studies/' directory paths
+        // Project Data - Filtered to only Professional projects
         const cardData = [
             { title: "GlobalDWS", content: "End-to-end redesign for a complex B2B digital platform increasing session duration by 80%.", tag: "Professional", gradient: "linear-gradient(135deg, #f1f5f9, #e2e8f0)", imageUrl: "https://ik.imagekit.io/YOUR_ID/global-cover.png", link: "studies/globaldws.html" },
             { title: "Canadian English Dictionary", content: "Designing the first comprehensive digital resource for Canadian English in over 20 years.", tag: "Professional", gradient: "linear-gradient(135deg, #eafbff, #dce7ff)", imageUrl: "https://ik.imagekit.io/YOUR_ID/ced-cover.png", link: "studies/ced.html" },
@@ -366,8 +366,6 @@
             { title: "Andook", content: "Simplifying personal finance categories through user research for an American startup.", tag: "Professional", gradient: "linear-gradient(135deg, #d7f9f8, #bdeee4)", imageUrl: "https://ik.imagekit.io/YOUR_ID/andook-cover.png", link: "studies/andook.html" },
             { title: "Accessible Palette", content: "Methodological color system design for users with color-blindness and weak eyesight.", tag: "Professional", gradient: "linear-gradient(135deg, #fdf2f8, #fbcfe8)", imageUrl: "https://ik.imagekit.io/YOUR_ID/palette-cover.png", link: "studies/palette.html" },
             { title: "Ideh Hub", content: "Timeless brand identity and stationery design for a boutique startup consultancy.", tag: "Professional", gradient: "linear-gradient(135deg, #fef3c7, #fde68a)", imageUrl: "https://ik.imagekit.io/YOUR_ID/ideh-cover.png", link: "studies/idehhub.html" },
-            { title: "Antique Rugs", content: "Elegant digital showcase for a collection of unique, handcrafted rugs.", tag: "Personal", gradient: "linear-gradient(135deg, #fff7ed, #ffedd5)", imageUrl: "https://via.placeholder.com/400x300?text=Rugs" },
-            { title: "LiveUp", content: "A lifestyle app designed to help users discover local community events.", tag: "Personal", gradient: "linear-gradient(135deg, #f0fdf4, #dcfce7)", imageUrl: "https://via.placeholder.com/400x300?text=LiveUp" },
             { title: "Studyizy", content: "Startup dashboard helping international students manage the admission journey.", tag: "Professional", gradient: "linear-gradient(135deg, #ecfeff, #cffafe)", imageUrl: "https://via.placeholder.com/400x300?text=Studyizy" }
         ];
 
