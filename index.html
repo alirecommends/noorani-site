@@ -69,13 +69,23 @@
         /* Pastel ambient hero glow effect */
         .hero-glow {
             position: absolute;
-            top: -20%;
-            right: -10%;
-            width: 900px;
-            height: 900px;
-            background: radial-gradient(circle at 60% 40%, rgba(226, 213, 248, 0.5) 0%, rgba(250, 210, 225, 0.3) 40%, rgba(255, 255, 255, 0) 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(226, 213, 248, 0.6) 0%, rgba(250, 210, 225, 0.4) 40%, rgba(252, 251, 254, 0) 70%);
             z-index: -1;
             pointer-events: none;
+        }
+
+        @media (min-width: 768px) {
+            .hero-glow {
+                /* Pins the glow securely behind the 3D object column, preventing it from drifting on ultrawide monitors */
+                transform: translate(calc(-50% + 300px), -50%);
+                width: 1000px;
+                height: 1000px;
+            }
         }
 
         .cta-shadow {
