@@ -45,22 +45,37 @@
 
     <style>
         :root {
+            /* Desktop Sizing */
             --card-height: 65vh;
             --card-aspect-ratio: 0.60;
             --card-width: calc(var(--card-height) * var(--card-aspect-ratio));
             --animation-duration: 1s;
             --animation-timing-function: cubic-bezier(0.47, 0, 0.23, 1.38);
-            /* Softened the card shadows to fit the pastel theme (using lavender tints) */
+
             --spotlight-shadow: 0px 40px 100px -20px rgba(179, 168, 255, 0.25), 0px 20px 40px -10px rgba(179, 168, 255, 0.15);
             --stack-shadow: 0px 30px 60px -15px rgba(179, 168, 255, 0.15), 0px 10px 20px -5px rgba(179, 168, 255, 0.1);
+        }
+
+        /* Mobile specific card sizing */
+        @media (max-width: 768px) {
+            :root {
+                --card-width: 75vw;
+                --card-height: calc(var(--card-width) / var(--card-aspect-ratio));
+            }
+        }
+
+        /* Strict overflow control to prevent iOS Safari horizontal scrolling */
+        html,
+        body {
+            overflow-x: hidden;
+            width: 100vw;
+            max-width: 100%;
         }
 
         body {
             font-family: 'Inter', sans-serif;
             background-color: #FCFBFE;
-            overflow: hidden;
             height: 100vh;
-            width: 100vw;
             display: flex;
             flex-direction: column;
         }
@@ -81,18 +96,21 @@
             justify-content: center;
         }
 
+        /* The wrapper must explicitly hide overflow to clip cards that sit off-screen to the right */
         .cards-wrapper {
             position: relative;
             width: 100%;
             height: 100%;
+            overflow: hidden;
         }
 
         .card {
             position: absolute;
             width: var(--card-width);
             height: var(--card-height);
+            max-height: 70vh;
+            /* Safety limit for small mobile screens */
             border-radius: 2rem;
-            /* Increased border radius for softer look */
             border: 1px solid rgba(255, 255, 255, 0.8);
             top: 50%;
             transform-origin: center center;
@@ -123,6 +141,9 @@
             transition: opacity 0.5s ease 0.3s;
             opacity: 0;
             pointer-events: none;
+            width: 80%;
+            max-width: 300px;
+            text-align: center;
         }
 
         .end-of-deck-actions.visible {
@@ -132,6 +153,16 @@
 
         .cta-shadow {
             box-shadow: 0 10px 25px -5px rgba(208, 188, 235, 0.4);
+        }
+
+        /* Hide scrollbar for the mobile filters */
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
         }
     </style>
 </head>
@@ -184,7 +215,9 @@
     </nav>
 
     <!-- Filter Tabs Container -->
-    <div class="pt-28 pb-4 text-center relative z-[1000]" id="filter-container"></div>
+    <!-- Added overflow-x-auto so mobile users can horizontally scroll the tags if needed -->
+    <div class="pt-28 pb-4 text-center relative z-[1000] overflow-x-auto whitespace-nowrap px-4 scrollbar-hide"
+        id="filter-container"></div>
 
     <!-- Interactive Card Scene -->
     <main class="scene-container">
@@ -192,14 +225,14 @@
             <div class="end-of-deck-actions">
                 <div id="filtered-actions" class="flex flex-col gap-4">
                     <button id="switch-category-btn"
-                        class="bg-pastel-primary text-slate-900 px-8 py-4 rounded-full font-bold hover:bg-pastel-primaryHover transition-all cta-shadow text-lg"></button>
+                        class="bg-pastel-primary text-slate-900 px-8 py-4 rounded-full font-bold hover:bg-pastel-primaryHover transition-all cta-shadow md:text-lg"></button>
                     <button id="view-all-btn"
-                        class="text-slate-500 font-bold hover:text-pastel-dark transition-colors tracking-wide">View All
-                        Projects</button>
+                        class="text-slate-500 font-bold hover:text-pastel-dark transition-colors tracking-wide text-sm md:text-base">View
+                        All Projects</button>
                 </div>
                 <div id="all-actions" class="hidden flex-col gap-4">
                     <button id="go-to-first-btn"
-                        class="bg-pastel-primary text-slate-900 px-8 py-4 rounded-full font-bold hover:bg-pastel-primaryHover transition-all cta-shadow text-lg">Back
+                        class="bg-pastel-primary text-slate-900 px-8 py-4 rounded-full font-bold hover:bg-pastel-primaryHover transition-all cta-shadow md:text-lg">Back
                         to Start</button>
                 </div>
             </div>
@@ -208,8 +241,8 @@
 
     <!-- Footer -->
     <footer
-        class="w-full px-10 py-6 flex justify-between items-center shrink-0 border-t border-pastel-primary/30 bg-[#F0ECF9] z-[1000]">
-        <p class="text-sm font-sans font-medium text-slate-600">&copy; 2026 Ali Noorani.</p>
+        class="w-full px-6 md:px-10 py-6 flex justify-between items-center shrink-0 border-t border-pastel-primary/30 bg-[#F0ECF9] z-[1000]">
+        <p class="text-xs md:text-sm font-sans font-medium text-slate-600">&copy; 2026 Ali Noorani.</p>
         <div class="flex items-center gap-6">
             <a href="https://linkedin.com/in/alinoorani1" target="_blank"
                 class="text-slate-500 hover:text-pastel-dark transition-colors">
@@ -259,12 +292,10 @@
             }
 
             createFilters() {
-                // Filtered to remove "Personal" category based on previous file context
                 const filters = ['All', 'Professional'];
                 filters.forEach(filter => {
                     const tab = document.createElement('div');
-                    // Updated classes for Pastel Theme
-                    tab.className = 'inline-block mx-2 px-6 py-2 text-sm font-bold tracking-wider uppercase text-slate-500 cursor-pointer rounded-full transition-all border border-transparent hover:bg-pastel-surface hover:text-pastel-dark';
+                    tab.className = 'inline-block mx-1 md:mx-2 px-5 py-2 text-[11px] md:text-sm font-bold tracking-wider uppercase text-slate-500 cursor-pointer rounded-full transition-all border border-transparent hover:bg-pastel-surface hover:text-pastel-dark';
                     tab.textContent = filter;
                     tab.dataset.filter = filter;
                     if (filter === this.currentFilter) {
@@ -310,17 +341,17 @@
                     cardEl.className = 'card bg-white shadow-xl';
                     cardEl.style.background = data.gradient;
                     cardEl.style.transform = `translateX(110vw) translateY(-50%)`;
-                    // Updated card DOM elements for frosted pastel aesthetic
+                    // Updated Typography classes for Mobile Responsive Text
                     cardEl.innerHTML = `
                         <img src="${data.imageUrl}" class="w-full h-[45%] object-cover border-b border-white/40">
-                        <div class="p-8 h-[55%] flex flex-col justify-between bg-white/40 backdrop-blur-md">
+                        <div class="p-6 md:p-8 h-[55%] flex flex-col justify-between bg-white/40 backdrop-blur-md">
                             <div>
-                                <h2 class="font-serif text-3xl font-bold text-slate-900 mb-3 leading-tight tracking-tight">${data.title}</h2>
-                                <p class="text-slate-700 text-sm leading-relaxed font-sans">${data.content}</p>
+                                <h2 class="font-serif text-2xl md:text-3xl font-bold text-slate-900 mb-2 md:mb-3 leading-tight tracking-tight">${data.title}</h2>
+                                <p class="text-slate-700 text-xs md:text-sm leading-relaxed font-sans line-clamp-3">${data.content}</p>
                             </div>
-                            <div class="flex justify-between items-center font-sans">
-                                <span class="text-[10px] font-bold uppercase tracking-widest px-4 py-2 rounded-lg bg-white/70 text-slate-600 shadow-sm border border-white">${data.tag}</span>
-                                ${data.link ? `<a href="${data.link}" class="text-sm font-bold text-pastel-dark hover:text-slate-900 transition-colors flex items-center gap-1 group">Explore <i data-lucide="arrow-right" class="w-4 h-4 transform group-hover:translate-x-1 transition-transform"></i></a>` : ''}
+                            <div class="flex justify-between items-center font-sans mt-4">
+                                <span class="text-[9px] md:text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 md:px-4 md:py-2 rounded-lg bg-white/70 text-slate-600 shadow-sm border border-white">${data.tag}</span>
+                                ${data.link ? `<a href="${data.link}" class="text-xs md:text-sm font-bold text-pastel-dark hover:text-slate-900 transition-colors flex items-center gap-1 group">Explore <i data-lucide="arrow-right" class="w-3 h-3 md:w-4 md:h-4 transform group-hover:translate-x-1 transition-transform"></i></a>` : ''}
                             </div>
                         </div>`;
                     this.cards.push(cardEl);
@@ -331,16 +362,29 @@
             }
 
             calculateAndSetPositions() {
+                const isMobile = window.innerWidth < 768;
                 const vh = window.innerHeight / 100;
+                const vw = window.innerWidth / 100;
                 const cardWidthPx = this.cards.length > 0 ? this.cards[0].offsetWidth : 0;
-                const spotlightX = 19 * vh;
+
+                // On mobile, perfectly center the primary card. On desktop, fixed left-offset.
+                const spotlightX = isMobile ? (window.innerWidth - cardWidthPx) / 2 : 19 * vh;
+
                 this.positions = [{ x: spotlightX, rotate: 0, opacity: 1, scale: 1, shadow: 'var(--spotlight-shadow)', zIndex: this.cardData.length + 1 }];
-                let curX = spotlightX + cardWidthPx + 4 * vh;
+
+                // Tighter gaps on mobile to show the stack peeking on the right
+                const firstGap = isMobile ? 8 * vw : 4 * vh;
+                const stackGap = isMobile ? 12 * vw : 15 * vh;
+
+                let curX = spotlightX + cardWidthPx + firstGap;
                 for (let i = 1; i < this.cardData.length; i++) {
-                    this.positions.push({ x: curX, rotate: 0, opacity: 1, scale: 1, shadow: 'var(--stack-shadow)', zIndex: this.cardData.length - i });
-                    curX += 15 * vh;
+                    // Mobile stacks scale down slightly to indicate depth due to tight screen space
+                    const scale = isMobile ? 1 - (i * 0.05) : 1;
+                    this.positions.push({ x: curX, rotate: 0, opacity: 1, scale: scale, shadow: 'var(--stack-shadow)', zIndex: this.cardData.length - i });
+                    curX += stackGap;
                 }
-                this.exitLeftPosition = { x: -cardWidthPx * 1.5, rotate: -20, opacity: 0, scale: 1, shadow: 'none', zIndex: 0 };
+
+                this.exitLeftPosition = { x: -cardWidthPx * 1.5, rotate: -10, opacity: 0, scale: 0.9, shadow: 'none', zIndex: 0 };
                 this.updateCardStyles(true);
             }
 
@@ -371,7 +415,19 @@
                     this.filteredActions.style.display = 'none';
                     this.allActions.style.display = 'flex';
 
-                    this.endOfDeckContainer.style.transform = `translate(${this.positions[1]?.x || this.positions[0].x}px, -50%)`;
+                    const isMobile = window.innerWidth < 768;
+                    // On mobile, strictly center the end-of-deck buttons.
+                    const targetX = isMobile ? (window.innerWidth / 2) : (this.positions[1]?.x || this.positions[0].x + 300);
+                    const transformOffset = isMobile ? '-50%' : '0px';
+
+                    this.endOfDeckContainer.style.transform = `translate(calc(${targetX}px - 50% + ${isMobile ? '0px' : '150px'}), -50%)`;
+                    if (isMobile) {
+                        this.endOfDeckContainer.style.transform = `translate(-50%, -50%)`;
+                        this.endOfDeckContainer.style.left = '50%';
+                    } else {
+                        this.endOfDeckContainer.style.left = 'auto';
+                    }
+
                     this.endOfDeckContainer.classList.add('visible');
                 } else this.endOfDeckContainer.classList.remove('visible');
             }
@@ -391,7 +447,7 @@
             }
         }
 
-        // Project Data - Updated to matching Pastel Gradients
+        // Project Data 
         const cardData = [
             { title: "GlobalDWS", content: "End-to-end redesign for a complex B2B digital platform increasing session duration by 80%.", tag: "Professional", gradient: "linear-gradient(135deg, #E2D5F8, #F4F0FA)", imageUrl: "images/2d-map.png", link: "studies/globaldws.html" },
             { title: "Canadian English Dictionary", content: "Designing the first comprehensive digital resource for Canadian English in over 20 years.", tag: "Professional", gradient: "linear-gradient(135deg, #C5EBE1, #FCFBFE)", imageUrl: "https://ik.imagekit.io/ekznzyzm7/ced_I9m6gTBjb.png?tr=f-auto&tr=w-1080", link: "studies/ced.html" },
@@ -399,8 +455,7 @@
             { title: "Rakuten Viber", content: "Integrating R-Cash P2P payments seamlessly into the Viber messaging platform.", tag: "Professional", gradient: "linear-gradient(135deg, #E2D5F8, #FCFBFE)", imageUrl: "https://ik.imagekit.io/ekznzyzm7/viber-cover.png", link: "studies/viber.html" },
             { title: "Andook", content: "Simplifying personal finance categories through user research for an American startup.", tag: "Professional", gradient: "linear-gradient(135deg, #C5EBE1, #EAF7F4)", imageUrl: "https://ik.imagekit.io/ekznzyzm7/andook-feature__ksl68KpK.png?tr=f-auto&tr=w-1080", link: "studies/andook.html" },
             { title: "Accessible Palette", content: "Methodological color system design for users with color-blindness and weak eyesight.", tag: "Professional", gradient: "linear-gradient(135deg, #FAD2E1, #FCFBFE)", imageUrl: "https://ik.imagekit.io/ekznzyzm7/palette-framed_FVT_3KjmT.png?tr=f-auto&tr=w-1080", link: "studies/palette.html" },
-            { title: "Ideh Hub", content: "Timeless brand identity and stationery design for a boutique startup consultancy.", tag: "Professional", gradient: "linear-gradient(135deg, #FDE68A, #FEF3C7)", imageUrl: "https://ik.imagekit.io/ekznzyzm7/ideh-hub.jpg?tr=f-auto&tr=w-1080", link: "studies/idehhub.html" },
-            { title: "Studyizy", content: "Startup dashboard helping international students manage the admission journey.", tag: "Professional", gradient: "linear-gradient(135deg, #C5EBE1, #EAF7F4)", imageUrl: "https://via.placeholder.com/400x300?text=Studyizy" }
+            { title: "Ideh Hub", content: "Timeless brand identity and stationery design for a boutique startup consultancy.", tag: "Professional", gradient: "linear-gradient(135deg, #FDE68A, #FEF3C7)", imageUrl: "https://ik.imagekit.io/ekznzyzm7/ideh-hub.jpg?tr=f-auto&tr=w-1080", link: "studies/idehhub.html" }
         ];
 
         document.addEventListener('DOMContentLoaded', () => {
